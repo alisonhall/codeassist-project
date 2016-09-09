@@ -11,5 +11,9 @@
     "url": "https://bitbucket.org/alison-hall/capstone-website/overview"
   },
   "author": "Alison Hall",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "react": "^15.3.1",
+    "react-dom": "^15.3.1"
+  }
 }

@@ -1,0 +1,15 @@
+{
+  "name": "capstone-website",
+  "version": "1.0.0",
+  "description": "Alison Hall and Liana Careri's capstone project for Humber College's WEBD 302 course.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://bitbucket.org/alison-hall/capstone-website/overview"
+  },
+  "author": "Alison Hall",
+  "license": "ISC"
+}

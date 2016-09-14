@@ -1,0 +1,105 @@
+{
+	"categories": [
+		{
+			"name": "conditional",
+			"full-name": "Conditional",
+			"alternative-names": "",
+			"description": "",
+			"sub-categories": [
+				{
+					"name": "if-statement",
+					"full-name": "If Statement",
+					"alternative-names": "",
+					"description": "",
+					"sub-categories": {}
+				}, {
+					"name": "while",
+					"full-name": "While Loop",
+					"alternative-names": "",
+					"description": "",
+					"sub-categories": {}
+				}
+			]
+		}, {
+			"name": "data-types",
+			"full-name": "Data Types",
+			"alternative-names": "",
+			"description": "These are data types.",
+			"sub-categories": [
+				{
+					"name": "string",
+					"full-name": "String",
+					"alternative-names": "",
+					"description": "Strings are just like text. They are a collection of characters.",
+					"sub-categories": {}
+				}, {
+					"name": "int",
+					"full-name": "Integer",
+					"alternative-names": "",
+					"description": "Integers represent whole numbers. This means 0 to a large number, with no decimals or fractions. Arithmetic can be applied to integers.",
+					"sub-categories": {}
+				}
+			]
+		}
+	],
+	"languages": [
+		{
+			"name": "javascript",
+			"full-name": "Javascript",
+			"alternative-names": [],
+			"related": ["jquery"]
+		},
+		{
+			"name": "jquery",
+			"full-name": "jQuery",
+			"alternative-names": [],
+			"related": ["javascript"]
+		},
+		{
+			"name": "html",
+			"full-name": "HTML",
+			"alternative-names": ["Hypertext Markup Language"],
+			"related": []
+		},
+		{
+			"name": "css",
+			"full-name": "CSS",
+			"alternative-names": ["Cascading Style Sheets"],
+			"related": ["scss"]
+		},
+		{
+			"name": "scss",
+			"full-name": "SCSS",
+			"alternative-names": ["SASS"],
+			"related": ["css"]
+		},
+		{
+			"name": "swift",
+			"full-name": "Swift",
+			"alternative-names": [],
+			"related": []
+		}
+	],
+	"examples": [ 
+		{
+			"category": "string",
+			"description": "Implicit string",
+			"language": "swift",
+			"code-text": "var stringName = 'This is a string'",
+			"embedded-code": "",
+			"image": "",
+			"notes": "",
+			"references": ""
+		}, 
+		{
+			"category": "string",
+			"description": "Explicit string",
+			"language": "swift",
+			"code-text": "var stringName: String = 'This is also a string'",
+			"embedded-code": "",
+			"image": "",
+			"notes": "",
+			"references": ""
+		}
+	]
+}

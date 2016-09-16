@@ -23,7 +23,7 @@ module.exports = validate({
 		loaders: [
 		{
 			test: /\.js$/,
-			loaders: ['react-hot', 'babel'],
+			loaders: ['react-hot-loader/webpack', 'babel'],
 			include: SRC_DIR,
 			exclude: /node_modules/
 		}

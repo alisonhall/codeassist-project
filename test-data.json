@@ -1,43 +1,49 @@
 {
 	"categories": [
 		{
+			"id" : "0",
 			"name": "conditional",
-			"full-name": "Conditional",
-			"alternative-names": "",
+			"fullName": "Conditional",
+			"alternativeNames": "",
 			"description": "",
-			"sub-categories": [
+			"subCategories": [
 				{
+					"id" : "0.0",
 					"name": "if-statement",
-					"full-name": "If Statement",
-					"alternative-names": "",
+					"fullName": "If Statement",
+					"alternativeNames": "",
 					"description": "",
-					"sub-categories": {}
+					"subCategories": []
 				}, {
+					"id" : "0.1",
 					"name": "while",
-					"full-name": "While Loop",
-					"alternative-names": "",
+					"fullName": "While Loop",
+					"alternativeNames": "",
 					"description": "",
-					"sub-categories": {}
+					"subCategories": []
 				}
 			]
 		}, {
+			"id" : "1",
 			"name": "data-types",
-			"full-name": "Data Types",
-			"alternative-names": "",
+			"fullName": "Data Types",
+			"alternativeNames": "",
 			"description": "These are data types.",
-			"sub-categories": [
+			"subCategories": [
 				{
+					"id" : "1.0",
 					"name": "string",
-					"full-name": "String",
-					"alternative-names": "",
+					"fullName": "String",
+					"alternativeNames": "",
 					"description": "Strings are just like text. They are a collection of characters.",
-					"sub-categories": {}
+					"subCategories": []
 				}, {
+					"id" : "1.1",
 					"name": "int",
-					"full-name": "Integer",
-					"alternative-names": "",
+					"fullName": "Integer",
+					"alternativeNames": "",
 					"description": "Integers represent whole numbers. This means 0 to a large number, with no decimals or fractions. Arithmetic can be applied to integers.",
-					"sub-categories": {}
+					"subCategories": []
 				}
 			]
 		}
@@ -45,38 +51,33 @@
 	"languages": [
 		{
 			"name": "javascript",
-			"full-name": "Javascript",
-			"alternative-names": [],
+			"fullName": "Javascript",
+			"alternativeNames": [],
 			"related": ["jquery"]
-		},
-		{
+		}, {
 			"name": "jquery",
-			"full-name": "jQuery",
-			"alternative-names": [],
+			"fullName": "jQuery",
+			"alternativeNames": [],
 			"related": ["javascript"]
-		},
-		{
+		}, {
 			"name": "html",
-			"full-name": "HTML",
-			"alternative-names": ["Hypertext Markup Language"],
+			"fullName": "HTML",
+			"alternativeNames": ["Hypertext Markup Language"],
 			"related": []
-		},
-		{
+		}, {
 			"name": "css",
-			"full-name": "CSS",
-			"alternative-names": ["Cascading Style Sheets"],
+			"fullName": "CSS",
+			"alternativeNames": ["Cascading Style Sheets"],
 			"related": ["scss"]
-		},
-		{
+		}, {
 			"name": "scss",
-			"full-name": "SCSS",
-			"alternative-names": ["SASS"],
+			"fullName": "SCSS",
+			"alternativeNames": ["SASS"],
 			"related": ["css"]
-		},
-		{
+		}, {
 			"name": "swift",
-			"full-name": "Swift",
-			"alternative-names": [],
+			"fullName": "Swift",
+			"alternativeNames": [],
 			"related": []
 		}
 	],
@@ -85,18 +86,17 @@
 			"category": "string",
 			"description": "Implicit string",
 			"language": "swift",
-			"code-text": "var stringName = 'This is a string'",
-			"embedded-code": "",
+			"codeText": "var stringName = 'This is a string'",
+			"embeddedCode": "",
 			"image": "",
 			"notes": "",
 			"references": ""
-		}, 
-		{
+		}, {
 			"category": "string",
 			"description": "Explicit string",
 			"language": "swift",
-			"code-text": "var stringName: String = 'This is also a string'",
-			"embedded-code": "",
+			"codeText": "var stringName: String = 'This is also a string'",
+			"embeddedCode": "",
 			"image": "",
 			"notes": "",
 			"references": ""

@@ -1,105 +1,137 @@
 {
-	"categories": [
-		{
-			"id" : "0",
-			"name": "conditional",
-			"fullName": "Conditional",
-			"alternativeNames": "",
-			"description": "",
-			"subCategories": [
-				{
-					"id" : "0.0",
-					"name": "if-statement",
-					"fullName": "If Statement",
-					"alternativeNames": "",
-					"description": "",
-					"subCategories": []
-				}, {
-					"id" : "0.1",
-					"name": "while",
-					"fullName": "While Loop",
-					"alternativeNames": "",
-					"description": "",
-					"subCategories": []
-				}
-			]
-		}, {
-			"id" : "1",
-			"name": "data-types",
-			"fullName": "Data Types",
-			"alternativeNames": "",
-			"description": "These are data types.",
-			"subCategories": [
-				{
-					"id" : "1.0",
-					"name": "string",
-					"fullName": "String",
-					"alternativeNames": "",
-					"description": "Strings are just like text. They are a collection of characters.",
-					"subCategories": []
-				}, {
-					"id" : "1.1",
-					"name": "int",
-					"fullName": "Integer",
-					"alternativeNames": "",
-					"description": "Integers represent whole numbers. This means 0 to a large number, with no decimals or fractions. Arithmetic can be applied to integers.",
-					"subCategories": []
-				}
-			]
+	"categories": {
+		"0": {
+			"subCategoryIDs": ["1", "2"],
+			"relatedCategoryIDs": [],
+			"name": "Conditional",
+			"alternativeNames": [],
+			"description": ""
+		}, 
+		"1": {
+			"subCategoryIDs": [],
+			"relatedCategoryIDs": [],
+			"name": "If Statement",
+			"alternativeNames": [],
+			"description": ""
+		},
+		"2": {
+			"subCategoryIDs": [],
+			"relatedCategoryIDs": [],
+			"name": "While Loop",
+			"alternativeNames": [],
+			"description": ""
+		},
+		"3": {
+			"subCategoryIDs": ["4", "5"],
+			"relatedCategoryIDs": [],
+			"name": "Data Types",
+			"alternativeNames": [],
+			"description": "These are data types."
+		},
+		"4": {
+			"subCategoryIDs": [],
+			"relatedCategoryIDs": [],
+			"name": "String",
+			"alternativeNames": [],
+			"description": "Strings are just like text. They are a collection of characters."
+		},
+		"5": {
+			"subCategories": [],
+			"relatedCategories": [],
+			"name": "Integer",
+			"alternativeNames": [],
+			"description": "Integers represent whole numbers. This means 0 to a large number, with no decimals or fractions. Arithmetic can be applied to integers."
 		}
-	],
-	"languages": [
-		{
-			"name": "javascript",
+	},
+	"languages": {
+		"javascript": {
+			"relatedLanguages": ["jquery"],
 			"fullName": "Javascript",
-			"alternativeNames": [],
-			"related": ["jquery"]
-		}, {
-			"name": "jquery",
+			"alternativeNames": []
+		},
+		"jquery": {
+			"relatedLanguages": ["javascript"],
 			"fullName": "jQuery",
-			"alternativeNames": [],
-			"related": ["javascript"]
-		}, {
-			"name": "html",
+			"alternativeNames": []
+		},
+		"html": {
+			"relatedLanguages": [],
 			"fullName": "HTML",
-			"alternativeNames": ["Hypertext Markup Language"],
-			"related": []
-		}, {
-			"name": "css",
+			"alternativeNames": ["Hypertext Markup Language"]
+		},
+		"css": {
+			"relatedLanguages": ["scss"],
 			"fullName": "CSS",
-			"alternativeNames": ["Cascading Style Sheets"],
-			"related": ["scss"]
-		}, {
-			"name": "scss",
+			"alternativeNames": ["Cascading Style Sheets"]
+		},
+		"scss": {
+			"relatedLanguages": ["css"],
 			"fullName": "SCSS",
-			"alternativeNames": ["SASS"],
-			"related": ["css"]
-		}, {
-			"name": "swift",
+			"alternativeNames": ["SASS"]
+		},
+		"swift": {
+			"relatedLanguages": [],
 			"fullName": "Swift",
-			"alternativeNames": [],
-			"related": []
+			"alternativeNames": []
 		}
-	],
-	"examples": [ 
-		{
-			"category": "string",
-			"description": "Implicit string",
+	},
+	"examples": {
+		"0": {
+			"categoryID": "4",
 			"language": "swift",
+			"createdBy": "admin",
+			"editedBy": "admin",
+			"commentIDs": [],
+			"dateCreated": "",
+			"dateEdited": "",
+			"syntax": true,
+			"howTo": false,
+			"description": "Implicit string",
 			"codeText": "var stringName = 'This is a string'",
 			"embeddedCode": "",
 			"image": "",
-			"notes": "",
-			"references": ""
-		}, {
-			"category": "string",
-			"description": "Explicit string",
+			"level": "",
+			"ranking": ""
+		},
+		"1": {
+			"categoryID": "4",
 			"language": "swift",
+			"createdBy": "admin",
+			"editedBy": "admin",
+			"commentIDs": [],
+			"dateCreated": "",
+			"dateEdited": "",
+			"syntax": true,
+			"howTo": false,
+			"description": "Explicit string",
 			"codeText": "var stringName: String = 'This is also a string'",
 			"embeddedCode": "",
 			"image": "",
-			"notes": "",
-			"references": ""
+			"level": "",
+			"ranking": ""
 		}
-	]
+	},
+	"users": {
+		"admin": {
+			"commentIDs": ["0"],
+			"createdExampleIDs": ["0", "1"],
+			"editedExampleIDs": ["0", "1"],
+			"favouritesIDs": [],
+			"savedIDs": [],
+			"favouriteLanguages": [],
+			"email": "",
+			"socialMedia": "",
+			"password": "",
+			"ranking": "",
+			"permissionLevel": ""
+		}
+	},
+	"comments": {
+		"0": {
+			"exampleID": "0",
+			"username": "admin",
+			"dateCreated": "",
+			"commentText": "Sample comment"
+		}
+	}
 }

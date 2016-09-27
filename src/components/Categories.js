@@ -1,58 +1,42 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 // import Category from 'Category';
 import $ from 'jquery';
-
 
 
 class Categories extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			categories: []
+			allCategories: [],
+			topCategories: []
 		};
 		this.eachCategory = this.eachCategory.bind(this);
-		// this.remove = this.remove.bind(this);
 
-		// if (typeof this.props.count !== 'number'){
-		// 	return new Error('The count property must be a number');
-		// }
-	}
-	componentWillMount() {
 		var self = this;
 		$.getJSON('../../test-data.json', function(results){
-			$(results.categories).each(function(index, item){
+			$.each(results.categories, function(index, item) {
 				self.add(item, index);
-				
 			});
 		});
 	}
+
 	add(item, index) {
-		var arr = this.state.categories;
-		arr.push({
-			id: index,
-			data: item
-		});
-		this.setState({categories: arr});
+		var allCategories = this.state.allCategories;
+		allCategories[index] = item;
+		this.setState({allCategories: allCategories});
 	}
-	// eachCategory(category, i) {
-	// 	return (
-	// 		<Category key={category.id}
-	// 			index={i}
-	// 			onChange={this.update.bind(this)}
-	// 			onRemove={this.remove}
-	// 		>{category.category}</Category>
-	// 	);
-	// }
+
 	eachCategory(category, i) {
 		return (
-			<li>{category.data.fullName}</li>
+			<li key={i}>{category.name}</li>
 		);
 	}
+
 	render() {
 		return (
 			<div className='categories'>
 				<ul>
-					{this.state.categories.map(this.eachCategory)}
+					{this.state.allCategories.map(this.eachCategory)}
 					<li><em>End of category list</em></li>
 				</ul>
 			</div>
@@ -60,13 +44,5 @@ class Categories extends Component {
 		);
 	}
 }
-
-// Categories.propTypes = {
-// 	count: PropTypes.number
-// };
-
-// Categories.defaultProps = {
-
-// };
 
 export default Categories;

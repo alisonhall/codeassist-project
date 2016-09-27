@@ -3,6 +3,7 @@
 		"0": {
 			"subCategoryIDs": ["1", "2"],
 			"relatedCategoryIDs": [],
+			"isTopLevel": true,
 			"name": "Conditional",
 			"alternativeNames": [],
 			"description": ""
@@ -10,6 +11,7 @@
 		"1": {
 			"subCategoryIDs": [],
 			"relatedCategoryIDs": [],
+			"isTopLevel": false,
 			"name": "If Statement",
 			"alternativeNames": [],
 			"description": ""
@@ -17,13 +19,15 @@
 		"2": {
 			"subCategoryIDs": [],
 			"relatedCategoryIDs": [],
+			"isTopLevel": false,
 			"name": "While Loop",
 			"alternativeNames": [],
 			"description": ""
 		},
 		"3": {
-			"subCategoryIDs": ["4", "5"],
+			"subCategoryIDs": ["4", "7"],
 			"relatedCategoryIDs": [],
+			"isTopLevel": true,
 			"name": "Data Types",
 			"alternativeNames": [],
 			"description": "These are data types."
@@ -31,13 +35,15 @@
 		"4": {
 			"subCategoryIDs": [],
 			"relatedCategoryIDs": [],
+			"isTopLevel": false,
 			"name": "String",
 			"alternativeNames": [],
 			"description": "Strings are just like text. They are a collection of characters."
 		},
-		"5": {
+		"7": {
 			"subCategories": [],
 			"relatedCategories": [],
+			"isTopLevel": false,
 			"name": "Integer",
 			"alternativeNames": [],
 			"description": "Integers represent whole numbers. This means 0 to a large number, with no decimals or fractions. Arithmetic can be applied to integers."

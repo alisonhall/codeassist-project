@@ -3,3 +3,7 @@
 .examples {
 	border: 1px solid blue;
 }
+
+.examples section {
+	border: 1px solid red;
+}

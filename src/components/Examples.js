@@ -28,17 +28,25 @@ class Examples extends Component {
 
 	eachExample(example, i) {
 		return (
-			<li key={i}>{example.description}</li>
+			<section key={i}>
+				<p>Category: {example.categoryID}</p>
+				<p>Language: {example.language}</p>
+				<h3>Description: {example.description}</h3>
+				<p>Level: {example.level}</p>
+				<p>Ranking: {example.ranking}</p>
+				<p>Created By: {example.createdBy}</p>
+				<p>{example.dateCreated}</p>
+				<p>Edited By: {example.editedBy}</p>
+				<p>{example.dateEdited}</p>
+				<pre className={example.language}><code>{example.codeText}</code></pre>
+			</section>
 		);
 	}
 
 	render() {
 		return (
 			<div className='examples'>
-				<ul>
-					{this.state.allExamples.map(this.eachExample)}
-					<li><em>End of examples list</em></li>
-				</ul>
+				{this.state.allExamples.map(this.eachExample)}
 			</div>
 
 		);

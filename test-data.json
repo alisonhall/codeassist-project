@@ -81,6 +81,44 @@
 			"alternativeNames": []
 		}
 	},
+	"languages2": {
+		"0": {
+			"name": "javascript",
+			"relatedLanguages": ["jquery"],
+			"fullName": "Javascript",
+			"alternativeNames": []
+		},
+		"1": {
+			"name": "jquery",
+			"relatedLanguages": ["javascript"],
+			"fullName": "jQuery",
+			"alternativeNames": []
+		},
+		"2": {
+			"name": "html",
+			"relatedLanguages": [],
+			"fullName": "HTML",
+			"alternativeNames": ["Hypertext Markup Language"]
+		},
+		"3": {
+			"name": "css",
+			"relatedLanguages": ["scss"],
+			"fullName": "CSS",
+			"alternativeNames": ["Cascading Style Sheets"]
+		},
+		"4": {
+			"name": "scss",
+			"relatedLanguages": ["css"],
+			"fullName": "SCSS",
+			"alternativeNames": ["SASS"]
+		},
+		"5": {
+			"name": "swift",
+			"relatedLanguages": [],
+			"fullName": "Swift",
+			"alternativeNames": []
+		}
+	},
 	"examples": {
 		"0": {
 			"categoryID": "4",

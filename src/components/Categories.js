@@ -27,17 +27,19 @@ class Categories extends Component {
 	}
 
 	eachCategory(category, i) {
-		return (
-			<li key={i}>{category.name}</li>
-		);
+		if(category.isTopLevel) {
+			return (
+				<li key={i}>{category.name}</li>
+			);
+		}
+		
 	}
 
 	render() {
 		return (
 			<div className='categories'>
-				<ul>
+				<ul className='accordion'>
 					{this.state.allCategories.map(this.eachCategory)}
-					<li><em>End of category list</em></li>
 				</ul>
 			</div>
 

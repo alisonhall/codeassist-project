@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import Categories from './components/Categories.js';
 import Languages from './components/Languages.js';
 import Examples from './components/Examples.js';
+import $ from 'jquery';
 
 ReactDOM.render(
   <Categories />,
@@ -18,3 +19,7 @@ ReactDOM.render(
   <Examples />,
   document.getElementById('react-examples')
 );
+
+$( function() {
+    $( ".accordion" ).accordion();
+  } );

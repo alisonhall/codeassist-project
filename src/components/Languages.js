@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 // import Category from 'Category';
 import $ from 'jquery';
+import jqueryui from 'jquery-ui';
 
 
 class Languages extends Component {
@@ -26,9 +27,13 @@ class Languages extends Component {
 	// 	this.setState({allLanguages: allLanguages});
 	// }
 
+	// componentDidMount() {
+	// 	$( "#combobox" ).combobox();
+	// }
+
 	eachLanguage(language, i) {
 		return (
-			<li key={i}>{language.fullName}</li>
+			<option value={language.name} key={i}>{language.fullName}</option>
 		);
 	}
 
@@ -36,9 +41,11 @@ class Languages extends Component {
 
 		return (
 			<div className='languages'>
-				<ul>
+				<label>Select a programming language: </label>
+				<select id="combobox">
+					<option value="">Select one...</option>
 					{this.props.allLanguages.map(this.eachLanguage)}
-				</ul>
+				</select>
 			</div>
 
 		);

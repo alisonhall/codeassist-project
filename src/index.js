@@ -1,25 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Categories from './components/Categories.js';
-import Languages from './components/Languages.js';
-import Examples from './components/Examples.js';
+import Page from './components/Page.js';
 import $ from 'jquery';
+import jqueryui from 'jquery-ui';
 
 ReactDOM.render(
-  <Categories />,
-  document.getElementById('react-categories')
+  <Page />,
+  document.getElementById('react-page')
 );
-
-ReactDOM.render(
-  <Languages />,
-  document.getElementById('react-languages')
-);
-
-ReactDOM.render(
-  <Examples />,
-  document.getElementById('react-examples')
-);
-
-$( function() {
-    $( ".accordion" ).accordion();
-  } );

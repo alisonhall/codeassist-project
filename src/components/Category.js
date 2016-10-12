@@ -6,7 +6,10 @@ class Category extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			editing: false
+			editing: false,
+			isActive: false,
+			isHovered: false,
+			isSelected: false
 		};
 		this.edit = this.edit.bind(this);
 		this.save = this.save.bind(this);

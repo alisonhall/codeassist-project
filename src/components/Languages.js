@@ -6,25 +6,25 @@ import $ from 'jquery';
 class Languages extends Component {
 	constructor(props) {
 		super(props);
-		this.state = {
-			allLanguages: [],
-			selectedLanguages: []
-		};
-		this.eachLanguage = this.eachLanguage.bind(this);
+		// this.state = {
+		// 	allLanguages: [],
+		// 	selectedLanguages: []
+		// };
+		// this.eachLanguage = this.eachLanguage.bind(this);
 
-		var self = this;
-		$.getJSON('../../test-data.json', function(results){
-			$.each(results.languages2, function(el, item) {
-				self.add(item, el);
-			});
-		});
+		// var self = this;
+		// $.getJSON('../../test-data.json', function(results){
+		// 	$.each(results.languages2, function(el, item) {
+		// 		self.add(item, el);
+		// 	});
+		// });
 	}
 
-	add(item, el) {
-		var allLanguages = this.state.allLanguages;
-		allLanguages[el] = item;
-		this.setState({allLanguages: allLanguages});
-	}
+	// add(item, el) {
+	// 	var allLanguages = this.state.allLanguages;
+	// 	allLanguages[el] = item;
+	// 	this.setState({allLanguages: allLanguages});
+	// }
 
 	eachLanguage(language, i) {
 		return (
@@ -37,7 +37,7 @@ class Languages extends Component {
 		return (
 			<div className='languages'>
 				<ul>
-					{this.state.allLanguages.map(this.eachLanguage)}
+					{this.props.allLanguages.map(this.eachLanguage)}
 				</ul>
 			</div>
 
@@ -45,9 +45,9 @@ class Languages extends Component {
 	}
 }
 
-// Languages.propTypes = {
-//  count: PropTypes.number
-// };
+Languages.propTypes = {
+	allLanguages: PropTypes.array
+};
 
 // Languages.defaultProps = {
 

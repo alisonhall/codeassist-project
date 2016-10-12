@@ -122,6 +122,25 @@ class Page extends Component {
 		// 		start = true;
 		// this.waitForElement();
 
+		return (
+			<div>
+				<h1>Under construction. Please come back later.</h1>
+				<p>Categories:</p>
+				<div id="react-categories">
+					<Categories allCategories={this.state.allCategories} topCategories={this.state.topCategories} allDataLoaded={this.state.allDataLoaded} />
+				</div>
+				<p>Languages:</p>
+				<div id="react-languages">
+					<Languages allLanguages={this.state.allLanguages} />
+				</div>
+				<p>Examples:</p>
+				<div id="react-examples">
+					<Examples allExamples={this.state.allExamples} />
+				</div>
+			</div>
+
+		);
+
 		console.log(this.state.allDataLoaded);
 		if (this.state.allDataLoaded) {
 			console.log("ALL DATA LOADED");

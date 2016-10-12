@@ -2,6 +2,8 @@ import React, { Component, PropTypes } from 'react';
 // import Category from 'Category';
 import $ from 'jquery';
 import jqueryui from 'jquery-ui';
+require('jquery-ui/ui/widgets/selectmenu.js');
+require('jquery-ui/ui/widgets/autocomplete.js');
 
 
 class Languages extends Component {
@@ -42,7 +44,9 @@ class Languages extends Component {
 		return (
 			<div className='languages'>
 				<label>Select a programming language: </label>
-				<select id="combobox">
+				<select id="combobox" ref={function(selectLanguage){
+						// $(selectLanguage).combobox();
+					}}>
 					<option value="">Select one...</option>
 					{this.props.allLanguages.map(this.eachLanguage)}
 				</select>

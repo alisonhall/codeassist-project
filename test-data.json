@@ -122,59 +122,61 @@
 	"examples": {
 		"0": {
 			"categoryID": "4",
-			"language": "swift",
-			"createdBy": "admin",
-			"editedBy": "admin",
-			"commentIDs": [],
-			"dateCreated": "",
-			"dateEdited": "",
+			"language": "5",
+			"createdBy": "0",
+			"editedBy": "0",
+			"commentIDs": ["0"],
+			"dateCreated": "January 1 2016",
+			"dateEdited": "January 1 2016",
 			"syntax": true,
 			"howTo": false,
 			"description": "Implicit string",
 			"codeText": "var stringName = 'This is a string'",
 			"embeddedCode": "",
 			"image": "",
-			"level": "",
-			"ranking": ""
+			"level": "Beginner",
+			"ranking": "1000"
 		},
 		"1": {
 			"categoryID": "4",
-			"language": "swift",
-			"createdBy": "admin",
-			"editedBy": "admin",
+			"language": "5",
+			"createdBy": "0",
+			"editedBy": "0",
 			"commentIDs": [],
-			"dateCreated": "",
-			"dateEdited": "",
+			"dateCreated": "January 1 2016",
+			"dateEdited": "January 1 2016",
 			"syntax": true,
 			"howTo": false,
 			"description": "Explicit string",
 			"codeText": "var stringName: String = 'This is also a string'",
 			"embeddedCode": "",
 			"image": "",
-			"level": "",
-			"ranking": ""
+			"level": "Intermediate",
+			"ranking": "500"
 		}
 	},
 	"users": {
-		"admin": {
+		"0": {
+			"username": "admin",
 			"commentIDs": ["0"],
 			"createdExampleIDs": ["0", "1"],
 			"editedExampleIDs": ["0", "1"],
 			"favouritesIDs": [],
 			"savedIDs": [],
 			"favouriteLanguages": [],
-			"email": "",
+			"email": "admin@codeassist.com",
 			"socialMedia": "",
-			"password": "",
-			"ranking": "",
-			"permissionLevel": ""
+			"password": "aaa",
+			"ranking": "1000",
+			"permissionLevel": "admin",
+			"dateSignedUp": "January 1 2016"
 		}
 	},
 	"comments": {
 		"0": {
 			"exampleID": "0",
-			"username": "admin",
-			"dateCreated": "",
+			"createdBy": "0",
+			"dateCreated": "January 1 2016",
 			"commentText": "Sample comment"
 		}
 	}

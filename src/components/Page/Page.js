@@ -18,12 +18,16 @@ class Page extends Component {
 			categoryDataLoaded: false,
 			languageDataLoaded: false,
 			exampleDataLoaded: false,
+			userDataLoaded: false,
+			commentDataLoaded: false,
 			allDataLoaded: false,
 			allCategories: [],
 			topCategories: [],
 			allLanguages: [],
 			selectedLanguages: [],
-			allExamples: []
+			allExamples: [],
+			allUsers: [],
+			allComments: []
 		};
 
 		// this.waitForElement = this.waitForElement.bind(this);
@@ -49,6 +53,14 @@ class Page extends Component {
 			$.each(results.examples, function(index, item) {
 				self.add(item, index, 'allExamples');
 				this.setState({exampleDataLoaded: true});
+			}.bind(this));
+			$.each(results.users, function(index, item) {
+				self.add(item, index, 'allUsers');
+				this.setState({userDataLoaded: true});
+			}.bind(this));
+			$.each(results.comments, function(index, item) {
+				self.add(item, index, 'allComments');
+				this.setState({commentDataLoaded: true});
 			}.bind(this));
 			this.setState({allDataLoaded: true});
 			// this.render();
@@ -96,6 +108,18 @@ class Page extends Component {
 			var allExamples = this.state.allExamples;
 			allExamples[index] = item;
 			this.setState({allExamples: allExamples});
+
+		} else if (stateName == 'allUsers') {
+
+			var allUsers = this.state.allUsers;
+			allUsers[index] = item;
+			this.setState({allUsers: allUsers});
+
+		} else if (stateName == 'allComments') {
+
+			var allComments = this.state.allComments;
+			allComments[index] = item;
+			this.setState({allComments: allComments});
 
 		} else {
 			alert("Error: Unknown state");
@@ -159,7 +183,14 @@ class Page extends Component {
 					<section id="content">
 						<h2>Examples:</h2>
 						<div id="react-examples">
-							<Examples allExamples={this.state.allExamples} />
+							<Examples 
+								allCategories={this.state.allCategories} 
+								allExamples={this.state.allExamples} 
+								allLanguages={this.state.allLanguages} 
+								allUsers={this.state.allUsers} 
+								allComments={this.state.allComments} 
+								allDataLoaded={this.state.allDataLoaded} 
+							/>
 						</div>
 					</section>
 				</div>

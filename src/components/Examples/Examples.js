@@ -1,6 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import $ from 'jquery';
 
+// Components
+import ExampleCards from './../ExampleCards/ExampleCards.js';
+
 // Styles
 import './examples.scss';
 
@@ -11,7 +14,7 @@ class Examples extends Component {
 		// this.state = {
 		// 	allExamples: []
 		// };
-		// this.eachExample = this.eachExample.bind(this);
+		this.eachExample = this.eachExample.bind(this);
 
 		// var self = this;
 		// $.getJSON('../../test-data.json', function(results){
@@ -28,34 +31,49 @@ class Examples extends Component {
 	// }
 
 	eachExample(example, i) {
+		var language = this.props.allLanguages[example.language];
+		var category = this.props.allCategories[example.categoryID];
+		var editedBy = this.props.allUsers[example.editedBy];
+		var createdBy = this.props.allUsers[example.createdBy];
 		return (
-			<section key={i}>
-				<p>Category: {example.categoryID}</p>
-				<p>Language: {example.language}</p>
-				<h3>Description: {example.description}</h3>
-				<p>Level: {example.level}</p>
-				<p>Ranking: {example.ranking}</p>
-				<p>Created By: {example.createdBy}</p>
-				<p>{example.dateCreated}</p>
-				<p>Edited By: {example.editedBy}</p>
-				<p>{example.dateEdited}</p>
-				<pre className={example.language}><code>{example.codeText}</code></pre>
-			</section>
+			<ExampleCards 
+				key={i}
+				example={example}
+				language={language}
+				category={category}
+				editedBy={editedBy}
+				createdBy={createdBy}
+				allComments={this.props.allComments}
+			></ExampleCards>
 		);
 	}
 
 	render() {
-		return (
-			<div className='examples'>
-				{this.props.allExamples.map(this.eachExample)}
-			</div>
+		if (this.props.allDataLoaded) {
+			return (
+				<div className='examples-container'>
+					{this.props.allExamples.map(this.eachExample)}
+				</div>
 
-		);
+			);
+		} else {
+			return (
+				<div className='examples-container'>
+					Data Not Loaded...
+				</div>
+			);
+		}
+		
 	}
 }
 
 Examples.propTypes = {
-	allExamples: PropTypes.array
+	allExamples: PropTypes.array,
+	allCategories: PropTypes.array,
+	allLanguages: PropTypes.array,
+	allUsers: PropTypes.array,
+	allComments: PropTypes.array,
+	allDataLoaded: PropTypes.bool
 };
 
 // Examples.defaultProps = {

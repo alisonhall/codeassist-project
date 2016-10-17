@@ -1,9 +1,11 @@
 import React, { Component, PropTypes } from 'react';
-// import Category from 'Category';
 import $ from 'jquery';
-import jqueryui from 'jquery-ui';
-require('jquery-ui/ui/widgets/selectmenu.js');
-require('jquery-ui/ui/widgets/autocomplete.js');
+// import jqueryui from 'jquery-ui';
+// require('jquery-ui/ui/widgets/selectmenu.js');
+// require('jquery-ui/ui/widgets/autocomplete.js');
+
+// Styles
+import './languages.scss';
 
 
 class Languages extends Component {

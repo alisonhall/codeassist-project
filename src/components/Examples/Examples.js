@@ -1,7 +1,8 @@
 import React, { Component, PropTypes } from 'react';
-// import Category from 'Category';
 import $ from 'jquery';
 
+// Styles
+import './examples.scss';
 
 
 class Examples extends Component {

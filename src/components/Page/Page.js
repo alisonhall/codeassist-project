@@ -1,9 +1,14 @@
 import React, { Component, PropTypes } from 'react';
-import Categories from './Categories.js';
-import Languages from './Languages.js';
-import Examples from './Examples.js';
 import $ from 'jquery';
 import jqueryui from 'jquery-ui';
+
+// Components
+import Categories from './../Categories/Categories.js';
+import Languages from './../Languages/Languages.js';
+import Examples from './../Examples/Examples.js';
+
+// Styles
+import './page.scss';
 
 
 class Page extends Component {
@@ -34,21 +39,19 @@ class Page extends Component {
 		var self = this;
 		$.getJSON('../../test-data.json', function(results){
 			$.each(results.categories, function(index, item) {
-				// console.log(item, index);
 				self.add(item, index, 'allCategories');
-				this.state.categoryDataLoaded = true;
+				this.setState({categoryDataLoaded: true});
 			}.bind(this));
 			$.each(results.languages2, function(el, item) {
-				// console.log(item, el);
 				self.add(item, el, 'allLanguages');
-				this.state.languageDataLoaded = true;
+				this.setState({languageDataLoaded: true});
 			}.bind(this));
 			$.each(results.examples, function(index, item) {
 				self.add(item, index, 'allExamples');
-				this.state.exampleDataLoaded = true;
+				this.setState({exampleDataLoaded: true});
 			}.bind(this));
-			this.state.allDataLoaded = true;
-			this.render();
+			this.setState({allDataLoaded: true});
+			// this.render();
 			// this.setState({
 			//         allDataLoaded: true
 			//       });
@@ -58,20 +61,6 @@ class Page extends Component {
 	// componentDidUpdate() {
 	// 	// this.render();
 	// 	// forceUpdate();
-	// }
-
-	// componentWillReceiveProps(nextProps) {
-	// 	this.setState({
-	// 		categoryDataLoaded: nextProps.categoryDataLoaded,
-	// 		languageDataLoaded: nextProps.languageDataLoaded,
-	// 		exampleDataLoaded: nextProps.exampleDataLoaded,
-	// 		allDataLoaded: nextProps.allDataLoaded,
-	// 		allCategories: nextProps.allCategories,
-	// 		topCategories: nextProps.topCategories,
-	// 		allLanguages: nextProps.allCategories,
-	// 		selectedLanguages: nextProps.selectedLanguages,
-	// 		allExamples: nextProps.allExamples
-	// 	});
 	// }
 
 	// waitForElement() {
@@ -114,7 +103,7 @@ class Page extends Component {
 	}
 
 	render() {
-		console.log("Render Start");
+		// console.log("Render Start");
 		// this.waitForElement();
 		// var start = false;
 		// while (!start) {
@@ -122,56 +111,64 @@ class Page extends Component {
 		// 		start = true;
 		// this.waitForElement();
 
-		return (
-			<div>
-				<h1>Under construction. Please come back later.</h1>
-				<p>Categories:</p>
-				<div id="react-categories">
-					<Categories allCategories={this.state.allCategories} topCategories={this.state.topCategories} allDataLoaded={this.state.allDataLoaded} />
-				</div>
-				<p>Languages:</p>
-				<div id="react-languages">
-					<Languages allLanguages={this.state.allLanguages} />
-				</div>
-				<p>Examples:</p>
-				<div id="react-examples">
-					<Examples allExamples={this.state.allExamples} />
-				</div>
-			</div>
+		// return (
+		// 	<div>
+		// 		<h1>Under construction. Please come back later.</h1>
+		// 		<p>Categories:</p>
+		// 		<div id="react-categories">
+		// 			<Categories allCategories={this.state.allCategories} topCategories={this.state.topCategories} allDataLoaded={this.state.allDataLoaded} />
+		// 		</div>
+		// 		<p>Languages:</p>
+		// 		<div id="react-languages">
+		// 			<Languages allLanguages={this.state.allLanguages} />
+		// 		</div>
+		// 		<p>Examples:</p>
+		// 		<div id="react-examples">
+		// 			<Examples allExamples={this.state.allExamples} />
+		// 		</div>
+		// 	</div>
 
-		);
+		// );
 
-		console.log(this.state.allDataLoaded);
+		// console.log(this.state.allDataLoaded);
 		if (this.state.allDataLoaded) {
 			console.log("ALL DATA LOADED");
-			return (
-				<div key={this.state.allDataLoaded}>
-					ALL DATA LOADED...
-				</div>
-
-			);
 			// return (
-			// 	<div>
-			// 		<h1>Under construction. Please come back later.</h1>
-			// 		<p>Categories:</p>
-			// 		<div id="react-categories">
-			// 			<Categories allCategories={this.state.allCategories} topCategories={this.state.topCategories} allDataLoaded={this.state.allDataLoaded} />
-			// 		</div>
-			// 		<p>Languages:</p>
-			// 		<div id="react-languages">
-			// 			<Languages allLanguages={this.state.allLanguages} />
-			// 		</div>
-			// 		<p>Examples:</p>
-			// 		<div id="react-examples">
-			// 			<Examples allExamples={this.state.allExamples} />
-			// 		</div>
+			// 	<div key={this.state.allDataLoaded}>
+			// 		ALL DATA LOADED...
 			// 	</div>
 
 			// );
+			return (
+				<div className="page">
+					<header id="header">
+						<div id="logo"><h1>Code Assist</h1></div>
+					</header>
+					<section id="languages">
+						<h2>Languages:</h2>
+						<div id="react-languages">
+							<Languages allLanguages={this.state.allLanguages} />
+						</div>
+					</section>
+					<aside id="categories">
+						<h2>Categories:</h2>
+						<div id="react-categories">
+							<Categories allCategories={this.state.allCategories} topCategories={this.state.topCategories} allDataLoaded={this.state.allDataLoaded} />
+						</div>
+					</aside>
+					<section id="content">
+						<h2>Examples:</h2>
+						<div id="react-examples">
+							<Examples allExamples={this.state.allExamples} />
+						</div>
+					</section>
+				</div>
+			);
+
 		} else {
 			
 			return (
-				<div key={this.state.allDataLoaded}>
+				<div className="page" key={this.state.allDataLoaded}>
 					Loading...
 				</div>
 

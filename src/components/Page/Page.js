@@ -140,20 +140,26 @@ class Page extends Component {
 
 			// );
 			return (
-				<div className="page">
+				<div className="page-container">
 					<header id="header">
 						<div id="logo"><h1>Code Assist</h1></div>
 					</header>
 					<section id="languages">
 						<h2>Languages:</h2>
 						<div id="react-languages">
-							<Languages allLanguages={this.state.allLanguages} />
+							<Languages 
+								allLanguages={this.state.allLanguages} 
+							/>
 						</div>
 					</section>
 					<aside id="categories">
 						<h2>Categories:</h2>
 						<div id="react-categories">
-							<Categories allCategories={this.state.allCategories} topCategories={this.state.topCategories} allDataLoaded={this.state.allDataLoaded} />
+							<Categories 
+								allCategories={this.state.allCategories} 
+								topCategories={this.state.topCategories} 
+								allDataLoaded={this.state.allDataLoaded} 
+							/>
 						</div>
 					</aside>
 					<section id="content">
@@ -168,8 +174,10 @@ class Page extends Component {
 		} else {
 			
 			return (
-				<div className="page" key={this.state.allDataLoaded}>
-					Loading...
+				<div 
+					className="page-container" 
+					key={this.state.allDataLoaded}>
+						Loading...
 				</div>
 
 			);

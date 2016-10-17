@@ -44,7 +44,7 @@ class Languages extends Component {
 	render() {
 
 		return (
-			<div className='languages'>
+			<div className='languages-container'>
 				<label>Select a programming language: </label>
 				<select id="combobox" ref={function(selectLanguage){
 						// $(selectLanguage).combobox();

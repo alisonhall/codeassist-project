@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import classnames from 'classnames';
 import $ from 'jquery';
 
 // Components
@@ -58,14 +59,14 @@ class Categories extends Component {
 	render() {
 		if (typeof this.props.allDataLoaded !== "undefined") {
 			return (
-				<div className='categories'>
+				<div className='categories-container'>
 					{this.props.topCategories.map(this.topCategory)}
 				</div>
 
 			);
 		} else {
 			return (
-				<div className='categories'>
+				<div className='categories-container'>
 					Data Not Loaded ....
 				</div>
 

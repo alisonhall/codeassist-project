@@ -25,13 +25,13 @@ class Accordion extends Component {
 
 		if(this.props.subContent == null) {
 			return(
-				<div className="accordion noContent" onClick={this.select}>
+				<div className="accordion-container accordion noContent" onClick={this.select}>
 					<p>{this.props.title}</p>
 				</div>
 			);
 		} else {
 			return(
-				<div className="accordion hasContent" onClick={this.select}>
+				<div className="accordion-container accordion hasContent" onClick={this.select}>
 					<p>{this.props.title}</p>
 					<div className="accordionContent">
 						{this.props.subContent}

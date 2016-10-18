@@ -23,11 +23,14 @@
   "license": "ISC",
   "dependencies": {
     "classnames": "^2.2.5",
+    "highlight.js": "^9.7.0",
     "jquery": "^3.1.0",
     "jquery-ui": "^1.12.1",
+    "prismjs": "^1.5.1",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
-    "react-motion": "^0.3.1"
+    "react-motion": "^0.3.1",
+    "react-prism": "^4.0.0"
   },
   "devDependencies": {
     "autoprefixer-loader": "^3.2.0",

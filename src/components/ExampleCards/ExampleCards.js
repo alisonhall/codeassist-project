@@ -1,13 +1,23 @@
 import React, { Component, PropTypes } from 'react';
 import $ from 'jquery';
+// import hljs from 'highlight.js';
+// import {PrismCode} from "react-prism";
+// import {PrismCode} from "./../../../node_modules/react-prism/lib";
+import Prism from 'prismjs';
+
 
 // Styles
 import './exampleCards.scss';
 
-
 class ExampleCards extends Component {
 	constructor(props) {
 		super(props);
+	}
+
+	componentDidMount() {
+		// hljs.highlightBlock(this.__container);
+		Prism.highlightAll();
+		// Prism.highlightElement(this.__container, true);
 	}
 
 	render() {
@@ -23,6 +33,10 @@ class ExampleCards extends Component {
 		var dateEdited = this.props.example.dateEdited;
 		var codeText = this.props.example.codeText;
 		var numberOfComments = this.props.example.commentIDs.length;
+		var languageClass = "language-" + language;
+
+		// var html = Prism.highlight(codeText, Prism.languages.swift);
+		// var html = Prism.highlight(codeText);
 
 		return (
 			<section className="example-cards-container">
@@ -35,7 +49,16 @@ class ExampleCards extends Component {
 				<p>{dateCreated}</p>
 				<p>Edited By: {editedBy}</p>
 				<p>{dateEdited}</p>
-				<pre className={language}><code>{codeText}</code></pre>
+				<pre>
+					<code 
+						className={languageClass}
+						ref={div => {
+						  this.__container = div;
+						  return div;
+						}}>	
+					        {codeText}
+					</code>
+				</pre>
 				<p>Number of Comments: {numberOfComments}</p>
 			</section>
 

@@ -166,18 +166,33 @@ class Page extends Component {
 			return (
 				<div className="page-container">
 					<header id="header">
-						<div id="logo"><h1>Code Assist</h1></div>
+						<div className="container-fluid">
+							<div className="row">
+								<div id="logo" className="col-md-3 col-md-offset-1">
+									<h1>Code Assist</h1>
+								</div>
+								<div id="searchBar" className="col-md-3 col-md-offset-4">
+									<input type="search" placeholder="Search"></input>
+									<i className="fa fa-search" aria-hidden="true"></i>
+								</div>
+								<div id="login">
+									<a href="#">
+										Sign up <i className="fa fa-user" aria-hidden="true"></i>
+									</a>
+								</div>
+							</div>
+						</div>
 					</header>
+						
 					<section id="languages">
-						<h2>Languages:</h2>
-						<div id="react-languages">
+						<div id="react-languages" className="col-md-12">
 							<Languages 
 								allLanguages={this.state.allLanguages} 
 							/>
 						</div>
 					</section>
-					<aside id="categories">
-						<h2>Categories:</h2>
+
+					<aside id="categories" className="col-md-2">
 						<div id="react-categories">
 							<Categories 
 								allCategories={this.state.allCategories} 
@@ -186,6 +201,7 @@ class Page extends Component {
 							/>
 						</div>
 					</aside>
+
 					<section id="content">
 						<h2>Examples:</h2>
 						<div id="react-examples">

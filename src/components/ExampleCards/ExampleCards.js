@@ -3,7 +3,7 @@ import $ from 'jquery';
 // import hljs from 'highlight.js';
 // import {PrismCode} from "react-prism";
 // import {PrismCode} from "./../../../node_modules/react-prism/lib";
-import Prism from 'prismjs';
+// import Prism from 'prismjs';
 
 
 // Styles

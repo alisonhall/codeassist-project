@@ -61,7 +61,7 @@ class ExampleCards extends Component {
 				<h3>Description:</h3>
 				<p className="desc">{description}</p>
 
-				<pre className={language}><code>{codeText}</code></pre>
+				<pre className={languageClass}><code>{codeText}</code></pre>
 
 				<p className="commentNum">{numberOfComments} comments</p>
 			</section>

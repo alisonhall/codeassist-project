@@ -165,7 +165,7 @@ class Page extends Component {
 			// );
 			return (
 				<div className="page-container">
-					<header id="header">
+					<header>
 						<div className="container-fluid">
 							<div className="row">
 								<div id="logo" className="col-md-3 col-md-offset-1">
@@ -183,14 +183,30 @@ class Page extends Component {
 							</div>
 						</div>
 					</header>
-						
-					<section id="languages">
-						<div id="react-languages" className="col-md-12">
-							<Languages 
-								allLanguages={this.state.allLanguages} 
-							/>
-						</div>
-					</section>
+		
+					<div className="container-fluid">
+						<section id="languages">
+							<div id="react-languages" className="col-md-12">
+								<Languages 
+									allLanguages={this.state.allLanguages} 
+								/>
+							</div>
+						</section>
+
+						<section id="content" className="col-md-11 col-md-offset-1">
+							<h2>Examples</h2>
+							<div id="react-examples">
+								<Examples 
+									allCategories={this.state.allCategories} 
+									allExamples={this.state.allExamples} 
+									allLanguages={this.state.allLanguages} 
+									allUsers={this.state.allUsers} 
+									allComments={this.state.allComments} 
+									allDataLoaded={this.state.allDataLoaded} 
+								/>
+							</div>
+						</section>
+					</div>
 
 					<aside id="categories" className="col-md-2">
 						<div id="react-categories">
@@ -202,19 +218,12 @@ class Page extends Component {
 						</div>
 					</aside>
 
-					<section id="content">
-						<h2>Examples:</h2>
-						<div id="react-examples">
-							<Examples 
-								allCategories={this.state.allCategories} 
-								allExamples={this.state.allExamples} 
-								allLanguages={this.state.allLanguages} 
-								allUsers={this.state.allUsers} 
-								allComments={this.state.allComments} 
-								allDataLoaded={this.state.allDataLoaded} 
-							/>
+					<footer>
+						<div className="row col-md-12">
+							<span id="legalTerms" className=""><a href="#">legal</a> | <a href="#">terms & conditions</a> | <a href="#">about us</a></span>
+							<span id="copyright" className="">copyright 2016</span>
 						</div>
-					</section>
+					</footer>
 				</div>
 			);
 

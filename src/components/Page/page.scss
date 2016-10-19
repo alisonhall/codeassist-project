@@ -2,7 +2,7 @@
 	
 }
 
-#header {
+header {
 	top: 0;
 	background-color: #81cfe0;
 	height: 85px;
@@ -27,7 +27,7 @@
 
 	.fa-search {
 		float: right;
-		font-size: 20px;
+		font-size: 1.250em;
 	}
 }
 
@@ -38,4 +38,19 @@
 aside {
 	width: 100%;
 	background-color: #e6f5f9;
+	z-index: 9999;
+}
+
+footer {
+	font-color: #c8c8c8;
+	font-weight: 300;
+	font-size: 0.750em;
+
+	#legalTerms {
+
+	}
+
+	#copyright {
+
+	}
 }

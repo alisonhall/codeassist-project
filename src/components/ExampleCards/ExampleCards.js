@@ -26,17 +26,30 @@ class ExampleCards extends Component {
 
 		return (
 			<section className="example-cards-container">
-				<p>Category: {category}</p>
-				<p>Language: {languageFull}</p>
-				<h3>Description: {description}</h3>
-				<p>Level: {level}</p>
-				<p>Ranking: {ranking}</p>
-				<p>Created By: {createdBy}</p>
-				<p>{dateCreated}</p>
-				<p>Edited By: {editedBy}</p>
-				<p>{dateEdited}</p>
+				<div className="row">
+					<div className="thirds">
+						<p>Rank {ranking}
+						<br />{dateCreated}
+						<br />Level: {level}</p>
+					</div>
+
+					<div className="thirds">
+						<p>Created By: <i className="fa fa-user" aria-hidden="true"></i> <a href="#">{createdBy}</a>
+						<br />Edited By: <i className="fa fa-user" aria-hidden="true"></i> <a href="#">{editedBy}</a></p>
+					</div>
+
+					<div className="thirds">
+						<div className="languageStyle">{languageFull}</div>
+						<p>Category: {category}</p>
+					</div>
+				</div>
+
+				<h3>Description:</h3>
+				<p className="desc">{description}</p>
+
 				<pre className={language}><code>{codeText}</code></pre>
-				<p>Number of Comments: {numberOfComments}</p>
+
+				<p className="commentNum">{numberOfComments} comments</p>
 			</section>
 
 		);

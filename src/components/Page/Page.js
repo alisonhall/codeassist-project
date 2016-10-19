@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+// import { Router, Route, IndexRoute, Link, hashHistory } from 'react-router'
 import $ from 'jquery';
 import jqueryui from 'jquery-ui';
 

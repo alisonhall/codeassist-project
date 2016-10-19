@@ -3,6 +3,7 @@ import $ from 'jquery';
 
 // Components
 import ExampleCards from './../ExampleCards/ExampleCards.js';
+import SyntaxCards from './../SyntaxCards/SyntaxCards.js';
 
 // Styles
 import './examples.scss';
@@ -35,17 +36,32 @@ class Examples extends Component {
 		var category = this.props.allCategories[example.categoryID];
 		var editedBy = this.props.allUsers[example.editedBy];
 		var createdBy = this.props.allUsers[example.createdBy];
-		return (
-			<ExampleCards 
-				key={i}
-				example={example}
-				language={language}
-				category={category}
-				editedBy={editedBy}
-				createdBy={createdBy}
-				allComments={this.props.allComments}
-			></ExampleCards>
-		);
+		var isSyntax = example.syntax;
+		if (isSyntax) {
+			return (
+				<SyntaxCards 
+					key={i}
+					example={example}
+					language={language}
+					category={category}
+					editedBy={editedBy}
+					createdBy={createdBy}
+					allComments={this.props.allComments}
+				></SyntaxCards>
+			);
+		} else {
+			return (
+				<ExampleCards 
+					key={i}
+					example={example}
+					language={language}
+					category={category}
+					editedBy={editedBy}
+					createdBy={createdBy}
+					allComments={this.props.allComments}
+				></ExampleCards>
+			);
+		}
 	}
 
 	render() {

@@ -7,9 +7,9 @@ import $ from 'jquery';
 
 
 // Styles
-import './exampleCards.scss';
+import './syntaxCards.scss';
 
-class ExampleCards extends Component {
+class SyntaxCards extends Component {
 	constructor(props) {
 		super(props);
 	}
@@ -39,38 +39,34 @@ class ExampleCards extends Component {
 		// var html = Prism.highlight(codeText);
 
 		return (
-			<section className="example-cards-container">
-				<div className="row">
-					<div className="thirds">
-						<p>Rank {ranking}
-						<br />{dateCreated}
-						<br />Level: {level}</p>
-					</div>
-
-					<div className="thirds">
-						<p>Created By: <i className="fa fa-user" aria-hidden="true"></i> <a href="#">{createdBy}</a>
-						<br />Edited By: <i className="fa fa-user" aria-hidden="true"></i> <a href="#">{editedBy}</a></p>
-					</div>
-
-					<div className="thirds">
-						<div className="languageStyle">{languageFull}</div>
-						<p>Category: {category}</p>
-					</div>
-				</div>
-
-				<h3>Description:</h3>
-				<p className="desc">{description}</p>
-
-				<pre className={language}><code>{codeText}</code></pre>
-
-				<p className="commentNum">{numberOfComments} comments</p>
+			<section className="syntaxCards-container">
+				<p>Category: {category}</p>
+				<p>Language: {languageFull}</p>
+				<h3>Description: {description}</h3>
+				<p>Level: {level}</p>
+				<p>Ranking: {ranking}</p>
+				<p>Created By: {createdBy}</p>
+				<p>{dateCreated}</p>
+				<p>Edited By: {editedBy}</p>
+				<p>{dateEdited}</p>
+				<pre>
+					<code 
+						className={languageClass}
+						ref={div => {
+						  this.__container = div;
+						  return div;
+						}}>	
+					        {codeText}
+					</code>
+				</pre>
+				<p>Number of Comments: {numberOfComments}</p>
 			</section>
 
 		);
 	}
 }
 
-ExampleCards.propTypes = {
+SyntaxCards.propTypes = {
 	example: PropTypes.object,
 	language: PropTypes.object,
 	category: PropTypes.object,
@@ -79,8 +75,8 @@ ExampleCards.propTypes = {
 	allComments: PropTypes.array
 };
 
-// Examples.defaultProps = {
+// SyntaxCards.defaultProps = {
 
 // };
 
-export default ExampleCards;
+export default SyntaxCards;

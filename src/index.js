@@ -9,6 +9,7 @@ import Page from './components/Page/Page.js';
 
 // Styles
 import './styles/global.scss';
+import './styles/normalize.css';
 
 
 // ReactDOM.render(

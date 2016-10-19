@@ -44,12 +44,11 @@ class Languages extends Component {
 	render() {
 
 		return (
-			<div className='languages-container'>
-				<label>Select a programming language: </label>
-				<select id="combobox" ref={function(selectLanguage){
+			<div className="languages-container" className="col-lg-3 col-lg-offset-9">
+				<select id="languageFilter" ref={function(selectLanguage){
 						// $(selectLanguage).combobox();
 					}}>
-					<option value="">Select one...</option>
+					<option value="">Select language filters</option>
 					{this.props.allLanguages.map(this.eachLanguage)}
 				</select>
 			</div>

@@ -36,7 +36,7 @@ module.exports = validate({
 			{
 				test: /\.css$/,
 				loaders: ['style', 'css?sourceMap']
-			}
+			},
 			// {
 			// 	test: /\.scss$/,
 			// 	loader: ExtractTextPlugin.extract('css!sass')

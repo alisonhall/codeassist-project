@@ -8,8 +8,8 @@ import Page from './components/Page/Page.js';
 // import Test from './components/Test/Test.js';
 
 // Styles
-import './styles/global.scss';
 import './styles/normalize.css';
+import './styles/global.scss';
 
 
 // ReactDOM.render(

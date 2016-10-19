@@ -6,6 +6,44 @@ body {
 	font-family: 'Lato', sans-serif;
 }
 
+h2, h3 {
+	font-weight: 700;
+}
+
+h2 {
+	font-size: 1.875em;
+	margin-bottom: 25px;
+}
+
+h3 {
+	font-size: 1.125em;
+}
+
 input {
 	border-radius:5px;
+}
+
+.thirds {
+	width: 33%;
+	padding: 10px;
+	display: inline-block;
+	vertical-align: top;
+
+	.languageStyle {
+		padding: 5px;
+		margin-bottom: 5px;
+		width: 40%;
+		background-color: orange;
+		border-radius: 5px;
+		text-align: center;
+	}
+}
+
+.thirds, .commentNum, footer {
+	font-weight: 300;
+	font-size: 0.875em;
+}
+
+.desc {
+	font-size: 0.938em;
 }

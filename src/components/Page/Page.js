@@ -35,11 +35,7 @@ class Page extends Component {
 	}
 
 	componentWillMount() {
-		// this.waitForElement($('.accordion'));
 
-		// $( ".accordion" ).accordion({
-		//     collapsible: true
-		// });
 
 		var self = this;
 		$.getJSON('../../test-data.json', function(results){
@@ -64,28 +60,10 @@ class Page extends Component {
 				this.setState({commentDataLoaded: true});
 			}.bind(this));
 			this.setState({allDataLoaded: true});
-			// this.render();
-			// this.setState({
-			//         allDataLoaded: true
-			//       });
+
 		}.bind(this));
 	}
 
-	// componentDidUpdate() {
-	// 	// this.render();
-	// 	// forceUpdate();
-	// }
-
-	// waitForElement() {
-	//     if(this.state.categoryDataLoaded && this.state.languageDataLoaded && this.state.exampleDataLoaded && this.state.allDataLoaded){
-	//     	this.render();
-	//     }
-	//     else{
-	//         setTimeout(function(){
-	//             this.waitForElement();
-	//         }, 1000);
-	//     }
-	// }
 
 	add(item, index, stateName) {
 		if (stateName == 'allCategories') {
@@ -128,103 +106,13 @@ class Page extends Component {
 	}
 
 	render() {
-		// console.log("Render Start");
-		// this.waitForElement();
-		// var start = false;
-		// while (!start) {
-		// 	if (!this.waitForElement()) {
-		// 		start = true;
-		// this.waitForElement();
-
-		// return (
-		// 	<div>
-		// 		<h1>Under construction. Please come back later.</h1>
-		// 		<p>Categories:</p>
-		// 		<div id="react-categories">
-		// 			<Categories allCategories={this.state.allCategories} topCategories={this.state.topCategories} allDataLoaded={this.state.allDataLoaded} />
-		// 		</div>
-		// 		<p>Languages:</p>
-		// 		<div id="react-languages">
-		// 			<Languages allLanguages={this.state.allLanguages} />
-		// 		</div>
-		// 		<p>Examples:</p>
-		// 		<div id="react-examples">
-		// 			<Examples allExamples={this.state.allExamples} />
-		// 		</div>
-		// 	</div>
-
-		// );
-
-		// console.log(this.state.allDataLoaded);
+		
 		if (this.state.allDataLoaded) {
 			console.log("ALL DATA LOADED");
-			// return (
-			// 	<div key={this.state.allDataLoaded}>
-			// 		ALL DATA LOADED...
-			// 	</div>
 
-			// );
 			return (
-				<div className="page-container">
-					<header>
-						<div className="container-fluid">
-							<div className="row">
-								<div id="logo" className="col-md-3 col-md-offset-1">
-									<h1>Code Assist</h1>
-								</div>
-								<div id="searchBar" className="col-md-3 col-md-offset-4">
-									<input type="search" placeholder="Search"></input>
-									<i className="fa fa-search" aria-hidden="true"></i>
-								</div>
-								<div id="login">
-									<a href="#">
-										Sign up <i className="fa fa-user" aria-hidden="true"></i>
-									</a>
-								</div>
-							</div>
-						</div>
-					</header>
-		
-					<div className="container-fluid">
-						<section id="languages">
-							<div id="react-languages" className="col-md-12">
-								<Languages 
-									allLanguages={this.state.allLanguages} 
-								/>
-							</div>
-						</section>
-
-						<section id="content" className="col-md-11 col-md-offset-1">
-							<h2>Examples</h2>
-							<div id="react-examples">
-								<Examples 
-									allCategories={this.state.allCategories} 
-									allExamples={this.state.allExamples} 
-									allLanguages={this.state.allLanguages} 
-									allUsers={this.state.allUsers} 
-									allComments={this.state.allComments} 
-									allDataLoaded={this.state.allDataLoaded} 
-								/>
-							</div>
-						</section>
-					</div>
-
-					<aside id="categories" className="col-md-2">
-						<div id="react-categories">
-							<Categories 
-								allCategories={this.state.allCategories} 
-								topCategories={this.state.topCategories} 
-								allDataLoaded={this.state.allDataLoaded} 
-							/>
-						</div>
-					</aside>
-
-					<footer>
-						<div className="row col-md-12">
-							<span id="legalTerms" className=""><a href="#">legal</a> | <a href="#">terms & conditions</a> | <a href="#">about us</a></span>
-							<span id="copyright" className="">copyright 2016</span>
-						</div>
-					</footer>
+				<div>
+					{this.props.children}
 				</div>
 			);
 
@@ -239,20 +127,10 @@ class Page extends Component {
 
 			);
 		}
-				
-		// 	}
-		// }
 	}
 }
 
-// <Categories allCategories={this.state.allCategories} topCategories={this.state.topCategories} />
-// <Languages allLanguages={this.state.allLanguages} />
-// <Examples allExamples={this.state.allExamples} />
-
 // Page.propTypes = {
-// 	categoryDataLoaded: PropTypes.bool,
-// 	languageDataLoaded: PropTypes.bool,
-// 	exampleDataLoaded: PropTypes.bool,
 // 	allDataLoaded: PropTypes.bool
 // };
 

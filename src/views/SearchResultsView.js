@@ -8,9 +8,10 @@ import Header from './../components/Header/Header.js';
 import Footer from './../components/Footer/Footer.js';
 import Categories from './../components/Categories/Categories.js';
 import Languages from './../components/Languages/Languages.js';
+import SearchResults from './../components/SearchResults/SearchResults.js';
 
 
-class Error404 extends Component {
+class SearchResultsView extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -115,7 +116,7 @@ class Error404 extends Component {
 						</section>
 
 						<section id="content" className="col-md-11 col-md-offset-1">
-							<h1>Page Not Found</h1>
+							<SearchResults />
 						</section>
 					</div>
 
@@ -147,12 +148,12 @@ class Error404 extends Component {
 	}
 }
 
-// Error404.propTypes = {
+// SearchResultsView.propTypes = {
 // 	allDataLoaded: PropTypes.bool
 // };
 
-// Error404.defaultProps = {
+// SearchResultsView.defaultProps = {
 // 	allDataLoaded: false
 // };
 
-export default Error404;
+export default SearchResultsView;

@@ -1,0 +1,32 @@
+header {
+	top: 0;
+	background-color: #81cfe0;
+	height: 85px;
+}
+
+#logo {
+
+	h1 {
+		font-family: 'Unica One', cursive;
+		font-size: 2.25em;
+		line-height: 2.25em;
+	}
+}
+
+#searchBar {
+
+	input {
+		font-style: italic;
+		width: 80%;
+		padding-left: 18px;
+	}
+
+	.fa-search {
+		float: right;
+		font-size: 1.250em;
+	}
+}
+
+.fa-user {
+	margin-left: 5px;
+}

@@ -8,9 +8,10 @@ import Header from './../components/Header/Header.js';
 import Footer from './../components/Footer/Footer.js';
 import Categories from './../components/Categories/Categories.js';
 import Languages from './../components/Languages/Languages.js';
+import Examples from './../components/Examples/Examples.js';
 
 
-class Error404 extends Component {
+class CategoryView extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -115,7 +116,17 @@ class Error404 extends Component {
 						</section>
 
 						<section id="content" className="col-md-11 col-md-offset-1">
-							<h1>Page Not Found</h1>
+							<h2>Examples</h2>
+							<div id="react-examples">
+								<Examples 
+									allCategories={this.state.allCategories} 
+									allExamples={this.state.allExamples} 
+									allLanguages={this.state.allLanguages} 
+									allUsers={this.state.allUsers} 
+									allComments={this.state.allComments} 
+									allDataLoaded={this.state.allDataLoaded} 
+								/>
+							</div>
 						</section>
 					</div>
 
@@ -147,12 +158,12 @@ class Error404 extends Component {
 	}
 }
 
-// Error404.propTypes = {
+// CategoryView.propTypes = {
 // 	allDataLoaded: PropTypes.bool
 // };
 
-// Error404.defaultProps = {
+// CategoryView.defaultProps = {
 // 	allDataLoaded: false
 // };
 
-export default Error404;
+export default CategoryView;

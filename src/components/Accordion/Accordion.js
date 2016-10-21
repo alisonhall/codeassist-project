@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import $ from 'jquery';
+import { IndexLink } from 'react-router';
 
 // Styles
 import './accordion.scss';
@@ -26,13 +27,21 @@ class Accordion extends Component {
 		if(this.props.subContent == null) {
 			return(
 				<div className="accordion-container accordion noContent" onClick={this.select}>
-					<p>{this.props.title}</p>
+					<IndexLink 
+						activeClassName='active' 
+						to={'/category/' + this.props.index}>
+							{this.props.title}
+					</IndexLink>
 				</div>
 			);
 		} else {
 			return(
 				<div className="accordion-container accordion hasContent" onClick={this.select}>
-					<p>{this.props.title}</p>
+					<IndexLink 
+						activeClassName='active' 
+						to={'/category/' + this.props.index}>
+							{this.props.title}
+					</IndexLink>
 					<div className="accordionContent">
 						{this.props.subContent}
 					</div>
@@ -43,6 +52,7 @@ class Accordion extends Component {
 }
 
 Accordion.propTypes = {
+	index: PropTypes.number,
 	title: PropTypes.string,
 	item: PropTypes.object,
 	subContent: PropTypes.array

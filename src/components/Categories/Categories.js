@@ -24,6 +24,7 @@ class Categories extends Component {
 			return(
 				<Accordion
 					key={category[j]}
+					index={Number(category[j])}
 					title={this.props.allCategories[category[j]].name}
 					item={this.props.allCategories[category[j]]}
 					subContent={null}
@@ -39,6 +40,7 @@ class Categories extends Component {
 			return (
 				<Accordion
 					key={i}
+					index={i}
 					title={this.props.allCategories[category].name} 
 					item={this.props.allCategories[category]}
 					subContent={this.props.allCategories[category].subCategoryIDs.map(this.subCategory)}
@@ -48,6 +50,7 @@ class Categories extends Component {
 			return (
 				<Accordion
 					key={i}
+					index={i}
 					title={this.props.allCategories[category].name} 
 					item={this.props.allCategories[category]}
 					subContent={null}

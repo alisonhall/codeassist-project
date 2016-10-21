@@ -125,6 +125,7 @@ class CategoryView extends Component {
 									allUsers={this.state.allUsers} 
 									allComments={this.state.allComments} 
 									allDataLoaded={this.state.allDataLoaded} 
+									params={this.props.params}
 								/>
 							</div>
 						</section>

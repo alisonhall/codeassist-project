@@ -32,35 +32,38 @@ class Examples extends Component {
 	// }
 
 	eachExample(example, i) {
-		var language = this.props.allLanguages[example.language];
-		var category = this.props.allCategories[example.categoryID];
-		var editedBy = this.props.allUsers[example.editedBy];
-		var createdBy = this.props.allUsers[example.createdBy];
-		var isSyntax = example.syntax;
-		if (isSyntax) {
-			return (
-				<SyntaxCards 
-					key={i}
-					example={example}
-					language={language}
-					category={category}
-					editedBy={editedBy}
-					createdBy={createdBy}
-					allComments={this.props.allComments}
-				></SyntaxCards>
-			);
-		} else {
-			return (
-				<ExampleCards 
-					key={i}
-					example={example}
-					language={language}
-					category={category}
-					editedBy={editedBy}
-					createdBy={createdBy}
-					allComments={this.props.allComments}
-				></ExampleCards>
-			);
+		if(this.props.params.categoryId == example.categoryID) {
+			var language = this.props.allLanguages[example.language];
+			var category = this.props.allCategories[example.categoryID];
+			var editedBy = this.props.allUsers[example.editedBy];
+			var createdBy = this.props.allUsers[example.createdBy];
+			var isSyntax = example.syntax;
+
+			if (isSyntax) {
+				return (
+					<SyntaxCards 
+						key={i}
+						example={example}
+						language={language}
+						category={category}
+						editedBy={editedBy}
+						createdBy={createdBy}
+						allComments={this.props.allComments}
+					></SyntaxCards>
+				);
+			} else {
+				return (
+					<ExampleCards 
+						key={i}
+						example={example}
+						language={language}
+						category={category}
+						editedBy={editedBy}
+						createdBy={createdBy}
+						allComments={this.props.allComments}
+					></ExampleCards>
+				);
+			}
 		}
 	}
 
@@ -89,7 +92,8 @@ Examples.propTypes = {
 	allLanguages: PropTypes.array,
 	allUsers: PropTypes.array,
 	allComments: PropTypes.array,
-	allDataLoaded: PropTypes.bool
+	allDataLoaded: PropTypes.bool,
+	params: PropTypes.object
 };
 
 // Examples.defaultProps = {

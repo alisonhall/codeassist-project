@@ -4,7 +4,8 @@ import $ from 'jquery';
 // import jqueryui from 'jquery-ui';
 // import {Router, Route, Navigation} from 'react-router';
 // import { Router, Route, Link, browserHistory } from 'react-router'
-import { Router, Route, IndexRoute, Link, hashHistory, Nagivation, browserHistory } from 'react-router';
+// import { Router, Route, IndexRoute, Link, hashHistory, Nagivation, browserHistory } from 'react-router';
+import { Router, Route, Link, IndexRoute, hashHistory, browserHistory, DefaultRoute } from 'react-router';
 // var createBrowserHistory = require('history/lib/createBrowserHistory');
 
 // Components
@@ -40,17 +41,18 @@ import './styles/global.scss';
 
 const routes = (
   <Router history={hashHistory}>
-    <Route path="/" component={CategoryView} />
-      <Route path="/about" component={AboutView} />
-      <Route path="/user" component={UserSettingsView} />
-      <Route path="/login" component={LoginView} />
-      <Route path="/create" component={CreateSnippetView} />
-      <Route path="/search" component={SearchResultsView} />
-      	<Route path="/category" component={CategoryView} />
-      	<Route path="/syntax" component={OpenedSyntaxCardView} />
-      	<Route path="/example" component={OpenedExampleCardView} />
+    <Route path="/" component={HomeView} />
+    <Route path="/home" component={HomeView} />
+    <Route path="/about" component={AboutView} />
+    <Route path="/login" component={LoginView} />
+    <Route path="/create" component={CreateSnippetView} />
+    <Route path="/user/(:userId)" component={UserSettingsView} />
+    <Route path="/search/(:searchTerm)" component={SearchResultsView} />
+  	<Route path="/category/(:categoryId)" component={CategoryView} />
+  	<Route path="/syntax/(:syntaxId)" component={OpenedSyntaxCardView} />
+  	<Route path="/example/(:exampleId)" component={OpenedExampleCardView} />
 
-      <Route path="*" component={Error404} />
+    <Route path="*" component={Error404} />
   </Router>
 );
 

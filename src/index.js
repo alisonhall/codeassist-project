@@ -22,6 +22,27 @@ import OpenedSyntaxCardView from './views/OpenedSyntaxCardView.js';
 import OpenedExampleCardView from './views/OpenedExampleCardView.js';
 import Error404 from './views/Error404.js';
 
+
+import About from './components/About/About.js';
+import Accordion from './components/Accordion/Accordion.js';
+import Categories from './components/Categories/Categories.js';
+import CreateSnippet from './components/CreateSnippet/CreateSnippet.js';
+import ExampleCards from './components/ExampleCards/ExampleCards.js';
+import Examples from './components/Examples/Examples.js';
+import Footer from './components/Footer/Footer.js';
+import Header from './components/Header/Header.js';
+import Home from './components/Home/Home.js';
+import Languages from './components/Languages/Languages.js';
+import Login from './components/Login/Login.js';
+import NoContent from './components/NoContent/NoContent.js';
+import OpenExampleCard from './components/OpenExampleCard/OpenExampleCard.js';
+import OpenSyntaxCard from './components/OpenSyntaxCard/OpenSyntaxCard.js';
+// import Page from './components/Page/Page.js';
+import SearchResults from './components/SearchResults/SearchResults.js';
+import SyntaxCards from './components/SyntaxCards/SyntaxCards.js';
+import Test from './components/Test/Test.js';
+import UserSettings from './components/UserSettings/UserSettings.js';
+
 // Styles
 import './styles/normalize.css';
 import './styles/global.scss';
@@ -51,6 +72,25 @@ const routes = (
   	<Route path="/category/(:categoryId)" component={CategoryView} />
   	<Route path="/syntax/(:syntaxId)" component={OpenedSyntaxCardView} />
   	<Route path="/example/(:exampleId)" component={OpenedExampleCardView} />
+
+    <Route path="/test" component={Test} />
+    <Route path="/test/about" component={About} />
+    <Route path="/test/accordion" component={Accordion} />
+    <Route path="/test/categories" component={Categories} />
+    <Route path="/test/createsnippet" component={CreateSnippet} />
+    <Route path="/test/examplecards" component={ExampleCards} />
+    <Route path="/test/examples" component={Examples} />
+    <Route path="/test/footer" component={Footer} />
+    <Route path="/test/header" component={Header} />
+    <Route path="/test/home" component={Home} />
+    <Route path="/test/languages" component={Languages} />
+    <Route path="/test/login" component={Login} />
+    <Route path="/test/nocontent" component={NoContent} />
+    <Route path="/test/openexamplecard" component={OpenExampleCard} />
+    <Route path="/test/opensyntaxcard" component={OpenSyntaxCard} />
+    <Route path="/test/searchresults" component={SearchResults} />
+    <Route path="/test/syntaxcards" component={SyntaxCards} />
+    <Route path="/test/usersettings" component={UserSettings} />
 
     <Route path="*" component={Error404} />
   </Router>

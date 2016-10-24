@@ -1,12 +1,28 @@
 import React, { Component, PropTypes } from 'react';
 // import { Router, Route, IndexRoute, Link, hashHistory } from 'react-router'
 import $ from 'jquery';
-import jqueryui from 'jquery-ui';
+// import jqueryui from 'jquery-ui';
+import { Link } from 'react-router';
 
 // Components
+import About from './../About/About.js';
+import Accordion from './../Accordion/Accordion.js';
 import Categories from './../Categories/Categories.js';
-import Languages from './../Languages/Languages.js';
+import CreateSnippet from './../CreateSnippet/CreateSnippet.js';
+import ExampleCards from './../ExampleCards/ExampleCards.js';
 import Examples from './../Examples/Examples.js';
+import Footer from './../Footer/Footer.js';
+import Header from './../Header/Header.js';
+import Home from './../Home/Home.js';
+import Languages from './../Languages/Languages.js';
+import Login from './../Login/Login.js';
+import NoContent from './../NoContent/NoContent.js';
+import OpenExampleCard from './../OpenExampleCard/OpenExampleCard.js';
+import OpenSyntaxCard from './../OpenSyntaxCard/OpenSyntaxCard.js';
+// import Page from './../Page/Page.js';
+import SearchResults from './../SearchResults/SearchResults.js';
+import SyntaxCards from './../SyntaxCards/SyntaxCards.js';
+import UserSettings from './../UserSettings/UserSettings.js';
 
 // Styles
 import './page.scss';
@@ -28,7 +44,8 @@ class Page extends Component {
 			selectedLanguages: [],
 			allExamples: [],
 			allUsers: [],
-			allComments: []
+			allComments: [],
+			contentComponent: ''
 		};
 
 		// this.waitForElement = this.waitForElement.bind(this);
@@ -62,6 +79,8 @@ class Page extends Component {
 			this.setState({allDataLoaded: true});
 
 		}.bind(this));
+
+		// this.setComponents();
 	}
 
 
@@ -108,11 +127,100 @@ class Page extends Component {
 	render() {
 		
 		if (this.state.allDataLoaded) {
-			console.log("ALL DATA LOADED");
+			var categoryComponent = 
+					<Examples 
+						allCategories={this.state.allCategories} 
+						allExamples={this.state.allExamples} 
+						allLanguages={this.state.allLanguages} 
+						allUsers={this.state.allUsers} 
+						allComments={this.state.allComments} 
+						allDataLoaded={this.state.allDataLoaded} 
+						params={this.props.params}
+					/>;
+			var aboutComponent = 
+					<About />;
 
+			var createSnippetComponent = 
+					<CreateSnippet />;
+
+			var error404Component = 
+					<h1>Page Not Found</h1>;
+
+			var homeComponent = 
+					<Home />;
+
+			var loginComponent = 
+					<Login />;
+
+			var openExampleCardComponent = 
+					<OpenExampleCard />;
+
+			var openSyntaxCardComponent = 
+					<OpenSyntaxCard />;
+
+			var searchResultsComponent = 
+					<SearchResults />;
+
+			var userSettingsComponent = 
+					<UserSettings />;
+
+			var contentComponentStr = this.props.contentComponent;
+			var contentComponent;
+
+			if (contentComponentStr == 'about') {
+				contentComponent = aboutComponent;
+			} else if (contentComponentStr == 'category') {
+				contentComponent = categoryComponent;
+			} else if (contentComponentStr == 'createsnippet') {
+				contentComponent = createSnippetComponent;
+			} else if (contentComponentStr == 'error404') {
+				contentComponent = error404Component;
+			} else if (contentComponentStr == 'home') {
+				contentComponent = homeComponent;
+			} else if (contentComponentStr == 'login') {
+				contentComponent = loginComponent;
+			} else if (contentComponentStr == 'openedexamplecard') {
+				contentComponent = openExampleCardComponent;
+			} else if (contentComponentStr == 'openedsyntaxcard') {
+				contentComponent = openSyntaxCardComponent;
+			} else if (contentComponentStr == 'searchresults') {
+				contentComponent = searchResultsComponent;
+			} else if (contentComponentStr == 'usersettings') {
+				contentComponent = userSettingsComponent;
+			} else {
+				<h1>Error! Unknown Content Component!</h1>
+			}
+
+			console.log("ALL DATA LOADED");
 			return (
-				<div>
-					{this.props.children}
+				<div className="page-container">
+					<Header />
+		
+					<div className="container-fluid">
+						<section id="languages">
+							<div id="react-languages" className="col-md-12">
+								<Languages 
+									allLanguages={this.state.allLanguages} 
+								/>
+							</div>
+						</section>
+
+						<section id="content" className="col-md-11 col-md-offset-1">
+							{contentComponent}
+						</section>
+					</div>
+
+					<aside id="categories" className="col-md-2">
+						<div id="react-categories">
+							<Categories 
+								allCategories={this.state.allCategories} 
+								topCategories={this.state.topCategories} 
+								allDataLoaded={this.state.allDataLoaded} 
+							/>
+						</div>
+					</aside>
+
+					<Footer />
 				</div>
 			);
 
@@ -130,9 +238,10 @@ class Page extends Component {
 	}
 }
 
-// Page.propTypes = {
-// 	allDataLoaded: PropTypes.bool
-// };
+Page.propTypes = {
+	contentComponent: PropTypes.string,
+	params: PropTypes.object
+};
 
 // Page.defaultProps = {
 // 	allDataLoaded: false

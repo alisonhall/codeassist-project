@@ -35,6 +35,12 @@ class Languages extends Component {
 	// 	$( "#combobox" ).combobox();
 	// }
 
+
+	handleChange(e, key) {
+	    const language = this.props.allLanguages[key];
+	    this.props.addToSelectedLanguages(key);
+	  }
+
 	eachLanguage(language, i) {
 		return (
 			<option value={language.name} key={i}>{language.fullName}</option>
@@ -45,9 +51,7 @@ class Languages extends Component {
 
 		return (
 			<div className="languages-container" className="col-lg-3 col-lg-offset-9">
-				<select id="languageFilter" ref={function(selectLanguage){
-						// $(selectLanguage).combobox();
-					}}>
+				<select id="languageFilter" ref='selectLanguage' onChange={this.handleChange}>
 					<option value="">Select language filters</option>
 					{this.props.allLanguages.map(this.eachLanguage)}
 				</select>
@@ -58,7 +62,9 @@ class Languages extends Component {
 }
 
 Languages.propTypes = {
-	allLanguages: PropTypes.array
+	allLanguages: PropTypes.array,
+	selectedLanguages: PropTypes.array,
+	addToSelectedLanguages: PropTypes.func
 };
 
 // Languages.defaultProps = {

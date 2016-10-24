@@ -29,6 +29,9 @@ class OpenExampleCardView extends Component {
 			allUsers: [],
 			allComments: []
 		};
+
+		this.add = this.add.bind(this);
+		this.addToSelectedLanguages = this.addToSelectedLanguages.bind(this);
 	}
 
 	componentWillMount() {
@@ -99,6 +102,12 @@ class OpenExampleCardView extends Component {
 		}
 	}
 
+	addToSelectedLanguages(key) {
+		var selectedLanguages = this.state.selectedLanguages;
+		selectedLanguages.push(key);
+		this.setState({selectedLanguages: selectedLanguages});
+	}
+
 	render() {
 		if (this.state.allDataLoaded) {
 			console.log("ALL DATA LOADED");
@@ -111,6 +120,8 @@ class OpenExampleCardView extends Component {
 							<div id="react-languages" className="col-md-12">
 								<Languages 
 									allLanguages={this.state.allLanguages} 
+									selectedLanguages={this.state.selectedLanguages}
+									addToSelectedLanguages={this.addToSelectedLanguages}
 								/>
 							</div>
 						</section>

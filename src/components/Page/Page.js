@@ -223,6 +223,12 @@ class Page extends Component {
 				<div className="page-container">
 					<Header />
 		
+					<aside id="categories" className="col-md-2">
+						<div id="react-categories">
+							{categoriesComponent}
+						</div>
+					</aside>
+
 					<div className="container-fluid">
 						<section id="languages">
 							<div id="react-languages" className="col-md-12">
@@ -234,12 +240,6 @@ class Page extends Component {
 							{contentComponent}
 						</section>
 					</div>
-
-					<aside id="categories" className="col-md-2">
-						<div id="react-categories">
-							{categoriesComponent}
-						</div>
-					</aside>
 
 					<Footer />
 				</div>

@@ -30,6 +30,7 @@ class SyntaxCards extends Component {
 		var codeText = this.props.example.codeText;
 		var numberOfComments = this.props.example.commentIDs.length;
 		var languageClass = "language-" + language;
+		var exampleId = this.props.example.id;
 
 		return (
 			<section className="syntaxCards-container">
@@ -41,8 +42,8 @@ class SyntaxCards extends Component {
 					</div>
 
 					<div className="thirds">
-						<p>Created By: <i className="fa fa-user" aria-hidden="true"></i> <a href="#">{createdBy}</a>
-						<br />Edited By: <i className="fa fa-user" aria-hidden="true"></i> <a href="#">{editedBy}</a></p>
+						<p>Created By: <i className="fa fa-user" aria-hidden="true"></i> <Link to={'/user/' + createdBy}>{createdBy}</Link>
+						<br />Edited By: <i className="fa fa-user" aria-hidden="true"></i> <Link to={'/user/' + editedBy}>{editedBy}</Link></p>
 					</div>
 
 					<div className="thirds">
@@ -54,9 +55,11 @@ class SyntaxCards extends Component {
 				<h3>Description:</h3>
 				<p className="desc">{description}</p>
 
-				<pre className={languageClass}><code>{codeText}</code></pre>
+				<pre><code className={languageClass}>{codeText}</code></pre>
 
 				<p className="commentNum">{numberOfComments} comments</p>
+
+				<Link to={'/example/' + exampleId}>Expand</Link>
 			</section>
 
 		);

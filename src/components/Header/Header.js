@@ -29,17 +29,17 @@ class Header extends Component {
 								</Link>
 							</h1>
 						</div>
+						<div id="login">
+							<Link to='/user/0'>
+								Sign up <i className="fa fa-user" aria-hidden="true"></i>
+							</Link>
+						</div>
 						<div id="searchBar" className="col-md-3 col-md-offset-4">
 							<form onSubmit={this.onSearchHandler}>
 								<input type="search" placeholder="Search"></input>
 								<button type="submit"><i className="fa fa-search" aria-hidden="true"></i></button>
 							</form>
 							
-						</div>
-						<div id="login">
-							<Link to='/user/0'>
-								Sign up <i className="fa fa-user" aria-hidden="true"></i>
-							</Link>
 						</div>
 					</div>
 				</div>

@@ -95,7 +95,8 @@ Examples.propTypes = {
 	allUsers: PropTypes.array,
 	allComments: PropTypes.array,
 	allDataLoaded: PropTypes.bool,
-	params: PropTypes.object
+	params: PropTypes.object,
+	selectedLanguages: PropTypes.array
 };
 
 // Examples.defaultProps = {

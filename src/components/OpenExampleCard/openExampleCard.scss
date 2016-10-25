@@ -1,5 +1,7 @@
 @import '../../styles/variables.scss';
 
 .openExampleCard-container {
-	
+	.comment {
+		border: 1px solid $gray-color;
+	}
 }

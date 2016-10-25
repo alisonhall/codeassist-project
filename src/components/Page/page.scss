@@ -1,57 +1,15 @@
-.page-container {
-	
-}
-
-header {
-	top: 0;
-	background-color: #81cfe0;
-	height: 85px;
-}
-
-#logo {
 @import '../../styles/variables.scss';
 
-	h1 {
-		font-family: 'Unica One', cursive;
-		font-size: 2.25em;
-		line-height: 2.25em;
-	}
-}
-
-#searchBar {
-
-	input {
-		font-style: italic;
-		width: 80%;
-		padding-left: 18px;
+.page-container {
+	#categories {
+		z-index: 9999;
+		width: 24%;
+		float: left;
 	}
 
-	.fa-search {
+	#content {
+		width: 75%;
 		float: right;
-		font-size: 1.250em;
 	}
 }
 
-.fa-user {
-	margin-left: 5px;
-}
-
-aside {
-	width: 100%;
-	background-color: #e6f5f9;
-	z-index: 9999;
-}
-
-footer {
-	font-color: #c8c8c8;
-	font-weight: 300;
-	font-size: 0.750em;
-
-	#legalTerms {
-
-	}
-
-	#copyright {
-
-	}
-}

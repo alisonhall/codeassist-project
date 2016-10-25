@@ -12,9 +12,7 @@ class ExampleCards extends Component {
 	}
 
 	componentDidMount() {
-		// hljs.highlightBlock(this.__container);
 		Prism.highlightAll();
-		// Prism.highlightElement(this.__container, true);
 	}
 
 	render() {
@@ -31,9 +29,6 @@ class ExampleCards extends Component {
 		var codeText = this.props.example.codeText;
 		var numberOfComments = this.props.example.commentIDs.length;
 		var languageClass = "language-" + language;
-
-		// var html = Prism.highlight(codeText, Prism.languages.swift);
-		// var html = Prism.highlight(codeText);
 
 		return (
 			<section className="example-cards-container">

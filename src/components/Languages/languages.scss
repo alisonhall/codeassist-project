@@ -1,8 +1,37 @@
-#languages {
 @import '../../styles/variables.scss';
+
+.languages-container {
 	padding-top: 15px;
+	height: 80px;
+	text-align: right;
+
+	div, p {
+		display: inline-block;
+	}
+
+	div {
+		margin: 0 5px;
+	}
+
+	p {
+		padding: 5px 10px;
+		border-radius: 10px;
+	}
+
+	.language1 p {
+		border: 3px solid $language-color-1;
+	}
+
+	.language2 p {
+		border: 3px solid $language-color-2;
+	}
+
+	.language3 p {
+		border: 3px solid $language-color-3;
+	}
 }
 
 #languageFilter {
-	width: 100%;
+	float: right;
+	margin-top: 8px;
 }

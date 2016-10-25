@@ -2,11 +2,12 @@
 
 header {
 	top: 0;
-	background-color: #81cfe0;
+	background-color: $header-color;
 	height: 85px;
 }
 
 #logo {
+	display: inline-block;
 
 	h1 {
 		font-family: 'Unica One', cursive;
@@ -15,17 +16,35 @@ header {
 	}
 }
 
-#searchBar {
+#login {
+	width: 75px;
+	float: right;
+	margin-top: 20px;
+}
 
+#searchBar {
+	margin-left: 0;
+	width: 50%;
+	float: right;
+	margin-top: 20px;
+
+	form {
+		padding-left: 30px;
+	}
+	
 	input {
 		font-style: italic;
-		width: 80%;
+		width: 90%;
 		padding-left: 18px;
 	}
 
 	.fa-search {
 		float: right;
 		font-size: 1.250em;
+	}
+
+	button {
+		margin-left: -33px;
 	}
 }
 

@@ -26,8 +26,7 @@ input {
 }
 
 aside {
-	width: 100%;
-	background-color: #e6f5f9;
+	display: inline-block;
 	z-index: 9999;
 }
 
@@ -41,7 +40,7 @@ aside {
 		padding: 5px;
 		margin-bottom: 5px;
 		width: 40%;
-		background-color: orange;
+		background-color: $language-color-1;
 		border-radius: 5px;
 		text-align: center;
 	}

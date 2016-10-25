@@ -1,15 +1,16 @@
 @import '../../styles/variables.scss';
 
 footer {
-	font-color: #c8c8c8;
+	color: $gray-color;
 	font-weight: 300;
 	font-size: 0.750em;
+	text-align: center;
 
 	#legalTerms {
 
 	}
 
 	#copyright {
-
+		padding: 0 3px;	
 	}
 }

@@ -1,5 +1,10 @@
 @import '../../styles/variables.scss';
 
 .categories-container {
-	
+	.categoriesList {
+		background-color: $sidebar-color;
+	}
+	.hide {
+		display: none;
+	}
 }

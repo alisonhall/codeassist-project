@@ -126,14 +126,33 @@ class Page extends Component {
 	}
 
 	addToSelectedLanguages(key) {
+		console.log(key);
 		var selectedLanguages = this.state.selectedLanguages;
-		selectedLanguages.push(key);
-		this.setState({selectedLanguages: selectedLanguages});
+		if(selectedLanguages.length >= 3) {
+			alert("You can't add more than 3 languages.");
+		} else {
+			selectedLanguages.push(key);
+			this.setState({selectedLanguages: selectedLanguages});
+		}
 	}
 
 	render() {
 		
 		if (this.state.allDataLoaded) {
+			var languagesComponent = 
+					<Languages 
+						allLanguages={this.state.allLanguages}
+						selectedLanguages={this.state.selectedLanguages} 
+						addToSelectedLanguages={this.addToSelectedLanguages}
+					/>;
+
+			var categoriesComponent = 
+					<Categories 
+						allCategories={this.state.allCategories} 
+						topCategories={this.state.topCategories} 
+						allDataLoaded={this.state.allDataLoaded} 
+					/>;
+
 			var categoryComponent = 
 					<Examples 
 						allCategories={this.state.allCategories} 
@@ -143,7 +162,9 @@ class Page extends Component {
 						allComments={this.state.allComments} 
 						allDataLoaded={this.state.allDataLoaded} 
 						params={this.props.params}
+						selectedLanguages={this.state.selectedLanguages}
 					/>;
+
 			var aboutComponent = 
 					<About />;
 
@@ -206,11 +227,7 @@ class Page extends Component {
 					<div className="container-fluid">
 						<section id="languages">
 							<div id="react-languages" className="col-md-12">
-								<Languages 
-									allLanguages={this.state.allLanguages}
-									selectedLanguages={this.state.selectedLanguages} 
-									addToSelectedLanguages={this.addToSelectedLanguages}
-								/>
+								{languagesComponent}
 							</div>
 						</section>
 
@@ -221,11 +238,7 @@ class Page extends Component {
 
 					<aside id="categories" className="col-md-2">
 						<div id="react-categories">
-							<Categories 
-								allCategories={this.state.allCategories} 
-								topCategories={this.state.topCategories} 
-								allDataLoaded={this.state.allDataLoaded} 
-							/>
+							{categoriesComponent}
 						</div>
 					</aside>
 

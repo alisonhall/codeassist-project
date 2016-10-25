@@ -11,39 +11,30 @@ import './languages.scss';
 class Languages extends Component {
 	constructor(props) {
 		super(props);
-		// this.state = {
-		// 	allLanguages: [],
-		// 	selectedLanguages: []
-		// };
-		// this.eachLanguage = this.eachLanguage.bind(this);
+		this.state = {
+			selectValue: ''
+		};
 
-		// var self = this;
-		// $.getJSON('../../test-data.json', function(results){
-		// 	$.each(results.languages2, function(el, item) {
-		// 		self.add(item, el);
-		// 	});
-		// });
+		this.handleSelectChange = this.handleSelectChange.bind(this);
+		this.displayLanguage = this.displayLanguage.bind(this);
 	}
 
-	// add(item, el) {
-	// 	var allLanguages = this.state.allLanguages;
-	// 	allLanguages[el] = item;
-	// 	this.setState({allLanguages: allLanguages});
-	// }
-
-	// componentDidMount() {
-	// 	$( "#combobox" ).combobox();
-	// }
-
-
-	handleChange(e, key) {
-	    const language = this.props.allLanguages[key];
-	    this.props.addToSelectedLanguages(key);
-	  }
+	handleSelectChange(event) {
+		this.setState({selectValue: event.target.value});
+		this.props.addToSelectedLanguages(event.target.value);
+	}
 
 	eachLanguage(language, i) {
 		return (
-			<option value={language.name} key={i}>{language.fullName}</option>
+			<option value={language.id} key={i}>{language.fullName}</option>
+		);
+	}
+
+	displayLanguage(id, i) {
+		return (
+			<div key={i}>
+				<p>{this.props.allLanguages[id].fullName}</p>
+			</div>
 		);
 	}
 
@@ -51,8 +42,9 @@ class Languages extends Component {
 
 		return (
 			<div className="languages-container" className="col-lg-3 col-lg-offset-9">
-				<select id="languageFilter" ref='selectLanguage' onChange={this.handleChange}>
-					<option value="">Select language filters</option>
+				{this.props.selectedLanguages.map(this.displayLanguage)}
+				<select id="languageFilter" ref='selectLanguage' onChange={this.handleSelectChange} value={this.state.selectValue}>
+					<option>Select language filters</option>
 					{this.props.allLanguages.map(this.eachLanguage)}
 				</select>
 			</div>

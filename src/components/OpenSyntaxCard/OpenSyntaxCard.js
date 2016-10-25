@@ -9,54 +9,90 @@ import './openSyntaxCard.scss';
 class OpenSyntaxCard extends Component {
 	constructor(props) {
 		super(props);
+		this.state = {
+			syntaxId: this.props.params.syntaxId,
+			example: '',
+			category: '',
+			language: '',
+			createdBy: '',
+			editedBy: ''
+		}
+
+		this.state.example = this.props.allExamples[this.state.syntaxId];
+		this.state.category = this.props.allCategories[this.state.example.categoryID];
+		this.state.language = this.props.allLanguages[this.state.example.language];
+		this.state.createdBy = this.props.allUsers[this.state.example.createdBy];
+		this.state.editedBy = this.props.allUsers[this.state.example.editedBy];
+
+		this.displayComment = this.displayComment.bind(this);
 	}
 
 	componentDidMount() {
-		// hljs.highlightBlock(this.__container);
 		Prism.highlightAll();
-		// Prism.highlightElement(this.__container, true);
+	}
+
+	displayComment(id, i) {
+
+		var comment = this.props.allComments[id];
+		var date = comment.dateCreated;
+		var username = this.props.allUsers[comment.createdBy].username;
+		var text = comment.commentText;
+
+		return(
+			<div key={i} className={classnames('comment', `comment-${id}`)}>
+				<p>Date: {date}</p>
+				<p>User: <Link to={'/user/' + username}>{username}</Link></p>
+				<p>{text}</p>
+			</div>
+		);
 	}
 
 	render() {
-		var category = this.props.category.name;
-		var languageFull = this.props.language.fullName;
-		var language = this.props.language.name;
-		var description = this.props.example.description;
-		var level = this.props.example.level;
-		var ranking = this.props.example.ranking;
-		var createdBy = this.props.createdBy.username;
-		var dateCreated = this.props.example.dateCreated;
-		var editedBy = this.props.editedBy.username;
-		var dateEdited = this.props.example.dateEdited;
-		var codeText = this.props.example.codeText;
-		var numberOfComments = this.props.example.commentIDs.length;
+		var category = this.state.category.name;
+		var languageFull = this.state.language.fullName;
+		var language = this.state.language.name;
+		var description = this.state.example.description;
+		var level = this.state.example.level;
+		var ranking = this.state.example.ranking;
+		var createdBy = this.state.createdBy.username;
+		var dateCreated = this.state.example.dateCreated;
+		var editedBy = this.state.editedBy.username;
+		var dateEdited = this.state.example.dateEdited;
+		var codeText = this.state.example.codeText;
+		var comments = this.state.example.commentIDs;
+		var numberOfComments = this.state.example.commentIDs.length;
 		var languageClass = "language-" + language;
-
-		// var html = Prism.highlight(codeText, Prism.languages.swift);
-		// var html = Prism.highlight(codeText);
 
 		return (
 			<section className="openSyntaxCard-container">
-				<p>Category: {category}</p>
-				<p>Language: {languageFull}</p>
-				<h3>Description: {description}</h3>
-				<p>Level: {level}</p>
-				<p>Ranking: {ranking}</p>
-				<p>Created By: {createdBy}</p>
-				<p>{dateCreated}</p>
-				<p>Edited By: {editedBy}</p>
-				<p>{dateEdited}</p>
-				<pre>
-					<code 
-						className={languageClass}
-						ref={div => {
-						  this.__container = div;
-						  return div;
-						}}>	
-					        {codeText}
-					</code>
-				</pre>
-				<p>Number of Comments: {numberOfComments}</p>
+				<div className="row">
+					<div className="thirds">
+						<p>Rank {ranking}
+						<br />{dateCreated}
+						<br />Level: {level}</p>
+					</div>
+
+					<div className="thirds">
+						<p>Created By: <i className="fa fa-user" aria-hidden="true"></i> <Link to={'/user/' + createdBy}>{createdBy}</Link>
+						<br />Edited By: <i className="fa fa-user" aria-hidden="true"></i> <Link to={'/user/' + editedBy}>{editedBy}</Link></p>
+					</div>
+
+					<div className="thirds">
+						<div className="languageStyle">{languageFull}</div>
+						<p>Category: {category}</p>
+					</div>
+				</div>
+
+				<h3>Description:</h3>
+				<p className="desc">{description}</p>
+
+				<pre><code className={languageClass}>{codeText}</code></pre>
+
+				<p className="commentNum">{numberOfComments} comments</p>
+
+				<div className="comments">
+					{comments.map(this.displayComment)}
+				</div>
 			</section>
 
 		);
@@ -64,12 +100,14 @@ class OpenSyntaxCard extends Component {
 }
 
 OpenSyntaxCard.propTypes = {
-	example: PropTypes.object,
-	language: PropTypes.object,
-	category: PropTypes.object,
-	editedBy: PropTypes.object,
-	createdBy: PropTypes.object,
-	allComments: PropTypes.array
+	allExamples: PropTypes.array,
+	allCategories: PropTypes.array,
+	allLanguages: PropTypes.array,
+	allUsers: PropTypes.array,
+	allComments: PropTypes.array,
+	allDataLoaded: PropTypes.bool,
+	params: PropTypes.object,
+	selectedLanguages: PropTypes.array
 };
 
 // OpenSyntaxCard.defaultProps = {

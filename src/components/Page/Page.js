@@ -180,10 +180,28 @@ class Page extends Component {
 					<Login />;
 
 			var openExampleCardComponent = 
-					<OpenExampleCard />;
+					<OpenExampleCard 
+						allCategories={this.state.allCategories} 
+						allExamples={this.state.allExamples} 
+						allLanguages={this.state.allLanguages} 
+						allUsers={this.state.allUsers} 
+						allComments={this.state.allComments} 
+						allDataLoaded={this.state.allDataLoaded} 
+						params={this.props.params}
+						selectedLanguages={this.state.selectedLanguages}
+					/>;
 
 			var openSyntaxCardComponent = 
-					<OpenSyntaxCard />;
+					<OpenSyntaxCard 
+						allCategories={this.state.allCategories} 
+						allExamples={this.state.allExamples} 
+						allLanguages={this.state.allLanguages} 
+						allUsers={this.state.allUsers} 
+						allComments={this.state.allComments} 
+						allDataLoaded={this.state.allDataLoaded} 
+						params={this.props.params}
+						selectedLanguages={this.state.selectedLanguages}
+					/>;
 
 			var searchResultsComponent = 
 					<SearchResults />;

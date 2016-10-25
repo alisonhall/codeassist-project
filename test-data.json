@@ -6,7 +6,33 @@
 			"isTopLevel": true,
 			"name": "Conditional",
 			"alternativeNames": [],
-			"description": ""
+			"description": "",
+			"count": {
+				"0": {
+					"examples": [],
+					"syntaxes": []
+				},
+				"1": {
+					"examples": [],
+					"syntaxes": []
+				},
+				"2": {
+					"examples": [],
+					"syntaxes": []
+				},
+				"3": {
+					"examples": [],
+					"syntaxes": []
+				},
+				"4": {
+					"examples": [],
+					"syntaxes": []
+				},
+				"5": {
+					"examples": [],
+					"syntaxes": []
+				}
+			}
 		}, 
 		"1": {
 			"subCategoryIDs": [],
@@ -14,7 +40,33 @@
 			"isTopLevel": false,
 			"name": "If Statement",
 			"alternativeNames": [],
-			"description": ""
+			"description": "",
+			"count": {
+				"0": {
+					"examples": [],
+					"syntaxes": []
+				},
+				"1": {
+					"examples": [],
+					"syntaxes": []
+				},
+				"2": {
+					"examples": [],
+					"syntaxes": []
+				},
+				"3": {
+					"examples": [],
+					"syntaxes": []
+				},
+				"4": {
+					"examples": [],
+					"syntaxes": []
+				},
+				"5": {
+					"examples": [],
+					"syntaxes": []
+				}
+			}
 		},
 		"2": {
 			"subCategoryIDs": [],
@@ -22,7 +74,33 @@
 			"isTopLevel": false,
 			"name": "While Loop",
 			"alternativeNames": [],
-			"description": ""
+			"description": "",
+			"count": {
+				"0": {
+					"examples": [],
+					"syntaxes": []
+				},
+				"1": {
+					"examples": [],
+					"syntaxes": []
+				},
+				"2": {
+					"examples": [],
+					"syntaxes": []
+				},
+				"3": {
+					"examples": [],
+					"syntaxes": []
+				},
+				"4": {
+					"examples": [],
+					"syntaxes": []
+				},
+				"5": {
+					"examples": [],
+					"syntaxes": []
+				}
+			}
 		},
 		"3": {
 			"subCategoryIDs": ["4", "7"],
@@ -30,7 +108,33 @@
 			"isTopLevel": true,
 			"name": "Data Types",
 			"alternativeNames": [],
-			"description": "These are data types."
+			"description": "These are data types.",
+			"count": {
+				"0": {
+					"examples": [],
+					"syntaxes": []
+				},
+				"1": {
+					"examples": [],
+					"syntaxes": []
+				},
+				"2": {
+					"examples": [],
+					"syntaxes": []
+				},
+				"3": {
+					"examples": [],
+					"syntaxes": []
+				},
+				"4": {
+					"examples": [],
+					"syntaxes": []
+				},
+				"5": {
+					"examples": [],
+					"syntaxes": []
+				}
+			}
 		},
 		"4": {
 			"subCategoryIDs": [],
@@ -38,7 +142,33 @@
 			"isTopLevel": false,
 			"name": "String",
 			"alternativeNames": [],
-			"description": "Strings are just like text. They are a collection of characters."
+			"description": "Strings are just like text. They are a collection of characters.",
+			"count": {
+				"0": {
+					"examples": [],
+					"syntaxes": [0]
+				},
+				"1": {
+					"examples": [],
+					"syntaxes": []
+				},
+				"2": {
+					"examples": [],
+					"syntaxes": []
+				},
+				"3": {
+					"examples": [],
+					"syntaxes": []
+				},
+				"4": {
+					"examples": [],
+					"syntaxes": []
+				},
+				"5": {
+					"examples": [2, 3],
+					"syntaxes": [1]
+				}
+			}
 		},
 		"7": {
 			"subCategories": [],
@@ -46,7 +176,33 @@
 			"isTopLevel": false,
 			"name": "Integer",
 			"alternativeNames": [],
-			"description": "Integers represent whole numbers. This means 0 to a large number, with no decimals or fractions. Arithmetic can be applied to integers."
+			"description": "Integers represent whole numbers. This means 0 to a large number, with no decimals or fractions. Arithmetic can be applied to integers.",
+			"count": {
+				"0": {
+					"examples": [],
+					"syntaxes": []
+				},
+				"1": {
+					"examples": [],
+					"syntaxes": []
+				},
+				"2": {
+					"examples": [],
+					"syntaxes": []
+				},
+				"3": {
+					"examples": [],
+					"syntaxes": []
+				},
+				"4": {
+					"examples": [],
+					"syntaxes": []
+				},
+				"5": {
+					"examples": [],
+					"syntaxes": []
+				}
+			}
 		}
 	},
 	"languages": {
@@ -127,6 +283,7 @@
 	},
 	"examples": {
 		"0": {
+			"id": "0",
 			"categoryID": "4",
 			"language": "0",
 			"createdBy": "0",
@@ -144,6 +301,7 @@
 			"ranking": "1000"
 		},
 		"1": {
+			"id": "1",
 			"categoryID": "4",
 			"language": "5",
 			"createdBy": "0",
@@ -161,6 +319,7 @@
 			"ranking": "500"
 		},
 		"2": {
+			"id": "2",
 			"categoryID": "4",
 			"language": "5",
 			"createdBy": "0",
@@ -178,6 +337,7 @@
 			"ranking": "1000"
 		},
 		"3": {
+			"id": "3",
 			"categoryID": "4",
 			"language": "5",
 			"createdBy": "0",

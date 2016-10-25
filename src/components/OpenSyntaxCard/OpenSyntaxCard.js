@@ -1,10 +1,7 @@
 import React, { Component, PropTypes } from 'react';
+import { IndexLink, Link } from 'react-router';
+import classnames from 'classnames';
 import $ from 'jquery';
-// import hljs from 'highlight.js';
-// import {PrismCode} from "react-prism";
-// import {PrismCode} from "./../../../node_modules/react-prism/lib";
-// import Prism from 'prismjs';
-
 
 // Styles
 import './openSyntaxCard.scss';

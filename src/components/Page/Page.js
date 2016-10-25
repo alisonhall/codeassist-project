@@ -1,8 +1,7 @@
 import React, { Component, PropTypes } from 'react';
-// import { Router, Route, IndexRoute, Link, hashHistory } from 'react-router'
+import { IndexLink, Link } from 'react-router';
+import classnames from 'classnames';
 import $ from 'jquery';
-// import jqueryui from 'jquery-ui';
-import { Link } from 'react-router';
 
 // Components
 import About from './../About/About.js';

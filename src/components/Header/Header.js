@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
+import { IndexLink, Link } from 'react-router';
+import classnames from 'classnames';
 import $ from 'jquery';
-import { Link } from 'react-router';
 
 // Styles
 import './header.scss';

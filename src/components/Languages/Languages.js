@@ -1,8 +1,7 @@
 import React, { Component, PropTypes } from 'react';
+import { IndexLink, Link } from 'react-router';
+import classnames from 'classnames';
 import $ from 'jquery';
-// import jqueryui from 'jquery-ui';
-// require('jquery-ui/ui/widgets/selectmenu.js');
-// require('jquery-ui/ui/widgets/autocomplete.js');
 
 // Styles
 import './languages.scss';
@@ -32,7 +31,7 @@ class Languages extends Component {
 
 	displayLanguage(id, i) {
 		return (
-			<div key={i}>
+			<div key={i} className={classnames(`language${i+1}`)}>
 				<p>{this.props.allLanguages[id].fullName}</p>
 			</div>
 		);
@@ -41,7 +40,7 @@ class Languages extends Component {
 	render() {
 
 		return (
-			<div className="languages-container" className="col-lg-3 col-lg-offset-9">
+			<div className={classnames('languages-container', 'col-lg-3 col-lg-offset-9')}>
 				{this.props.selectedLanguages.map(this.displayLanguage)}
 				<select id="languageFilter" ref='selectLanguage' onChange={this.handleSelectChange} value={this.state.selectValue}>
 					<option>Select language filters</option>

@@ -13,8 +13,13 @@ import './categories.scss';
 class Categories extends Component {
 	constructor(props) {
 		super(props);
+		this.state = {
+			showSidebar: true
+		};
+
 		this.topCategory = this.topCategory.bind(this);
 		this.subCategory = this.subCategory.bind(this);
+		this.toggleShow = this.toggleShow.bind(this);
 	}
 
 	subCategory(category, i) {
@@ -60,11 +65,25 @@ class Categories extends Component {
 		}
 	}
 
+	toggleShow(event) {
+		event.preventDefault();
+		if(this.state.showSidebar) {
+			this.setState({showSidebar: false});
+		} else {
+			this.setState({showSidebar: true});
+		}
+	}
+
 	render() {
 		if (typeof this.props.allDataLoaded !== "undefined") {
+			var showStatus = (this.state.showSidebar) ? '' : 'hide';
+
 			return (
 				<div className='categories-container'>
-					{this.props.topCategories.map(this.topCategory)}
+					<button id="showCategories" onClick={this.toggleShow}>Categories</button>
+					<div className={classnames('categoriesList', `${showStatus}`)} ref={(div) => this.categoriesList = div}>
+						{this.props.topCategories.map(this.topCategory)}
+					</div>
 				</div>
 
 			);

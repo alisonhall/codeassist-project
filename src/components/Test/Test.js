@@ -21,7 +21,7 @@ class Test extends Component {
 					<li><Link to="/test">Test</Link></li>
 					<li><Link to="/test/about">About</Link></li>
 					<li><Link to="/test/accordion">Accordion</Link></li>
-					<li><Link to="/test/categories">Categories</Link></li>
+					<li><Link to="/test/categoriessidebar">CategoriesSidebar</Link></li>
 					<li><Link to="/test/createsnippet">CreateSnippet</Link></li>
 					<li><Link to="/test/examplecards">ExampleCards</Link></li>
 					<li><Link to="/test/examples">Examples</Link></li>

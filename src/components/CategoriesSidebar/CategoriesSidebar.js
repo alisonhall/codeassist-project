@@ -7,10 +7,10 @@ import $ from 'jquery';
 import Accordion from './../Accordion/Accordion.js';
 
 // Styles
-import './categories.scss';
+import './categoriesSidebar.scss';
 
 
-class Categories extends Component {
+class CategoriesSidebar extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -79,7 +79,7 @@ class Categories extends Component {
 			var showStatus = (this.state.showSidebar) ? '' : 'hide';
 
 			return (
-				<div className='categories-container'>
+				<div className='categoriesSidebar-container'>
 					<button id="showCategories" onClick={this.toggleShow}>Categories</button>
 					<div className={classnames('categoriesList', `${showStatus}`)} ref={(div) => this.categoriesList = div}>
 						{this.props.topCategories.map(this.topCategory)}
@@ -89,7 +89,7 @@ class Categories extends Component {
 			);
 		} else {
 			return (
-				<div className='categories-container'>
+				<div className='categoriesSidebar-container'>
 					Data Not Loaded ....
 				</div>
 
@@ -98,14 +98,14 @@ class Categories extends Component {
 	}
 }
 
-Categories.propTypes = {
+CategoriesSidebar.propTypes = {
 	allDataLoaded: PropTypes.bool,
 	allCategories: PropTypes.array,
 	topCategories: PropTypes.array
 };
 
-// Categories.defaultProps = {
+// CategoriesSidebar.defaultProps = {
 // 	dataLoaded: false
 // };
 
-export default Categories;
+export default CategoriesSidebar;

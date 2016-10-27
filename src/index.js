@@ -25,7 +25,7 @@ import Error404 from './views/Error404.js';
 
 import About from './components/About/About.js';
 import Accordion from './components/Accordion/Accordion.js';
-import Categories from './components/Categories/Categories.js';
+import CategoriesSidebar from './components/CategoriesSidebar/CategoriesSidebar.js';
 import CreateSnippet from './components/CreateSnippet/CreateSnippet.js';
 import ExampleCards from './components/ExampleCards/ExampleCards.js';
 import Examples from './components/Examples/Examples.js';
@@ -76,7 +76,7 @@ const routes = (
     <Route path="/test" component={Test} />
     <Route path="/test/about" component={About} />
     <Route path="/test/accordion" component={Accordion} />
-    <Route path="/test/categories" component={Categories} />
+    <Route path="/test/categoriessidebar" component={CategoriesSidebar} />
     <Route path="/test/createsnippet" component={CreateSnippet} />
     <Route path="/test/examplecards" component={ExampleCards} />
     <Route path="/test/examples" component={Examples} />

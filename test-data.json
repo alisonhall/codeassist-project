@@ -1,4 +1,8 @@
 {
+	"selectedLanguages": {
+		"0": "0",
+		"1": "5"
+	},
 	"categories": {
 		"0": {
 			"subCategoryIDs": ["1", "2"],

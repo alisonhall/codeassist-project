@@ -33,7 +33,7 @@ class SyntaxCards extends Component {
 		var exampleId = this.props.example.id;
 
 		return (
-			<section className="syntaxCards-container">
+			<section className={classnames('syntaxCards-container', `column-${this.props.column}`)}>
 				<div className="row">
 					<div className="thirds">
 						<p>Rank {ranking}
@@ -72,7 +72,8 @@ SyntaxCards.propTypes = {
 	category: PropTypes.object,
 	editedBy: PropTypes.object,
 	createdBy: PropTypes.object,
-	allComments: PropTypes.array
+	allComments: PropTypes.array,
+	column: PropTypes.number
 };
 
 // SyntaxCards.defaultProps = {

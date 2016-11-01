@@ -16,135 +16,68 @@ class Examples extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			examples: [],
-			syntaxes: [],
-			examplesHTML: '',
-			syntaxesHTML: '',
-			language1ExampleIds: [],
-			language1SyntaxIds: [],
-			language2ExampleIds: [],
-			language2SyntaxIds: [],
-			language3ExampleIds: [],
-			language3SyntaxIds: [],
 			categoryIds: [this.props.allCategories[this.props.params.categoryId].count]
 		};
 		this.eachExample = this.eachExample.bind(this);
 		this.eachSyntax = this.eachSyntax.bind(this);
-		// this.getRelatedExamples = this.getRelatedExamples.bind(this);
-		this.getLanguageSyntaxes = this.getLanguageSyntaxes.bind(this);
-		this.getLanguageExamples = this.getLanguageExamples.bind(this);
 	}
 
-	// componentWillMount() {
-	// 	// this.getRelatedExamples();
-	// }
-
-	// getRelatedExamples() {
-	// 	var relatedExamples = this.props.allCategories[this.props.params.categoryId].count;
-	// 	this.setState({categoryIds: relatedExamples});
-
-	// 	var theseSyntaxes = this.props.allExamples.map(this.eachSyntax);
-	// 	var theseExamples = this.props.allExamples.map(this.eachExample);
-
-	// 	this.setState({
-	// 		syntaxesHTML: theseSyntaxes, 
-	// 		examplesHTML: theseExamples
-	// 	});
-
-	// }
-
 	eachExample(exampleId, i) {
-		// if(this.props.params.categoryId == example.categoryID) {
-			var example = this.props.allExamples[exampleId];
-			var language = this.props.allLanguages[example.language];
-			var category = this.props.allCategories[example.categoryID];
-			var editedBy = this.props.allUsers[example.editedBy];
-			var createdBy = this.props.allUsers[example.createdBy];
-			var isSyntax = example.syntax;
+		var example = this.props.allExamples[exampleId];
+		var language = this.props.allLanguages[example.language];
+		var category = this.props.allCategories[example.categoryID];
+		var editedBy = this.props.allUsers[example.editedBy];
+		var createdBy = this.props.allUsers[example.createdBy];
+		var isSyntax = example.syntax;
+		var column;
 
-			if (!isSyntax) {
-				// var syntaxes = this.state.syntaxes;
-				// syntaxes.push(example);
-				// this.setState({syntaxes: syntaxes});
-
-				return (
-					<ExampleCards 
-						key={i}
-						example={example}
-						language={language}
-						category={category}
-						editedBy={editedBy}
-						createdBy={createdBy}
-						allComments={this.props.allComments}
-					></ExampleCards>
-				);
+		for (var i = 0; i < this.props.selectedLanguages.length; i++) {
+			if (this.props.selectedLanguages[i] == language.id) {
+				column = i + 1;
 			}
-		// }
+		}
+
+		return (
+			<ExampleCards 
+				key={exampleId}
+				example={example}
+				language={language}
+				category={category}
+				editedBy={editedBy}
+				createdBy={createdBy}
+				allComments={this.props.allComments}
+				column={column}
+			></ExampleCards>
+		);
 	}
 
 	eachSyntax(exampleId, i) {
-		// if(this.props.params.categoryId == example.categoryID) {
-			var example = this.props.allExamples[exampleId];
-			var language = this.props.allLanguages[example.language];
-			var category = this.props.allCategories[example.categoryID];
-			var editedBy = this.props.allUsers[example.editedBy];
-			var createdBy = this.props.allUsers[example.createdBy];
-			var isSyntax = example.syntax;
+		var example = this.props.allExamples[exampleId];
+		var language = this.props.allLanguages[example.language];
+		var category = this.props.allCategories[example.categoryID];
+		var editedBy = this.props.allUsers[example.editedBy];
+		var createdBy = this.props.allUsers[example.createdBy];
+		var isSyntax = example.syntax;
+		var column;
 
-			if (isSyntax) {
-				// var examples = this.state.examples;
-				// examples.push(example);
-				// this.setState({examples: examples});
-
-				return (
-					<SyntaxCards 
-						key={i}
-						example={example}
-						language={language}
-						category={category}
-						editedBy={editedBy}
-						createdBy={createdBy}
-						allComments={this.props.allComments}
-					></SyntaxCards>
-				);
+		for (var i = 0; i < this.props.selectedLanguages.length; i++) {
+			if (this.props.selectedLanguages[i] == language.id) {
+				column = i + 1;
 			}
-		// }
-	}
+		}
 
-	getLanguageExamples(thisCategory, language) {
-		// this.setState({})
-
-		var language1 = 0;
-		var language2 = 5;
-		var language3 = 1;
-
-		// var language1 = this.props.selectedLanguages[0];
-		// var language2 = this.props.selectedLanguages[1];
-		// var language3 = this.props.selectedLanguages[2];
-
-		var examplesLanguage1 = thisCategory.count[language1].examples;
-		var syntaxesLanguage1 = thisCategory.count[language1].syntaxes;
-		var examplesLanguage2 = thisCategory.count[language2].examples;
-		var syntaxesLanguage2 = thisCategory.count[language2].syntaxes;
-		var examplesLanguage3 = thisCategory.count[language3].examples;
-		var syntaxesLanguage3 = thisCategory.count[language3].syntaxes;
-	}
-
-	getLanguageSyntaxes(thisCategory, language) {
-		var language1 = 0;
-		var language2 = 5;
-		var language3 = 1;
-
-		// var language1 = this.props.selectedLanguages[0];
-		// var language2 = this.props.selectedLanguages[1];
-		// var language3 = this.props.selectedLanguages[2];
-
-		var examplesLanguage1 = thisCategory.count[language1].examples;
-		var syntaxesLanguage1 = thisCategory.count[language1].syntaxes;
-		var examplesLanguage2 = thisCategory.count[language2].examples;
-		var syntaxesLanguage2 = thisCategory.count[language2].syntaxes;
-		var examplesLanguage3 = thisCategory.count[language3].examples;
-		var syntaxesLanguage3 = thisCategory.count[language3].syntaxes;
+		return (
+			<SyntaxCards 
+				key={exampleId}
+				example={example}
+				language={language}
+				category={category}
+				editedBy={editedBy}
+				createdBy={createdBy}
+				allComments={this.props.allComments}
+				column={column}
+			></SyntaxCards>
+		);
 	}
 
 	render() {
@@ -152,27 +85,8 @@ class Examples extends Component {
 			var thisCategory = this.props.allCategories[this.props.params.categoryId];
 			var categoryTitle = thisCategory.name;
 			var categoryDescription = thisCategory.description;
-
-			var language1 = 0;
-			var language2 = 5;
-			var language3 = 1;
-
-			// var language1 = this.props.selectedLanguages[0];
-			// var language2 = this.props.selectedLanguages[1];
-			// var language3 = this.props.selectedLanguages[2];
-
-			var examplesLanguage1 = thisCategory.count[language1].examples;
-			var syntaxesLanguage1 = thisCategory.count[language1].syntaxes;
-			var examplesLanguage2 = thisCategory.count[language2].examples;
-			var syntaxesLanguage2 = thisCategory.count[language2].syntaxes;
-			var examplesLanguage3 = thisCategory.count[language3].examples;
-			var syntaxesLanguage3 = thisCategory.count[language3].syntaxes;
-
-			// for (var i = this.props.selectedLanguages.length - 1; i >= 0; i--) {
-			// 	getLanguageExamples(thisCategory, this.props.selectedLanguages[i]);
-			// 	getSyntaxExamples(thisCategory, this.props.selectedLanguages[i]);
-			// 	this.state.examples = thisCategory.
-			// }
+			var languages = this.props.selectedLanguages;
+			var numLanguageClass = 'numLanguages-' + languages.length;
 
 			return (
 				<div className='examples-container'>
@@ -180,68 +94,29 @@ class Examples extends Component {
 					<p>{categoryDescription}</p>
 
 					<h4>Syntaxes</h4>
-					<section className="language1">
-						{syntaxesLanguage1.map(this.eachSyntax)}
-					</section>
-					<section className="language2">
-						{syntaxesLanguage2.map(this.eachSyntax)}
-					</section>
-					<section className="language3">
-						{syntaxesLanguage3.map(this.eachSyntax)}
-					</section>
+					<div className={classnames('syntaxes', numLanguageClass)}>
+						
+						{languages.map((language, i) => (
+							<section className={classnames('syntax', `language${language}`)} key={i}>
+								{thisCategory.count[language].examples.map(this.eachSyntax)}
+							</section>
+						))}
+
+					</div>
 
 					<h4>Examples</h4>
-					<section className="language1">
-						{examplesLanguage1.map(this.eachExample)}
-					</section>
-					<section className="language2">
-						{examplesLanguage2.map(this.eachExample)}
-					</section>
-					<section className="language3">
-						{examplesLanguage3.map(this.eachExample)}
-					</section>
+					<div className={classnames('examples', numLanguageClass)}>
+						
+						{languages.map((language, i) => (
+							<section className={classnames('example', `language${language}`)} key={i}>
+								{thisCategory.count[language].syntaxes.map(this.eachExample)}
+							</section>
+						))}
+
+					</div>
 				</div>
 
 			);
-
-			// return (
-			// 	<div className='examples-container'>
-			// 		<h2>{categoryTitle}</h2>
-			// 		<p>{categoryDescription}</p>
-
-			// 		<h4>Syntaxes</h4>
-			// 		<section className="language1">
-			// 			{this.props.allExamples.map(this.eachSyntax)}
-			// 		</section>
-			// 		<section className="language2">
-
-			// 		</section>
-			// 		<section className="language3">
-
-			// 		</section>
-
-			// 		<h4>Examples</h4>
-			// 		<section className="language1">
-			// 			{this.props.allExamples.map(this.eachExample)}
-			// 		</section>
-			// 		<section className="language2">
-
-			// 		</section>
-			// 		<section className="language3">
-
-			// 		</section>
-			// 	</div>
-
-			// );
-			// return (
-			// 	<div className='examples-container'>
-			// 		<h4>Syntaxes</h4>
-			// 		{this.state.syntaxesHTML}
-			// 		<h4>Examples</h4>
-			// 		{this.state.examplesHTML}
-			// 	</div>
-
-			// );
 		} else {
 			return (
 				<div className='examples-container'>
@@ -252,6 +127,21 @@ class Examples extends Component {
 		
 	}
 }
+
+
+// {thisCategory.count[thisLanguageId].syntaxes.map(this.eachSyntax)}
+// {thisCategory.count[thisLanguageId].examples.map(this.eachExample)}
+
+
+// const items = this.props.items.map((item) => (
+// 	<ul key={item.id}>
+// 		<li>
+// 			<button onClick={() => this.displayAlert(item.email)}>
+// 				{item.lastName + ', ' + item.firstName}
+// 			</button>
+// 		</li>
+// 	</ul>
+// ));
 
 Examples.propTypes = {
 	allExamples: PropTypes.array,

@@ -61,7 +61,7 @@ import './styles/global.scss';
 
 
 const routes = (
-  <Router history={hashHistory}>
+  <Router history={browserHistory}>
     <Route path="/" component={HomeView} />
     <Route path="/home" component={HomeView} />
     <Route path="/about" component={AboutView} />

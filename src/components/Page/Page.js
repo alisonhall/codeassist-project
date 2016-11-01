@@ -6,7 +6,7 @@ import $ from 'jquery';
 // Components
 import About from './../About/About.js';
 import Accordion from './../Accordion/Accordion.js';
-import Categories from './../Categories/Categories.js';
+import CategoriesSidebar from './../CategoriesSidebar/CategoriesSidebar.js';
 import CreateSnippet from './../CreateSnippet/CreateSnippet.js';
 import ExampleCards from './../ExampleCards/ExampleCards.js';
 import Examples from './../Examples/Examples.js';
@@ -56,6 +56,9 @@ class Page extends Component {
 
 		var self = this;
 		$.getJSON('../../test-data.json', function(results){
+			$.each(results.selectedLanguages, function(index, item) {
+				self.add(item, index, 'selectedLanguages');
+			}.bind(this));
 			$.each(results.categories, function(index, item) {
 				self.add(item, index, 'allCategories');
 				this.setState({categoryDataLoaded: true});
@@ -94,6 +97,11 @@ class Page extends Component {
 				topCategories.push(index);
 			}
 			this.setState({allCategories: allCategories, topCategories: topCategories});
+		} else if (stateName == 'selectedLanguages') {
+
+			var selectedLanguages = this.state.selectedLanguages;
+			selectedLanguages[index] = item;
+			this.setState({selectedLanguages: selectedLanguages});
 
 		} else if (stateName == 'allLanguages') {
 
@@ -125,13 +133,14 @@ class Page extends Component {
 	}
 
 	addToSelectedLanguages(key) {
-		console.log(key);
+		// console.log(key);
 		var selectedLanguages = this.state.selectedLanguages;
 		if(selectedLanguages.length >= 3) {
 			alert("You can't add more than 3 languages.");
 		} else {
 			selectedLanguages.push(key);
 			this.setState({selectedLanguages: selectedLanguages});
+			console.log(this.state.selectedLanguages);
 		}
 	}
 
@@ -146,7 +155,7 @@ class Page extends Component {
 					/>;
 
 			var categoriesComponent = 
-					<Categories 
+					<CategoriesSidebar 
 						allCategories={this.state.allCategories} 
 						topCategories={this.state.topCategories} 
 						allDataLoaded={this.state.allDataLoaded} 

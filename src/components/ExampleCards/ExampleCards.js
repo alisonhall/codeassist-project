@@ -32,7 +32,7 @@ class ExampleCards extends Component {
 		var exampleId = this.props.example.id;
 
 		return (
-			<section className="example-cards-container">
+			<section className={classnames('exampleCards-container', `column-${this.props.column}`)}>
 				<div className="row">
 					<div className="thirds">
 						<p>Rank {ranking}
@@ -71,7 +71,8 @@ ExampleCards.propTypes = {
 	category: PropTypes.object,
 	editedBy: PropTypes.object,
 	createdBy: PropTypes.object,
-	allComments: PropTypes.array
+	allComments: PropTypes.array,
+	column: PropTypes.number
 };
 
 // Examples.defaultProps = {

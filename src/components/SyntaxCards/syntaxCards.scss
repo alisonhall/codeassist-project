@@ -1,7 +1,18 @@
 @import '../../styles/variables.scss';
 
 .syntaxCards-container {
-	border: 3px solid $language-color-1;
 	border-radius: 10px;
 	padding: 20px;
+}
+
+.syntaxCards-container.column-1 {
+	border: 3px solid $language-color-1;
+}
+
+.syntaxCards-container.column-2 {
+	border: 3px solid $language-color-2;
+}
+
+.syntaxCards-container.column-3 {
+	border: 3px solid $language-color-3;
 }

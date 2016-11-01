@@ -2,4 +2,23 @@
 
 .examples-container {
 	width: 100%;
+
+	.numLanguages-1 .syntax,
+	.numLanguages-1 .example {
+		width: 100%;
+		display: inline-block;
+	}
+
+	.numLanguages-2 .syntax,
+	.numLanguages-2 .example {
+		width: 50%;
+		display: inline-block;
+	}
+
+	.numLanguages-3 .syntax,
+	.numLanguages-3 .example {
+		width: 30%;
+		display: inline-block;
+	}
+
 }

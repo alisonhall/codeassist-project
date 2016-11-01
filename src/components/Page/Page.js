@@ -155,7 +155,7 @@ class Page extends Component {
 					/>;
 
 			var categoriesComponent = 
-					<CategoriesSidebar 
+					<CategoriesSidebar
 						allCategories={this.state.allCategories} 
 						topCategories={this.state.topCategories} 
 						allDataLoaded={this.state.allDataLoaded} 

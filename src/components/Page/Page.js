@@ -6,7 +6,7 @@ import $ from 'jquery';
 // Components
 import About from './../About/About.js';
 import Accordion from './../Accordion/Accordion.js';
-import Categories from './../Categories/Categories.js';
+import CategoriesSidebar from './../CategoriesSidebar/CategoriesSidebar.js';
 import CreateSnippet from './../CreateSnippet/CreateSnippet.js';
 import ExampleCards from './../ExampleCards/ExampleCards.js';
 import Examples from './../Examples/Examples.js';
@@ -146,7 +146,7 @@ class Page extends Component {
 					/>;
 
 			var categoriesComponent = 
-					<Categories 
+					<CategoriesSidebar
 						allCategories={this.state.allCategories} 
 						topCategories={this.state.topCategories} 
 						allDataLoaded={this.state.allDataLoaded} 

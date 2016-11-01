@@ -49,6 +49,7 @@ class Page extends Component {
 
 		this.add = this.add.bind(this);
 		this.addToSelectedLanguages = this.addToSelectedLanguages.bind(this);
+		this.removeSelectedLanguage = this.removeSelectedLanguage.bind(this);
 	}
 
 	componentWillMount() {
@@ -133,15 +134,19 @@ class Page extends Component {
 	}
 
 	addToSelectedLanguages(key) {
-		// console.log(key);
 		var selectedLanguages = this.state.selectedLanguages;
 		if(selectedLanguages.length >= 3) {
 			alert("You can't add more than 3 languages.");
 		} else {
 			selectedLanguages.push(key);
 			this.setState({selectedLanguages: selectedLanguages});
-			console.log(this.state.selectedLanguages);
 		}
+	}
+
+	removeSelectedLanguage(key) {
+		var selectedLanguages = this.state.selectedLanguages;
+		selectedLanguages.splice(key, 1);
+		this.setState({selectedLanguages: selectedLanguages});
 	}
 
 	render() {
@@ -152,6 +157,7 @@ class Page extends Component {
 						allLanguages={this.state.allLanguages}
 						selectedLanguages={this.state.selectedLanguages} 
 						addToSelectedLanguages={this.addToSelectedLanguages}
+						removeSelectedLanguage={this.removeSelectedLanguage}
 					/>;
 
 			var categoriesComponent = 

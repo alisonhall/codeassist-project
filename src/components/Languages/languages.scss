@@ -14,22 +14,34 @@
 
 	div {
 		margin: 0 5px;
+		border-radius: 10px;
+		padding: 7px 10px 0;
+		cursor: pointer;
+	}
+
+	div:hover {
+		i {
+			display: inline-block;
+		}
 	}
 
 	p {
-		padding: 5px 10px;
-		border-radius: 10px;
+		padding: 0 8px 0 0;
 	}
 
-	.language1 p {
+	i {
+		display: none;
+	}
+
+	.language1 {
 		border: 3px solid $language-color-1;
 	}
 
-	.language2 p {
+	.language2 {
 		border: 3px solid $language-color-2;
 	}
 
-	.language3 p {
+	.language3 {
 		border: 3px solid $language-color-3;
 	}
 }

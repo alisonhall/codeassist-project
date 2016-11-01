@@ -15,12 +15,17 @@ class Languages extends Component {
 		};
 
 		this.handleSelectChange = this.handleSelectChange.bind(this);
+		this.handleDelete = this.handleDelete.bind(this);
 		this.displayLanguage = this.displayLanguage.bind(this);
 	}
 
 	handleSelectChange(event) {
 		this.setState({selectValue: event.target.value});
 		this.props.addToSelectedLanguages(event.target.value);
+	}
+
+	handleDelete(event) {
+		this.props.removeSelectedLanguage(event.target.value);
 	}
 
 	eachLanguage(language, i) {
@@ -31,8 +36,9 @@ class Languages extends Component {
 
 	displayLanguage(id, i) {
 		return (
-			<div key={i} className={classnames(`language${i+1}`)}>
+			<div key={i} value={i} className={classnames(`language${i+1}`)} onClick={this.handleDelete}>
 				<p>{this.props.allLanguages[id].fullName}</p>
+				<i className="fa fa-close" aria-hidden="true"></i>
 			</div>
 		);
 	}
@@ -55,7 +61,8 @@ class Languages extends Component {
 Languages.propTypes = {
 	allLanguages: PropTypes.array,
 	selectedLanguages: PropTypes.array,
-	addToSelectedLanguages: PropTypes.func
+	addToSelectedLanguages: PropTypes.func,
+	removeSelectedLanguage: PropTypes.func
 };
 
 // Languages.defaultProps = {

@@ -1,10 +1,41 @@
 @import '../../styles/variables.scss';
 
 .categoriesSidebar-container {
+
+	#showCategories {
+		$buttonHeight: 500px;
+		margin: 0;
+		transform-origin: 0% 0%;
+		transform: rotate(270deg);
+		position: fixed;
+		top: 85px + $buttonHeight;
+		left: 0;
+		width: $buttonHeight;
+		height: 70px;
+		text-align: right;
+		background-color: $sidebar-color;
+		padding: 0 20px;
+
+		.fa {
+			padding: 0 18px 0 18px;
+		}
+	}
+
 	.categoriesList {
 		background-color: $sidebar-color;
+		padding: 10px;
+		position: fixed;
+		width: 250px;
+		top: 85px;
+		left: 0;
+		bottom: 0;
 	}
-	.hide {
+}
+
+.categoriesSidebar-container.hide {
+	display: block !important;
+
+	.categoriesList {
 		display: none;
 	}
 }

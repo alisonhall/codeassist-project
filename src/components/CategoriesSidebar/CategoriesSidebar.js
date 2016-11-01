@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { IndexLink, Link } from 'react-router';
 import classnames from 'classnames';
+import enhanceWithClickOutside from 'react-click-outside';
 import $ from 'jquery';
 
 // Components
@@ -14,11 +15,12 @@ class CategoriesSidebar extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			showSidebar: true
+			showSidebar: false
 		};
 
 		this.topCategory = this.topCategory.bind(this);
 		this.subCategory = this.subCategory.bind(this);
+		this.handleClickOutside = this.handleClickOutside.bind(this);
 		this.toggleShow = this.toggleShow.bind(this);
 	}
 
@@ -65,6 +67,10 @@ class CategoriesSidebar extends Component {
 		}
 	}
 
+	handleClickOutside() {
+		this.setState({showSidebar: false});
+	}
+
 	toggleShow(event) {
 		event.preventDefault();
 		if(this.state.showSidebar) {
@@ -79,9 +85,9 @@ class CategoriesSidebar extends Component {
 			var showStatus = (this.state.showSidebar) ? '' : 'hide';
 
 			return (
-				<div className='categoriesSidebar-container'>
-					<button id="showCategories" onClick={this.toggleShow}>Categories</button>
-					<div className={classnames('categoriesList', `${showStatus}`)} ref={(div) => this.categoriesList = div}>
+				<div className={classnames('categoriesSidebar-container', `${showStatus}`)}>
+					<button id="showCategories" onClick={this.toggleShow}>Categories<i className="fa fa-bars fa-rotate-270" aria-hidden="true"></i></button>
+					<div className={classnames('categoriesList')} ref={(div) => this.categoriesList = div}>
 						{this.props.topCategories.map(this.topCategory)}
 					</div>
 				</div>
@@ -108,4 +114,4 @@ CategoriesSidebar.propTypes = {
 // 	dataLoaded: false
 // };
 
-export default CategoriesSidebar;
+export default enhanceWithClickOutside(CategoriesSidebar);

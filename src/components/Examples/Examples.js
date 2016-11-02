@@ -7,6 +7,7 @@ import $ from 'jquery';
 import ExampleCards from './../ExampleCards/ExampleCards.js';
 import SyntaxCards from './../SyntaxCards/SyntaxCards.js';
 import NoContent from './../NoContent/NoContent.js';
+import NoLanguage from './../NoLanguage/NoLanguage.js';
 
 // Styles
 import './examples.scss';
@@ -88,35 +89,57 @@ class Examples extends Component {
 			var languages = this.props.selectedLanguages;
 			var numLanguageClass = 'numLanguages-' + languages.length;
 
-			return (
-				<div className='examples-container'>
-					<h2>{categoryTitle}</h2>
-					<p>{categoryDescription}</p>
+			if (languages.length > 0) {
 
-					<h4>Syntaxes</h4>
-					<div className={classnames('syntaxes', numLanguageClass)}>
-						
-						{languages.map((language, i) => (
-							<section className={classnames('syntax', `language${language}`)} key={i}>
-								{thisCategory.count[language].examples.map(this.eachSyntax)}
-							</section>
-						))}
+				var hasContent = false;
+				for (var i = 0; i < languages.length; i++) {
+					if((thisCategory.count[languages[i]].examples.length > 0) || (thisCategory.count[languages[i]].syntaxes.length > 0)) {
+						hasContent = true;
+					}
+				}
 
-					</div>
+				if (hasContent) {
+					return (
+						<div className='examples-container'>
+							<h2>{categoryTitle}</h2>
+							<p>{categoryDescription}</p>
 
-					<h4>Examples</h4>
-					<div className={classnames('examples', numLanguageClass)}>
-						
-						{languages.map((language, i) => (
-							<section className={classnames('example', `language${language}`)} key={i}>
-								{thisCategory.count[language].syntaxes.map(this.eachExample)}
-							</section>
-						))}
+							<h4>Syntaxes</h4>
+							<div className={classnames('syntaxes', numLanguageClass)}>
+								
+								{languages.map((language, i) => (
+									<section className={classnames('syntax', `language${language}`)} key={i}>
+										{thisCategory.count[language].examples.map(this.eachSyntax)}
+									</section>
+								))}
 
-					</div>
-				</div>
+							</div>
 
-			);
+							<h4>Examples</h4>
+							<div className={classnames('examples', numLanguageClass)}>
+								
+								{languages.map((language, i) => (
+									<section className={classnames('example', `language${language}`)} key={i}>
+										{thisCategory.count[language].syntaxes.map(this.eachExample)}
+									</section>
+								))}
+
+							</div>
+						</div>
+
+					);
+				} else {
+					return (
+						<NoContent />
+					);
+				}
+
+			} else {
+				return (
+					<NoLanguage />
+				);
+			}
+
 		} else {
 			return (
 				<div className='examples-container'>

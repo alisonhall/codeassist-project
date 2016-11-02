@@ -35,6 +35,7 @@ import Home from './components/Home/Home.js';
 import Languages from './components/Languages/Languages.js';
 import Login from './components/Login/Login.js';
 import NoContent from './components/NoContent/NoContent.js';
+import NoLanguage from './components/NoLanguage/NoLanguage.js';
 import OpenExampleCard from './components/OpenExampleCard/OpenExampleCard.js';
 import OpenSyntaxCard from './components/OpenSyntaxCard/OpenSyntaxCard.js';
 // import Page from './components/Page/Page.js';
@@ -86,6 +87,7 @@ const routes = (
     <Route path="/test/languages" component={Languages} />
     <Route path="/test/login" component={Login} />
     <Route path="/test/nocontent" component={NoContent} />
+    <Route path="/test/nolanguage" component={NoLanguage} />
     <Route path="/test/openexamplecard" component={OpenExampleCard} />
     <Route path="/test/opensyntaxcard" component={OpenSyntaxCard} />
     <Route path="/test/searchresults" component={SearchResults} />

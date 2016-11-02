@@ -84,6 +84,7 @@ class Page extends Component {
 
 		}.bind(this));
 
+		console.log("ALL DATA LOADED");
 		// this.setComponents();
 	}
 
@@ -251,7 +252,6 @@ class Page extends Component {
 				<h1>Error! Unknown Content Component!</h1>
 			}
 
-			console.log("ALL DATA LOADED");
 			return (
 				<div className="page-container">
 					<Header />

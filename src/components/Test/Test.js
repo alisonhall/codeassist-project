@@ -31,6 +31,7 @@ class Test extends Component {
 					<li><Link to="/test/languages">Languages</Link></li>
 					<li><Link to="/test/login">Login</Link></li>
 					<li><Link to="/test/nocontent">NoContent</Link></li>
+					<li><Link to="/test/nolanguage">NoLanguage</Link></li>
 					<li><Link to="/test/openexamplecard">OpenExampleCard</Link></li>
 					<li><Link to="/test/opensyntaxcard">OpenSyntaxCard</Link></li>
 					<li><Link to="/test/searchresults">SearchResults</Link></li>

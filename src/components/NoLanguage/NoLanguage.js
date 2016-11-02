@@ -4,19 +4,19 @@ import classnames from 'classnames';
 import $ from 'jquery';
 
 // Styles
-import './noContent.scss';
+import './noLanguage.scss';
 
 
-class NoContent extends Component {
+class NoLanguage extends Component {
 	constructor(props) {
 		super(props);
 	}
 
 	render() {
 		return (
-			<div className='noContent-container'>
-				<h1>No Content!</h1>
-				<p>This category does not have any content for the selected language(s).</p>
+			<div className='noLanguage-container'>
+				<h1>No Language!</h1>
+				<p>You need to select a language to start.</p>
 			</div>
 		);
 	}
@@ -30,4 +30,4 @@ class NoContent extends Component {
 
 // };
 
-export default NoContent;
+export default NoLanguage;

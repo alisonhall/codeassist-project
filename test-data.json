@@ -207,6 +207,40 @@
 					"syntaxes": []
 				}
 			}
+		},
+		"8": {
+			"subCategories": [],
+			"relatedCategories": [],
+			"isTopLevel": true,
+			"name": "Function",
+			"alternativeNames": [],
+			"description": "A function is a type of procedure or routine. Some programming languages make a distinction between a function, which returns a value, and a procedure, which performs some operation but does not return a value. Most programming languages come with a prewritten set of functions that are kept in a library.",
+			"count": {
+				"0": {
+					"examples": [5, 6],
+					"syntaxes": [4]
+				},
+				"1": {
+					"examples": [],
+					"syntaxes": []
+				},
+				"2": {
+					"examples": [],
+					"syntaxes": []
+				},
+				"3": {
+					"examples": [],
+					"syntaxes": []
+				},
+				"4": {
+					"examples": [],
+					"syntaxes": []
+				},
+				"5": {
+					"examples": [8],
+					"syntaxes": [7]
+				}
+			}
 		}
 	},
 	"languages": {
@@ -356,6 +390,96 @@
 			"embeddedCode": "",
 			"image": "",
 			"level": "Intermediate",
+			"ranking": "500"
+		},
+		"4": {
+			"id": "4",
+			"categoryID": "8",
+			"language": "0",
+			"createdBy": "0",
+			"editedBy": "0",
+			"commentIDs": [],
+			"dateCreated": "January 1 2016",
+			"dateEdited": "January 1 2016",
+			"syntax": true,
+			"howTo": false,
+			"description": "Function with arguments",
+			"codeText": "function functionName(arguments){\n\t// runs code\n}",
+			"embeddedCode": "",
+			"image": "",
+			"level": "Beginner",
+			"ranking": "500"
+		},
+		"5": {
+			"id": "5",
+			"categoryID": "8",
+			"language": "0",
+			"createdBy": "0",
+			"editedBy": "0",
+			"commentIDs": [],
+			"dateCreated": "January 1 2016",
+			"dateEdited": "January 1 2016",
+			"syntax": false,
+			"howTo": false,
+			"description": "Function without an argument",
+			"codeText": "var counter = 0;\nfunction addToCounter (){\n\tcounter = counter + 1;\n}",
+			"embeddedCode": "",
+			"image": "",
+			"level": "Beginner",
+			"ranking": "500"
+		},
+		"6": {
+			"id": "6",
+			"categoryID": "8",
+			"language": "0",
+			"createdBy": "0",
+			"editedBy": "0",
+			"commentIDs": [],
+			"dateCreated": "January 1 2016",
+			"dateEdited": "January 1 2016",
+			"syntax": false,
+			"howTo": false,
+			"description": "Creating a function and calling it",
+			"codeText": "var user1 = 'frank';\nvar user2 = 'mike';\n\nfunction welcomeFunction (arg){\n\talert ('welcome '+arg);\n}\n\nwelcomeFunction ('greg');\nwelcomeFunction (user1);",
+			"embeddedCode": "",
+			"image": "",
+			"level": "Beginner",
+			"ranking": "500"
+		},
+		"7": {
+			"id": "7",
+			"categoryID": "8",
+			"language": "5",
+			"createdBy": "0",
+			"editedBy": "0",
+			"commentIDs": [],
+			"dateCreated": "January 1 2016",
+			"dateEdited": "January 1 2016",
+			"syntax": true,
+			"howTo": false,
+			"description": "Creating a function with a return value",
+			"codeText": "func functionName(Parameters) -> returntype {\n\tStatement1\n\tStatement2\n\t---\n\tStatement N\n\treturn parameters\n}",
+			"embeddedCode": "",
+			"image": "",
+			"level": "Beginner",
+			"ranking": "500"
+		},
+		"8": {
+			"id": "8",
+			"categoryID": "8",
+			"language": "5",
+			"createdBy": "0",
+			"editedBy": "0",
+			"commentIDs": [],
+			"dateCreated": "January 1 2016",
+			"dateEdited": "January 1 2016",
+			"syntax": false,
+			"howTo": false,
+			"description": "Creating a function and calling it",
+			"codeText": "func student(name: String) -> String {\n\treturn name\n}\n\nprintln(student('First Program'))\nprintln(student('About Functions'))",
+			"embeddedCode": "",
+			"image": "",
+			"level": "Beginner",
 			"ranking": "500"
 		}
 	},

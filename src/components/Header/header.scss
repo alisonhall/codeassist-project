@@ -35,16 +35,19 @@ header {
 	input {
 		font-style: italic;
 		width: 90%;
+		height: 25px;
 		padding-left: 18px;
 	}
 
 	.fa-search {
 		float: right;
-		font-size: 1.250em;
+		font-size: 1.15em;
 	}
 
 	button {
 		margin-left: -33px;
+		border: 0;
+		background: 0;
 	}
 }
 

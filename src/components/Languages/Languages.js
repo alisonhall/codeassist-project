@@ -49,7 +49,7 @@ class Languages extends Component {
 			<div className={classnames('languages-container', 'col-lg-3 col-lg-offset-9')}>
 				{this.props.selectedLanguages.map(this.displayLanguage)}
 				<select id="languageFilter" ref='selectLanguage' onChange={this.handleSelectChange} value={this.state.selectValue}>
-					<option>Select language filters</option>
+					<option>Select languages</option>
 					{this.props.allLanguages.map(this.eachLanguage)}
 				</select>
 			</div>

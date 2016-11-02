@@ -3,16 +3,40 @@
 .exampleCards-container {
 	border-radius: 10px;
 	padding: 20px;
+	margin: 10px 10px 10px 0;
+
+	.languageStyle {
+		padding: 5px;
+		margin-bottom: 5px;
+		width: 40%;
+		min-width: 62px;
+		border-radius: 5px;
+		text-align: center;
+	}
 }
 
 .exampleCards-container.column-1 {
 	border: 3px solid $language-color-1;
+
+	.languageStyle {
+		background-color: $language-color-1;
+	}
 }
 
 .exampleCards-container.column-2 {
 	border: 3px solid $language-color-2;
+
+	.languageStyle {
+		background-color: $language-color-2;
+		color: white;
+	}
 }
 
 .exampleCards-container.column-3 {
 	border: 3px solid $language-color-3;
+
+	.languageStyle {
+		background-color: $language-color-3;
+		color: white;
+	}
 }

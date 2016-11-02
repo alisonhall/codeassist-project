@@ -24,8 +24,8 @@ class Languages extends Component {
 		this.props.addToSelectedLanguages(event.target.value);
 	}
 
-	handleDelete(event) {
-		this.props.removeSelectedLanguage(event.target.value);
+	handleDelete(key) {
+		this.props.removeSelectedLanguage(key);
 	}
 
 	eachLanguage(language, i) {
@@ -36,7 +36,7 @@ class Languages extends Component {
 
 	displayLanguage(id, i) {
 		return (
-			<div key={i} value={i} className={classnames(`language${i+1}`)} onClick={this.handleDelete}>
+			<div key={i} value={i} className={classnames(`language${i+1}`)} onClick={this.handleDelete} onClick={() => this.handleDelete(i)}>
 				<p>{this.props.allLanguages[id].fullName}</p>
 				<i className="fa fa-close" aria-hidden="true"></i>
 			</div>

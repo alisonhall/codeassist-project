@@ -43,12 +43,13 @@ class CategoriesSidebar extends Component {
 	}
 
 	topCategory(category, i) {
+		var categoryId = Number(this.props.allCategories[category].id);
 
 		if (this.props.allCategories[category].subCategoryIDs) {
 			return (
 				<Accordion
-					key={i}
-					index={i}
+					key={categoryId}
+					index={categoryId}
 					title={this.props.allCategories[category].name} 
 					item={this.props.allCategories[category]}
 					subContent={this.props.allCategories[category].subCategoryIDs.map(this.subCategory)}
@@ -57,8 +58,8 @@ class CategoriesSidebar extends Component {
 		} else {
 			return (
 				<Accordion
-					key={i}
-					index={i}
+					key={categoryId}
+					index={categoryId}
 					title={this.props.allCategories[category].name} 
 					item={this.props.allCategories[category]}
 					subContent={null}

@@ -5,6 +5,7 @@
 	},
 	"categories": {
 		"0": {
+			"id": "0",
 			"subCategoryIDs": ["1", "2"],
 			"relatedCategoryIDs": [],
 			"isTopLevel": true,
@@ -39,6 +40,7 @@
 			}
 		}, 
 		"1": {
+			"id": "1",
 			"subCategoryIDs": [],
 			"relatedCategoryIDs": [],
 			"isTopLevel": false,
@@ -73,6 +75,7 @@
 			}
 		},
 		"2": {
+			"id": "2",
 			"subCategoryIDs": [],
 			"relatedCategoryIDs": [],
 			"isTopLevel": false,
@@ -107,6 +110,7 @@
 			}
 		},
 		"3": {
+			"id": "3",
 			"subCategoryIDs": ["4", "7"],
 			"relatedCategoryIDs": [],
 			"isTopLevel": true,
@@ -141,6 +145,7 @@
 			}
 		},
 		"4": {
+			"id": "4",
 			"subCategoryIDs": [],
 			"relatedCategoryIDs": [],
 			"isTopLevel": false,
@@ -175,6 +180,7 @@
 			}
 		},
 		"7": {
+			"id": "7",
 			"subCategories": [],
 			"relatedCategories": [],
 			"isTopLevel": false,
@@ -209,6 +215,7 @@
 			}
 		},
 		"8": {
+			"id": "8",
 			"subCategories": [],
 			"relatedCategories": [],
 			"isTopLevel": true,

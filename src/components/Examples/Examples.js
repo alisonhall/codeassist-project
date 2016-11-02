@@ -109,7 +109,7 @@ class Examples extends Component {
 								
 								{languages.map((language, i) => (
 									<section className={classnames('syntax', `language${language}`)} key={i}>
-										{thisCategory.count[language].examples.map(this.eachSyntax)}
+										{thisCategory.count[language].syntaxes.map(this.eachSyntax)}
 									</section>
 								))}
 
@@ -120,7 +120,7 @@ class Examples extends Component {
 								
 								{languages.map((language, i) => (
 									<section className={classnames('example', `language${language}`)} key={i}>
-										{thisCategory.count[language].syntaxes.map(this.eachExample)}
+										{thisCategory.count[language].examples.map(this.eachExample)}
 									</section>
 								))}
 

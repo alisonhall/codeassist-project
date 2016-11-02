@@ -1,0 +1,21 @@
+@import '../../styles/variables.scss';
+
+.editMenu-container {
+	button {
+		position: fixed;
+		bottom: 20px;
+		right: 20px;
+		border-radius: 40px;
+		background-color: green;
+		color: white;
+		font-size: 30px;
+		width: 45px;
+		height: 45px;
+	}
+}
+
+.editMenu-container.open {
+	button {
+		background-color: black;
+	}
+}

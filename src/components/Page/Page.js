@@ -8,6 +8,7 @@ import About from './../About/About.js';
 import Accordion from './../Accordion/Accordion.js';
 import CategoriesSidebar from './../CategoriesSidebar/CategoriesSidebar.js';
 import CreateSnippet from './../CreateSnippet/CreateSnippet.js';
+import EditMenu from './../EditMenu/EditMenu.js';
 import ExampleCards from './../ExampleCards/ExampleCards.js';
 import Examples from './../Examples/Examples.js';
 import Footer from './../Footer/Footer.js';
@@ -225,6 +226,9 @@ class Page extends Component {
 			var userSettingsComponent = 
 					<UserSettings />;
 
+			var editMenuComponent = 
+					<EditMenu />;
+
 			var contentComponentStr = this.props.contentComponent;
 			var contentComponent;
 
@@ -272,6 +276,8 @@ class Page extends Component {
 						<section id="content" className="col-md-11 col-md-offset-1">
 							{contentComponent}
 						</section>
+
+						<EditMenu />
 					</div>
 
 					<Footer />

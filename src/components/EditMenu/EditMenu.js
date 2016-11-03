@@ -12,7 +12,8 @@ class EditMenu extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			isOpen: false
+			isOpen: false,
+			testing: true
 		}
 		this.toggleClick = this.toggleClick.bind(this);
 		this.handleClickOutside = this.handleClickOutside.bind(this);
@@ -33,13 +34,24 @@ class EditMenu extends Component {
 
 	render() {
 		var isOpen = (this.state.isOpen) ? 'open' : '';
-		return (
-			<div className={classnames('editMenu-container', `${isOpen}`)}>
-				<button onClick={this.toggleClick}>
-					<i className="fa fa-plus" aria-hidden="true"></i>
-				</button>
-			</div>
-		);
+
+		if(this.state.testing) {
+			return (
+				<div className={classnames('editMenu-container', `${isOpen}`)}>
+					<button>
+						<Link to='/create'><i className="fa fa-plus" aria-hidden="true"></i></Link>
+					</button>
+				</div>
+			);
+		} else {
+			return (
+				<div className={classnames('editMenu-container', `${isOpen}`)}>
+					<button onClick={this.toggleClick}>
+						<i className="fa fa-plus" aria-hidden="true"></i>
+					</button>
+				</div>
+			);
+		}
 	}
 }
 

@@ -492,6 +492,7 @@
 	},
 	"users": {
 		"0": {
+			"id": "0",
 			"username": "admin",
 			"commentIDs": ["0"],
 			"createdExampleIDs": ["0", "1"],
@@ -509,6 +510,7 @@
 	},
 	"comments": {
 		"0": {
+			"id": "0",
 			"exampleID": "0",
 			"createdBy": "0",
 			"dateCreated": "January 1 2016",

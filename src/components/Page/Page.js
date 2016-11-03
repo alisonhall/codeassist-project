@@ -45,12 +45,14 @@ class Page extends Component {
 			allExamples: [],
 			allUsers: [],
 			allComments: [],
-			contentComponent: ''
+			contentComponent: '',
+			currentUser: ''
 		};
 
 		this.add = this.add.bind(this);
 		this.addToSelectedLanguages = this.addToSelectedLanguages.bind(this);
 		this.removeSelectedLanguage = this.removeSelectedLanguage.bind(this);
+		this.addExample = this.addExample.bind(this);
 	}
 
 	componentWillMount() {
@@ -122,7 +124,10 @@ class Page extends Component {
 
 			var allUsers = this.state.allUsers;
 			allUsers[index] = item;
-			this.setState({allUsers: allUsers});
+			this.setState({
+				allUsers: allUsers,
+				currentUser: 0
+			});
 
 		} else if (stateName == 'allComments') {
 
@@ -149,6 +154,13 @@ class Page extends Component {
 		var selectedLanguages = this.state.selectedLanguages;
 		selectedLanguages.splice(key, 1);
 		this.setState({selectedLanguages: selectedLanguages});
+	}
+
+	addExample(object, index) {
+		console.log(object, index);
+		var allExamples = this.state.allExamples;
+		allExamples[index] = object;
+		this.setState({allExamples: allExamples});
 	}
 
 	render() {
@@ -185,7 +197,13 @@ class Page extends Component {
 					<About />;
 
 			var createSnippetComponent = 
-					<CreateSnippet />;
+					<CreateSnippet 
+						allCategories={this.state.allCategories}
+						allLanguages={this.state.allLanguages}
+						newId={this.state.allExamples.length}
+						user={this.state.allUsers[this.state.currentUser]}
+						addExample={this.addExample}
+					/>;
 
 			var error404Component = 
 					<h1>Page Not Found</h1>;

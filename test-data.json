@@ -3,6 +3,14 @@
 		"0": "0",
 		"1": "5"
 	},
+	"topCategories": {
+		"0": "0",
+		"1": "3",
+		"2": "6"
+	},
+	"currentUser": {
+		"0": "0"
+	},
 	"categories": {
 		"0": {
 			"id": "0",
@@ -111,7 +119,7 @@
 		},
 		"3": {
 			"id": "3",
-			"subCategoryIDs": ["4", "7"],
+			"subCategoryIDs": ["4", "5"],
 			"relatedCategoryIDs": [],
 			"isTopLevel": true,
 			"name": "Data Types",
@@ -179,8 +187,8 @@
 				}
 			}
 		},
-		"7": {
-			"id": "7",
+		"5": {
+			"id": "5",
 			"subCategories": [],
 			"relatedCategories": [],
 			"isTopLevel": false,
@@ -214,8 +222,8 @@
 				}
 			}
 		},
-		"8": {
-			"id": "8",
+		"6": {
+			"id": "6",
 			"subCategories": [],
 			"relatedCategories": [],
 			"isTopLevel": true,
@@ -401,7 +409,7 @@
 		},
 		"4": {
 			"id": "4",
-			"categoryID": "8",
+			"categoryID": "6",
 			"language": "0",
 			"createdBy": "0",
 			"editedBy": "0",
@@ -419,7 +427,7 @@
 		},
 		"5": {
 			"id": "5",
-			"categoryID": "8",
+			"categoryID": "6",
 			"language": "0",
 			"createdBy": "0",
 			"editedBy": "0",
@@ -437,7 +445,7 @@
 		},
 		"6": {
 			"id": "6",
-			"categoryID": "8",
+			"categoryID": "6",
 			"language": "0",
 			"createdBy": "0",
 			"editedBy": "0",
@@ -455,7 +463,7 @@
 		},
 		"7": {
 			"id": "7",
-			"categoryID": "8",
+			"categoryID": "6",
 			"language": "5",
 			"createdBy": "0",
 			"editedBy": "0",
@@ -473,7 +481,7 @@
 		},
 		"8": {
 			"id": "8",
-			"categoryID": "8",
+			"categoryID": "6",
 			"language": "5",
 			"createdBy": "0",
 			"editedBy": "0",

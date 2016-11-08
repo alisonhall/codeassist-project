@@ -2,6 +2,24 @@ import React, { Component, PropTypes } from 'react';
 import { IndexLink, Link } from 'react-router';
 import classnames from 'classnames';
 import $ from 'jquery';
+import firebase from 'firebase';
+// import firebaseApp from 'firebase/app';
+// import firebaseAuth from 'firebase/auth';
+// import database from 'firebase/database';
+// var gcloud = require('google-cloud');
+// var gcs = gcloud.storage();
+// var bucket = gcs.bucket('code-assist.appspot.com');
+// import base from './../../base.js';
+// import app from './../../base.js';
+
+var Rebase = require('re-base');
+
+var base = Rebase.createClass({
+	apiKey: "AIzaSyAnEDbmWbdr72O2IeCY1Qicj3c4LLkL9cU",
+	authDomain: "code-assist.firebaseapp.com",
+	databaseURL: "https://code-assist.firebaseio.com",
+	storageBucket: "code-assist.appspot.com"
+});
 
 // Components
 import About from './../About/About.js';
@@ -17,6 +35,7 @@ import Home from './../Home/Home.js';
 import Languages from './../Languages/Languages.js';
 import Login from './../Login/Login.js';
 import NoContent from './../NoContent/NoContent.js';
+import NoLanguage from './../NoLanguage/NoLanguage.js';
 import OpenExampleCard from './../OpenExampleCard/OpenExampleCard.js';
 import OpenSyntaxCard from './../OpenSyntaxCard/OpenSyntaxCard.js';
 // import Page from './../Page/Page.js';
@@ -38,107 +57,127 @@ class Page extends Component {
 			userDataLoaded: false,
 			commentDataLoaded: false,
 			allDataLoaded: false,
+			topCategoryDataLoaded: false,
+			selectedLanguagesDataLoaded: false,
+			currentUserDataLoaded: false,
+
 			allCategories: [],
-			topCategories: [],
 			allLanguages: [],
-			selectedLanguages: [],
 			allExamples: [],
 			allUsers: [],
 			allComments: [],
+			
+			topCategories: [],
+			selectedLanguages: [],
+
 			contentComponent: '',
-			currentUser: ''
+			currentUser: '',
 		};
 
-		this.add = this.add.bind(this);
 		this.addToSelectedLanguages = this.addToSelectedLanguages.bind(this);
 		this.removeSelectedLanguage = this.removeSelectedLanguage.bind(this);
 		this.addExample = this.addExample.bind(this);
+
+		this.refCategories;
+		this.refTopCategories;
+		this.refComments;
+		this.refExamples;
+		this.refLanguages2;
+		this.refSelectedLanguages;
+		this.refUsers;
+		this.refCurrentUser;
 	}
+
 
 	componentWillMount() {
+		// this runs right before the <Page> is rendered
+		console.log("Loading data...");
+		this.refCategories = base.syncState('categories', {
+			context: this,
+			state: 'allCategories',
+			asArray: true,
+			then: this.setState({categoryDataLoaded: true})
+		});
+		this.refTopCategories = base.syncState('topCategories', {
+			context: this,
+			state: 'topCategories',
+			asArray: true,
+			then: this.setState({topCategoryDataLoaded: true})
+		});
+		this.refComments = base.syncState('comments', {
+			context: this,
+			state: 'allComments',
+			asArray: true,
+			then: this.setState({commentDataLoaded: true})
+		});
+		this.refExamples = base.syncState('examples', {
+			context: this,
+			state: 'allExamples',
+			asArray: true,
+			then: this.setState({exampleDataLoaded: true})
+		});
+		this.refLanguages2 = base.syncState('languages2', {
+			context: this,
+			state: 'allLanguages',
+			asArray: true,
+			then: this.setState({languageDataLoaded: true})
+		});
+		this.refSelectedLanguages = base.syncState('selectedLanguages', {
+			context: this,
+			state: 'selectedLanguages',
+			asArray: true,
+			then: this.setState({selectedLanguagesDataLoaded: true})
+		});
+		this.refUsers = base.syncState('users', {
+			context: this,
+			state: 'allUsers',
+			asArray: true,
+			then: this.setState({userDataLoaded: true})
+		});
+		this.refCurrentUser = base.syncState('currentUser', {
+			context: this,
+			state: 'currentUser',
+			asArray: true,
+			then: this.setState({currentUserDataLoaded: true})
+		});
 
+		// if(categoryDataLoaded && topCategoryDataLoaded && commentDataLoaded && exampleDataLoaded && languageDataLoaded && selectedLanguagesDataLoaded && userDataLoaded) {
+		// 	this.setState({ allDataLoaded: true });
+		// 	console.log("componentWillMount() END");
+		// }
 
-		var self = this;
-		$.getJSON('../../test-data.json', function(results){
-			$.each(results.selectedLanguages, function(index, item) {
-				self.add(item, index, 'selectedLanguages');
-			}.bind(this));
-			$.each(results.categories, function(index, item) {
-				self.add(item, index, 'allCategories');
-				this.setState({categoryDataLoaded: true});
-			}.bind(this));
-			$.each(results.languages2, function(el, item) {
-				self.add(item, el, 'allLanguages');
-				this.setState({languageDataLoaded: true});
-			}.bind(this));
-			$.each(results.examples, function(index, item) {
-				self.add(item, index, 'allExamples');
-				this.setState({exampleDataLoaded: true});
-			}.bind(this));
-			$.each(results.users, function(index, item) {
-				self.add(item, index, 'allUsers');
-				this.setState({userDataLoaded: true});
-			}.bind(this));
-			$.each(results.comments, function(index, item) {
-				self.add(item, index, 'allComments');
-				this.setState({commentDataLoaded: true});
-			}.bind(this));
-			this.setState({allDataLoaded: true});
+		// console.log(this.refCategories);
 
-		}.bind(this));
+		// check if there is any order in localStorage
+		// const localStorageRef = localStorage.getItem(`order-${this.props.params.storeId}`);
 
-		console.log("ALL DATA LOADED");
-		// this.setComponents();
+		// if (localStorageRef) {
+		// 	// update our App component's order state
+		// 	this.setState({
+		// 		order: JSON.parse(localStorageRef)
+		// 	});
+		// }
+
 	}
 
-
-	add(item, index, stateName) {
-		if (stateName == 'allCategories') {
-
-			var allCategories = this.state.allCategories;
-			var topCategories = this.state.topCategories;
-			allCategories[index] = item;
-			if(item.isTopLevel){
-				topCategories.push(index);
-			}
-			this.setState({allCategories: allCategories, topCategories: topCategories});
-		} else if (stateName == 'selectedLanguages') {
-
-			var selectedLanguages = this.state.selectedLanguages;
-			selectedLanguages[index] = item;
-			this.setState({selectedLanguages: selectedLanguages});
-
-		} else if (stateName == 'allLanguages') {
-
-			var allLanguages = this.state.allLanguages;
-			allLanguages[index] = item;
-			this.setState({allLanguages: allLanguages});
-
-		} else if (stateName == 'allExamples') {
-
-			var allExamples = this.state.allExamples;
-			allExamples[index] = item;
-			this.setState({allExamples: allExamples});
-
-		} else if (stateName == 'allUsers') {
-
-			var allUsers = this.state.allUsers;
-			allUsers[index] = item;
-			this.setState({
-				allUsers: allUsers,
-				currentUser: 0
-			});
-
-		} else if (stateName == 'allComments') {
-
-			var allComments = this.state.allComments;
-			allComments[index] = item;
-			this.setState({allComments: allComments});
-
-		} else {
-			alert("Error: Unknown state");
+	componentDidMount() {
+		if(this.state.categoryDataLoaded && this.state.topCategoryDataLoaded && this.state.commentDataLoaded && this.state.exampleDataLoaded && this.state.languageDataLoaded && this.state.selectedLanguagesDataLoaded && this.state.userDataLoaded && this.state.currentUserDataLoaded) {
+			this.setState({ allDataLoaded: true });
+			console.log("All Data Loaded");
 		}
 	}
+
+	componentWillUnmount() {
+		base.removeBinding(this.refCategories);
+		base.removeBinding(this.refTopCategories);
+		base.removeBinding(this.refComments);
+		base.removeBinding(this.refExamples);
+		base.removeBinding(this.refLanguages2);
+		base.removeBinding(this.refSelectedLanguages);
+		base.removeBinding(this.refUsers);
+		base.removeBinding(this.refCurrentUser);
+	}
+
 
 	addToSelectedLanguages(key) {
 		var selectedLanguages = this.state.selectedLanguages;

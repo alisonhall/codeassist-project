@@ -28,12 +28,13 @@ class CategoriesSidebar extends Component {
 		// console.log("subCategory");
 		for (var j = category.length - 1; j >= 0; j--) {
 			// console.log("For loop " + j);
+			var categoryId = Number(category[j]);
 
 			return(
 				<Accordion
-					key={category[j]}
-					index={Number(category[j])}
-					title={this.props.allCategories[category[j]].name}
+					key={categoryId}
+					index={categoryId}
+					title={this.props.allCategories[categoryId].name}
 					item={this.props.allCategories[category[j]]}
 					subContent={null}
 				/>
@@ -50,9 +51,9 @@ class CategoriesSidebar extends Component {
 				<Accordion
 					key={categoryId}
 					index={categoryId}
-					title={this.props.allCategories[category].name} 
-					item={this.props.allCategories[category]}
-					subContent={this.props.allCategories[category].subCategoryIDs.map(this.subCategory)}
+					title={this.props.allCategories[categoryId].name} 
+					item={this.props.allCategories[categoryId]}
+					subContent={this.props.allCategories[categoryId].subCategoryIDs.map(this.subCategory)}
 				/>
 			);
 		} else {
@@ -60,8 +61,8 @@ class CategoriesSidebar extends Component {
 				<Accordion
 					key={categoryId}
 					index={categoryId}
-					title={this.props.allCategories[category].name} 
-					item={this.props.allCategories[category]}
+					title={this.props.allCategories[categoryId].name} 
+					item={this.props.allCategories[categoryId]}
 					subContent={null}
 				/>
 			);

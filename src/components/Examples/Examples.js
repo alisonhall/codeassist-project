@@ -16,11 +16,10 @@ import './examples.scss';
 class Examples extends Component {
 	constructor(props) {
 		super(props);
-		this.state = {
-			categoryIds: [this.props.allCategories[this.props.params.categoryId].count]
-		};
 		this.eachExample = this.eachExample.bind(this);
 		this.eachSyntax = this.eachSyntax.bind(this);
+		this.renderExamples = this.renderExamples.bind(this);
+		this.renderSyntaxes = this.renderSyntaxes.bind(this);
 	}
 
 	eachExample(exampleId, i) {
@@ -81,24 +80,68 @@ class Examples extends Component {
 		);
 	}
 
+	renderExamples(language, i) {
+		var thisCategory = this.props.allCategories[this.props.params.categoryId];
+
+		if (thisCategory.count[language]) {
+			if(thisCategory.count[language].examples) {
+				return (
+					<section className={classnames('syntax', `language${language}`)} key={i}>
+						{thisCategory.count[language].examples.map(this.eachExample)}
+					</section>
+				);
+			}
+		}
+	}
+
+	renderSyntaxes(language, i) {
+		var thisCategory = this.props.allCategories[this.props.params.categoryId];
+
+		if (thisCategory.count[language]) {
+			if(thisCategory.count[language].syntaxes) {
+				return (
+					<section className={classnames('example', `language${language}`)} key={i}>
+						{thisCategory.count[language].syntaxes.map(this.eachSyntax)}
+					</section>
+				);
+			}
+		}
+	}
+
 	render() {
-		if (this.props.allDataLoaded) {
-			var thisCategory = this.props.allCategories[this.props.params.categoryId];
-			var categoryTitle = thisCategory.name;
-			var categoryDescription = thisCategory.description;
+		if (this.props.allDataLoaded && (this.props.allCategories[this.props.params.categoryId])) {
+			var thisCategory = (this.props.allCategories[this.props.params.categoryId]) ? this.props.allCategories[this.props.params.categoryId] : null;
+			// console.log(thisCategory);
+			var categoryTitle = (thisCategory) ? thisCategory.name : '';
+			var categoryDescription = (thisCategory) ? thisCategory.description : '';
 			var languages = this.props.selectedLanguages;
 			var numLanguageClass = 'numLanguages-' + languages.length;
 
-			if (languages.length > 0) {
+			if ((languages.length > 0) && (thisCategory !== null)) {
 
-				var hasContent = false;
-				for (var i = 0; i < languages.length; i++) {
-					if((thisCategory.count[languages[i]].examples.length > 0) || (thisCategory.count[languages[i]].syntaxes.length > 0)) {
-						hasContent = true;
+				var hasExamples = false;
+				var hasSyntaxes = false;
+				if (thisCategory) {
+					for (var i = 0; i < languages.length; i++) {
+						// console.log(thisCategory);
+						if(thisCategory.count && thisCategory.count[languages[i]]) {
+							console.log(i);
+							console.log(thisCategory);
+							console.log(thisCategory.count[languages[i]]);
+							// console.log(thisCategory.count[languages[i]].examples);
+							var examplesLength = (thisCategory.count[languages[i]] && thisCategory.count[languages[i]].examples) ? thisCategory.count[languages[i]].examples.length : 0;
+							var syntaxesLength = (thisCategory.count[languages[i]] && thisCategory.count[languages[i]].syntaxes) ? thisCategory.count[languages[i]].syntaxes.length : 0;
+							if (examplesLength > 0) {
+								hasExamples = true;
+							}
+							if (syntaxesLength > 0) {
+								hasSyntaxes = true;
+							}
+						}
 					}
 				}
 
-				if (hasContent) {
+				if (hasExamples && hasSyntaxes) {
 					return (
 						<div className='examples-container'>
 							<h2>{categoryTitle}</h2>
@@ -106,37 +149,67 @@ class Examples extends Component {
 
 							<h4>Syntaxes</h4>
 							<div className={classnames('syntaxes', numLanguageClass)}>
-								
-								{languages.map((language, i) => (
-									<section className={classnames('syntax', `language${language}`)} key={i}>
-										{thisCategory.count[language].syntaxes.map(this.eachSyntax)}
-									</section>
-								))}
-
+								{languages.map(this.renderSyntaxes)}
 							</div>
 
 							<h4>Examples</h4>
 							<div className={classnames('examples', numLanguageClass)}>
-								
-								{languages.map((language, i) => (
-									<section className={classnames('example', `language${language}`)} key={i}>
-										{thisCategory.count[language].examples.map(this.eachExample)}
-									</section>
-								))}
+								{languages.map(this.renderExamples)}
+							</div>
+						</div>
+					);
+				} else if (hasSyntaxes) {
+					return (
+						<div className='examples-container'>
+							<h2>{categoryTitle}</h2>
+							<p>{categoryDescription}</p>
 
+							<h4>Syntaxes</h4>
+							<div className={classnames('syntaxes', numLanguageClass)}>
+								{languages.map(this.renderSyntaxes)}
+							</div>
+
+							<h4>Examples</h4>
+							<div className={classnames('examples', numLanguageClass)}>
+								<p>No Examples for this category</p>
 							</div>
 						</div>
 
 					);
+				} else if (hasExamples) {
+					return (
+						<div className='examples-container'>
+							<h2>{categoryTitle}</h2>
+							<p>{categoryDescription}</p>
+
+							<h4>Syntaxes</h4>
+							<div className={classnames('syntaxes', numLanguageClass)}>
+								<p>No Syntaxes for this category</p>
+							</div>
+
+							<h4>Examples</h4>
+							<div className={classnames('examples', numLanguageClass)}>
+								{languages.map(this.renderExamples)}
+							</div>
+						</div>
+					);
 				} else {
 					return (
-						<NoContent />
+						<div className='examples-container'>
+							<h2>{categoryTitle}</h2>
+							<p>{categoryDescription}</p>
+							<NoContent />
+						</div>
 					);
 				}
 
 			} else {
 				return (
-					<NoLanguage />
+					<div className='examples-container'>
+						<h2>{categoryTitle}</h2>
+						<p>{categoryDescription}</p>
+						<NoLanguage />
+					</div>
 				);
 			}
 

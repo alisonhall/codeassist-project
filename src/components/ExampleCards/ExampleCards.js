@@ -16,18 +16,20 @@ class ExampleCards extends Component {
 	}
 
 	render() {
+		// console.log(this.state);
+		// console.log(this.props);
 		var category = this.props.category.name;
 		var languageFull = this.props.language.fullName;
 		var language = this.props.language.name;
 		var description = this.props.example.description;
 		var level = this.props.example.level;
 		var ranking = this.props.example.ranking;
-		var createdBy = this.props.createdBy.username;
+		var createdBy = (this.props.createdBy) ? this.props.createdBy.username : '';
 		var dateCreated = this.props.example.dateCreated;
-		var editedBy = this.props.editedBy.username;
+		var editedBy = (this.props.editedBy) ? this.props.editedBy.username : '';
 		var dateEdited = this.props.example.dateEdited;
 		var codeText = this.props.example.codeText;
-		var numberOfComments = this.props.example.commentIDs.length;
+		var numberOfComments = (this.props.example.commentIDs) ? this.props.example.commentIDs.length : 0;
 		var languageClass = "language-" + language;
 		var exampleId = this.props.example.id;
 

@@ -180,111 +180,277 @@ class Page extends Component {
 
 
 	addToSelectedLanguages(key) {
+		// console.log(this.state);
+		console.log("Select language " + key);
 		var selectedLanguages = this.state.selectedLanguages;
-		if(selectedLanguages.length >= 3) {
+		if (selectedLanguages.length >= 3) {
 			alert("You can't add more than 3 languages.");
 		} else {
 			selectedLanguages.push(key);
-			this.setState({selectedLanguages: selectedLanguages});
+			this.setState({ selectedLanguages: selectedLanguages });
 		}
 	}
 
 	removeSelectedLanguage(key) {
+		// console.log(this.state);
+		console.log("Remove language " + key);
 		var selectedLanguages = this.state.selectedLanguages;
 		selectedLanguages.splice(key, 1);
-		this.setState({selectedLanguages: selectedLanguages});
+		this.setState({ selectedLanguages: selectedLanguages });
 	}
 
-	addExample(object, index) {
-		console.log(object, index);
+	addExample(object, index, category, language, isSyntax) {
+		console.log("Add example to " + category);
+		console.log(object, index, category, language, isSyntax);
 		var allExamples = this.state.allExamples;
+		var allCategories = this.state.allCategories;
+
+		var type = (isSyntax) ? 'syntaxes' : 'examples';
+		var numTypes = 0;
+
+
+
+		if(allCategories[category].count) {
+			console.log("True 1");
+			if(allCategories[category].count[language]) {
+				console.log("True 2");
+				if(allCategories[category].count[language][type]) {
+					console.log("True 3");
+					numTypes = allCategories[category].count[language][type].length + 1;
+					allCategories[category].count[language][type][numTypes] = index;
+				} else {
+					console.log("False 3");
+					var syntaxes = (allCategories[category]["count"][language]["syntaxes"]) ? allCategories[category]["count"][language]["syntaxes"] : [];
+					var examples = (allCategories[category]["count"][language]["examples"]) ? allCategories[category]["count"][language]["examples"] : [];
+					
+					if(type == 'syntaxes') {
+						allCategories[category]["count"][language] = {
+							// ["syntaxes"]: syntaxes,
+							["examples"]: examples,
+							[type]: {
+								[0]: index
+							},
+						}
+					} else if (type == 'examples') {
+						allCategories[category]["count"][language] = {
+							// ["examples"]: examples,
+							["syntaxes"]: syntaxes,
+							[type]: {
+								[0]: index
+							},
+						}
+					} else {
+						console.log("ERROR: type in allCategories[category][count][language]");
+					}
+				}
+			} else {
+				console.log("False 2");
+				var language0 = (allCategories[category]["count"]["0"]) ? allCategories[category]["count"]["0"] : {};
+				var language1 = (allCategories[category]["count"]["1"]) ? allCategories[category]["count"]["1"] : {};
+				var language2 = (allCategories[category]["count"]["2"]) ? allCategories[category]["count"]["2"] : {};
+				var language3 = (allCategories[category]["count"]["3"]) ? allCategories[category]["count"]["3"] : {};
+				var language4 = (allCategories[category]["count"]["4"]) ? allCategories[category]["count"]["4"] : {};
+				var language5 = (allCategories[category]["count"]["5"]) ? allCategories[category]["count"]["5"] : {};
+
+				if(language == 0) {
+					allCategories[category]["count"] = {
+						// [0]: language0,
+						[1]: language1,
+						[2]: language2,
+						[3]: language3,
+						[4]: language4,
+						[5]: language5,
+						[language]: {
+							[type]: {
+								[0]: index
+							}
+						}
+					}
+				} else if (language == 1) {
+					allCategories[category]["count"] = {
+						[0]: language0,
+						// [1]: language1,
+						[2]: language2,
+						[3]: language3,
+						[4]: language4,
+						[5]: language5,
+						[language]: {
+							[type]: {
+								[0]: index
+							}
+						}
+					}
+				} else if (language == 2) {
+					allCategories[category]["count"] = {
+						[0]: language0,
+						[1]: language1,
+						// [2]: language2,
+						[3]: language3,
+						[4]: language4,
+						[5]: language5,
+						[language]: {
+							[type]: {
+								[0]: index
+							}
+						}
+					}
+				} else if (language == 3) {
+					allCategories[category]["count"] = {
+						[0]: language0,
+						[1]: language1,
+						[2]: language2,
+						// [3]: language3,
+						[4]: language4,
+						[5]: language5,
+						[language]: {
+							[type]: {
+								[0]: index
+							}
+						}
+					}
+				} else if (language == 4) {
+					allCategories[category]["count"] = {
+						[0]: language0,
+						[1]: language1,
+						[2]: language2,
+						[3]: language3,
+						// [4]: language4,
+						[5]: language5,
+						[language]: {
+							[type]: {
+								[0]: index
+							}
+						}
+					}
+				} else if (language == 5) {
+					allCategories[category]["count"] = {
+						[0]: language0,
+						[1]: language1,
+						[2]: language2,
+						[3]: language3,
+						[4]: language4,
+						// [5]: language5,
+						[language]: {
+							[type]: {
+								[0]: index
+							}
+						}
+					}
+				} else {
+					console.log("ERROR: language in allCategories[category][count]");
+				}
+			}
+		} else {
+			console.log("False 1");
+			var id = allCategories[category].id;
+			var subCategories = (allCategories[category].subCategories) ? allCategories[category].subCategories : [];
+			var relatedCategories = (allCategories[category].relatedCategories) ? allCategories[category].relatedCategories : [];
+			var isTopLevel = (allCategories[category].isTopLevel) ? allCategories[category].isTopLevel : null;
+			var name = (allCategories[category].name) ? allCategories[category].name : '';
+			var alternativeNames = (allCategories[category].alternativeNames) ? allCategories[category].alternativeNames : [];
+			var description = (allCategories[category].description) ? allCategories[category].description : '';
+
+			allCategories[category] = {
+				["count"]: {
+					[language]: {
+						[type]: {
+							[0]: index
+						}
+					}
+				},
+				id,
+				subCategories,
+				relatedCategories,
+				isTopLevel,
+				name,
+				alternativeNames,
+				description
+			}
+		}
+		
 		allExamples[index] = object;
-		this.setState({allExamples: allExamples});
+		
+		// console.log(allCategories);
+		// console.log(allCategories[`${category}`]);
+		// console.log(allCategories[`${category}`][`count`]);
+		// console.log(allCategories[`${category}`][`count`][`${language}`]);
+		// console.log(allCategories[`${category}`][`count`][`${language}`][`${type}`]);
+		// console.log(allCategories[`${category}`][`count`][`${language}`][`${type}`][`${numTypes}`]);
+		
+		// allCategories[`${category}`][`count`][`${language}`][`${type}`][`${numTypes}`] = index;
+		this.setState({ allCategories: allCategories, allExamples: allExamples });
 	}
 
 	render() {
-		
+
 		if (this.state.allDataLoaded) {
-			var languagesComponent = 
-					<Languages 
-						allLanguages={this.state.allLanguages}
-						selectedLanguages={this.state.selectedLanguages} 
-						addToSelectedLanguages={this.addToSelectedLanguages}
-						removeSelectedLanguage={this.removeSelectedLanguage}
-					/>;
+			var languagesComponent = <Languages
+				allLanguages = { this.state.allLanguages }
+				selectedLanguages = { this.state.selectedLanguages }
+				addToSelectedLanguages = { this.addToSelectedLanguages }
+				removeSelectedLanguage = { this.removeSelectedLanguage }
+			/>;
 
-			var categoriesComponent = 
-					<CategoriesSidebar
-						allCategories={this.state.allCategories} 
-						topCategories={this.state.topCategories} 
-						allDataLoaded={this.state.allDataLoaded} 
-					/>;
+			var categoriesComponent = <CategoriesSidebar
+				allCategories = { this.state.allCategories }
+				topCategories = { this.state.topCategories }
+				allDataLoaded = { this.state.allDataLoaded }
+			/>;
 
-			var categoryComponent = 
-					<Examples 
-						allCategories={this.state.allCategories} 
-						allExamples={this.state.allExamples} 
-						allLanguages={this.state.allLanguages} 
-						allUsers={this.state.allUsers} 
-						allComments={this.state.allComments} 
-						allDataLoaded={this.state.allDataLoaded} 
-						params={this.props.params}
-						selectedLanguages={this.state.selectedLanguages}
-					/>;
+			var categoryComponent = <Examples
+				allCategories = { this.state.allCategories }
+				allExamples = { this.state.allExamples }
+				allLanguages = { this.state.allLanguages }
+				allUsers = { this.state.allUsers }
+				allComments = { this.state.allComments }
+				allDataLoaded = { this.state.allDataLoaded }
+				params = { this.props.params }
+				selectedLanguages = { this.state.selectedLanguages }
+			/>;
 
-			var aboutComponent = 
-					<About />;
+			var aboutComponent = <About /> ;
 
-			var createSnippetComponent = 
-					<CreateSnippet 
-						allCategories={this.state.allCategories}
-						allLanguages={this.state.allLanguages}
-						newId={this.state.allExamples.length}
-						user={this.state.allUsers[this.state.currentUser]}
-						addExample={this.addExample}
-					/>;
+			var createSnippetComponent = <CreateSnippet
+				allCategories = { this.state.allCategories }
+				allLanguages = { this.state.allLanguages }
+				newId = { this.state.allExamples.length }
+				user = { this.state.allUsers[this.state.currentUser] }
+				addExample = { this.addExample }
+			/>;
 
-			var error404Component = 
-					<h1>Page Not Found</h1>;
+			var error404Component = <h1> Page Not Found </h1>;
 
-			var homeComponent = 
-					<Home />;
+			var homeComponent = <Home/> ;
 
-			var loginComponent = 
-					<Login />;
+			var loginComponent = <Login/> ;
 
-			var openExampleCardComponent = 
-					<OpenExampleCard 
-						allCategories={this.state.allCategories} 
-						allExamples={this.state.allExamples} 
-						allLanguages={this.state.allLanguages} 
-						allUsers={this.state.allUsers} 
-						allComments={this.state.allComments} 
-						allDataLoaded={this.state.allDataLoaded} 
-						params={this.props.params}
-						selectedLanguages={this.state.selectedLanguages}
-					/>;
+			var openExampleCardComponent = <OpenExampleCard
+				allCategories = { this.state.allCategories }
+				allExamples = { this.state.allExamples }
+				allLanguages = { this.state.allLanguages }
+				allUsers = { this.state.allUsers }
+				allComments = { this.state.allComments }
+				allDataLoaded = { this.state.allDataLoaded }
+				params = { this.props.params }
+				selectedLanguages = { this.state.selectedLanguages }
+			/>;
 
-			var openSyntaxCardComponent = 
-					<OpenSyntaxCard 
-						allCategories={this.state.allCategories} 
-						allExamples={this.state.allExamples} 
-						allLanguages={this.state.allLanguages} 
-						allUsers={this.state.allUsers} 
-						allComments={this.state.allComments} 
-						allDataLoaded={this.state.allDataLoaded} 
-						params={this.props.params}
-						selectedLanguages={this.state.selectedLanguages}
-					/>;
+			var openSyntaxCardComponent = <OpenSyntaxCard
+				allCategories = { this.state.allCategories }
+				allExamples = { this.state.allExamples }
+				allLanguages = { this.state.allLanguages }
+				allUsers = { this.state.allUsers }
+				allComments = { this.state.allComments }
+				allDataLoaded = { this.state.allDataLoaded }
+				params = { this.props.params }
+				selectedLanguages = { this.state.selectedLanguages }
+			/>;
 
-			var searchResultsComponent = 
-					<SearchResults />;
+			var searchResultsComponent = <SearchResults /> ;
 
-			var userSettingsComponent = 
-					<UserSettings />;
+			var userSettingsComponent = <UserSettings /> ;
 
-			var editMenuComponent = 
-					<EditMenu />;
+			var editMenuComponent = <EditMenu /> ;
 
 			var contentComponentStr = this.props.contentComponent;
 			var contentComponent;
@@ -309,46 +475,36 @@ class Page extends Component {
 				contentComponent = searchResultsComponent;
 			} else if (contentComponentStr == 'usersettings') {
 				contentComponent = userSettingsComponent;
-			} else {
-				<h1>Error! Unknown Content Component!</h1>
+			} else { <h1> Error!Unknown Content Component! </h1>
 			}
 
-			return (
-				<div className="page-container">
-					<Header />
-		
-					<aside id="categories" className="col-md-2">
-						<div id="react-categories">
-							{categoriesComponent}
-						</div>
-					</aside>
+			return ( <div className = "page-container" >
+				<Header />
 
-					<div className="container-fluid">
-						<section id="languages">
-							<div id="react-languages" className="col-md-12">
-								{languagesComponent}
-							</div>
-						</section>
+				<aside id = "categories"
+				className = "col-md-2" >
+				<div id = "react-categories" > { categoriesComponent } </div> </aside>
 
-						<section id="content" className="col-md-11 col-md-offset-1">
-							{contentComponent}
-						</section>
+				<div className = "container-fluid" >
+				<section id = "languages" >
+				<div id = "react-languages"
+				className = "col-md-12" > { languagesComponent } </div> </section>
 
-						<EditMenu />
-					</div>
+				<section id = "content"
+				className = "col-md-11 col-md-offset-1" > { contentComponent } </section>
 
-					<Footer />
+				<EditMenu />
+				</div>
+
+				<Footer />
 				</div>
 			);
 
 		} else {
-			
-			return (
-				<div 
-					className="page-container" 
-					key={this.state.allDataLoaded}>
-						Loading...
-				</div>
+
+			return ( <div className = "page-container"
+				key = { this.state.allDataLoaded } >
+				Loading... </div>
 
 			);
 		}

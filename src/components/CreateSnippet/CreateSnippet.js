@@ -11,6 +11,7 @@ class CreateSnippet extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			selectedType: '',
 			selectedCategory: '',
 			selectedLanguage: '',
 			selectedLevel: '',
@@ -25,8 +26,8 @@ class CreateSnippet extends Component {
 		this.languageOption = this.languageOption.bind(this);
 	}
 
-	saveExample(object) {
-		this.props.addExample(object, this.props.newId);
+	saveExample(object, selectedCategory, selectedLanguage, isSyntax) {
+		this.props.addExample(object, this.props.newId, selectedCategory, selectedLanguage, isSyntax);
 		browserHistory.push('/');
 	}
 
@@ -42,6 +43,19 @@ class CreateSnippet extends Component {
 
 	onSubmit(event) {
 		event.preventDefault();
+		console.log(this.refs);
+		// var selectedType = this.refs.selectType.value;
+		var selectedType;
+		var isSyntax = false;
+		if(this.refs.selectTypeSyntax.checked) {
+			selectedType = this.refs.selectTypeSyntax.value;
+			isSyntax = true;
+		} else if (this.refs.selectTypeExample.checked) {
+			selectedType = this.refs.selectTypeExample.value;
+		} else {
+			console.log("ERROR: Select Type options");
+		}
+
 		var selectedCategory = this.refs.selectCategory.value;
 		var selectedLanguage = this.refs.selectLanguage.value;
 		var selectedLevel = this.refs.selectLevel.value;
@@ -57,7 +71,7 @@ class CreateSnippet extends Component {
 			"commentIDs": [],
 			"dateCreated": "January 1 2016",
 			"dateEdited": "January 1 2016",
-			"syntax": false,
+			"syntax": isSyntax,
 			"howTo": false,
 			"description": enteredDescription,
 			"codeText": enteredCode,
@@ -68,6 +82,7 @@ class CreateSnippet extends Component {
 		}
 
 		this.setState({
+			selectedType: selectedType,
 			selectedCategory: selectedCategory,
 			selectedLanguage: selectedLanguage,
 			selectedLevel: selectedLevel,
@@ -78,7 +93,7 @@ class CreateSnippet extends Component {
 
 		// this.constructObject();
 
-		this.saveExample(object);
+		this.saveExample(object, Number(selectedCategory), Number(selectedLanguage), isSyntax);
 	}
 
 	categoryOption(category, i) {
@@ -98,6 +113,11 @@ class CreateSnippet extends Component {
 			<div className='createSnippet-container'>
 				<h1>Create Snippet</h1>
 				<form onSubmit={this.onSubmit}>
+					<div>
+						<label htmlFor="selectType">Select Type:</label>
+						<input type="radio" name="selectType" value="Syntax" ref="selectTypeSyntax" />Syntax
+						<input type="radio" name="selectType" value="Example" ref="selectTypeExample" defaultChecked />Example
+					</div>
 					<div>
 						<label htmlFor="selectCategory">Select Category:</label>
 						<select name="selectCategory" id="selectCategory" ref="selectCategory">

@@ -35,12 +35,14 @@ class Languages extends Component {
 	}
 
 	displayLanguage(id, i) {
-		return (
-			<div key={i} value={i} className={classnames(`language${i+1}`)} onClick={this.handleDelete} onClick={() => this.handleDelete(i)}>
-				<p>{this.props.allLanguages[id].fullName}</p>
-				<i className="fa fa-close" aria-hidden="true"></i>
-			</div>
-		);
+		if(this.props.allLanguages[id]) {
+			return (
+				<div key={i} value={i} className={classnames(`language${i+1}`)} onClick={this.handleDelete} onClick={() => this.handleDelete(i)}>
+					<p>{this.props.allLanguages[id].fullName}</p>
+					<i className="fa fa-close" aria-hidden="true"></i>
+				</div>
+			);
+		}
 	}
 
 	render() {

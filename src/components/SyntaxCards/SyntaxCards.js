@@ -35,19 +35,19 @@ class SyntaxCards extends Component {
 			<section className="syntaxCards-container">
 				<div className="row">
 					<div className="thirds">
-						<p>Rank {ranking}
+						<p>{/*}Rank {ranking}{*/}
 						<br />{dateCreated}
 						<br />Level: {level}</p>
 					</div>
 
 					<div className="thirds">
-						<p>Created By: <i className="fa fa-user" aria-hidden="true"></i> <a href="#">{createdBy}</a>
-						<br />Edited By: <i className="fa fa-user" aria-hidden="true"></i> <a href="#">{editedBy}</a></p>
+						<p>Created By: <i className="fa fa-user" aria-hidden="true"></i> <Link to={'/user/' + createdBy}>{createdBy}</Link>
+						{/*}<br />Edited By: <i className="fa fa-user" aria-hidden="true"></i> <Link to={'/user/' + editedBy}>{editedBy}</Link>{*/}</p>
 					</div>
 
 					<div className="thirds">
 						<div className="languageStyle">{languageFull}</div>
-						<p>Category: {category}</p>
+						{/*}<p>Category: {category}</p>{*/}
 					</div>
 				</div>
 
@@ -56,7 +56,7 @@ class SyntaxCards extends Component {
 
 				<pre className={languageClass}><code>{codeText}</code></pre>
 
-				<p className="commentNum">{numberOfComments} comments</p>
+				<Link to={'/syntax/' + exampleId}>Expand</Link>
 			</section>
 
 		);

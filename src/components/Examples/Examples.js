@@ -125,9 +125,9 @@ class Examples extends Component {
 					for (var i = 0; i < languages.length; i++) {
 						// console.log(thisCategory);
 						if(thisCategory.count && thisCategory.count[languages[i]]) {
-							console.log(i);
-							console.log(thisCategory);
-							console.log(thisCategory.count[languages[i]]);
+							// console.log(i);
+							// console.log(thisCategory);
+							// console.log(thisCategory.count[languages[i]]);
 							// console.log(thisCategory.count[languages[i]].examples);
 							var examplesLength = (thisCategory.count[languages[i]] && thisCategory.count[languages[i]].examples) ? thisCategory.count[languages[i]].examples.length : 0;
 							var syntaxesLength = (thisCategory.count[languages[i]] && thisCategory.count[languages[i]].syntaxes) ? thisCategory.count[languages[i]].syntaxes.length : 0;

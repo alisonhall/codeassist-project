@@ -49,7 +49,7 @@ class ExampleCards extends Component {
 
 					<div className="thirds">
 						<div className="languageStyle">{languageFull}</div>
-						<p>Category: {category}</p>
+						{/*}<p>Category: {category}</p>{*/}
 					</div>
 				</div>
 

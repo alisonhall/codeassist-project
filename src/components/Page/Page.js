@@ -71,12 +71,15 @@ class Page extends Component {
 			selectedLanguages: [],
 
 			contentComponent: '',
-			currentUser: '',
+			currentUser: ''
 		};
 
 		this.addToSelectedLanguages = this.addToSelectedLanguages.bind(this);
 		this.removeSelectedLanguage = this.removeSelectedLanguage.bind(this);
 		this.addExample = this.addExample.bind(this);
+
+		this.getInitialData = this.getInitialData.bind(this);
+		this.setupSyncState = this.setupSyncState.bind(this);
 
 		this.refCategories;
 		this.refTopCategories;
@@ -88,58 +91,220 @@ class Page extends Component {
 		this.refCurrentUser;
 	}
 
+	getInitialData() {
+		var numFetches = 0;
+		var totalFetches = 8;
+		var noErrors = true;
 
-	componentWillMount() {
-		// this runs right before the <Page> is rendered
-		console.log("Loading data...");
+		base.fetch('categories', {
+			context: this,
+			asArray: true
+		}).then(data => {
+			// console.log(data);
+			numFetches++;
+			var allDataLoaded = (numFetches == totalFetches && noErrors) ? true : false;
+			this.setState({
+				allCategories: data,
+				categoryDataLoaded: true,
+				allDataLoaded: allDataLoaded
+			})
+		}).catch(error => {
+			//handle error
+			noErrors = false;
+			console.log("Firebase Fetch ERROR: " + error);
+		});
+
+		base.fetch('topCategories', {
+			context: this,
+			asArray: true
+		}).then(data => {
+			// console.log(data);
+			numFetches++;
+			var allDataLoaded = (numFetches == totalFetches && noErrors) ? true : false;
+			this.setState({
+				topCategories: data,
+				topCategoryDataLoaded: true,
+				allDataLoaded: allDataLoaded
+			})
+		}).catch(error => {
+			//handle error
+			noErrors = false;
+			console.log("Firebase Fetch ERROR: " + error);
+		});
+
+		base.fetch('comments', {
+			context: this,
+			asArray: true
+		}).then(data => {
+			// console.log(data);
+			numFetches++;
+			var allDataLoaded = (numFetches == totalFetches && noErrors) ? true : false;
+			this.setState({
+				allComments: data,
+				commentDataLoaded: true,
+				allDataLoaded: allDataLoaded
+			})
+		}).catch(error => {
+			//handle error
+			noErrors = false;
+			console.log("Firebase Fetch ERROR: " + error);
+		});
+
+		base.fetch('examples', {
+			context: this,
+			asArray: true
+		}).then(data => {
+			// console.log(data);
+			numFetches++;
+			var allDataLoaded = (numFetches == totalFetches && noErrors) ? true : false;
+			this.setState({
+				allExamples: data,
+				exampleDataLoaded: true,
+				allDataLoaded: allDataLoaded
+			})
+		}).catch(error => {
+			//handle error
+			noErrors = false;
+			console.log("Firebase Fetch ERROR: " + error);
+		});
+
+		base.fetch('languages2', {
+			context: this,
+			asArray: true
+		}).then(data => {
+			// console.log(data);
+			numFetches++;
+			var allDataLoaded = (numFetches == totalFetches && noErrors) ? true : false;
+			this.setState({
+				allLanguages: data,
+				languageDataLoaded: true,
+				allDataLoaded: allDataLoaded
+			})
+		}).catch(error => {
+			//handle error
+			noErrors = false;
+			console.log("Firebase Fetch ERROR: " + error);
+		});
+
+		base.fetch('selectedLanguages', {
+			context: this,
+			asArray: true
+		}).then(data => {
+			// console.log(data);
+			numFetches++;
+			var allDataLoaded = (numFetches == totalFetches && noErrors) ? true : false;
+			this.setState({
+				selectedLanguages: data,
+				selectedLanguagesDataLoaded: true,
+				allDataLoaded: allDataLoaded
+			})
+		}).catch(error => {
+			//handle error
+			noErrors = false;
+			console.log("Firebase Fetch ERROR: " + error);
+		});
+
+		base.fetch('users', {
+			context: this,
+			asArray: true
+		}).then(data => {
+			// console.log(data);
+			numFetches++;
+			var allDataLoaded = (numFetches == totalFetches && noErrors) ? true : false;
+			this.setState({
+				allUsers: data,
+				userDataLoaded: true,
+				allDataLoaded: allDataLoaded
+			})
+		}).catch(error => {
+			//handle error
+			noErrors = false;
+			console.log("Firebase Fetch ERROR: " + error);
+		});
+
+		base.fetch('currentUser', {
+			context: this,
+			asArray: true
+		}).then(data => {
+			// console.log(data);
+			numFetches++;
+			var allDataLoaded = (numFetches == totalFetches && noErrors) ? true : false;
+			this.setState({
+				currentUser: data,
+				currentUserDataLoaded: true,
+				allDataLoaded: allDataLoaded
+			})
+		}).catch(error => {
+			//handle error
+			noErrors = false;
+			console.log("Firebase Fetch ERROR: " + error);
+		});
+
+		// if(numFetches == totalFetches && noErrors) {
+		// 	this.setState({allDataLoaded: true});
+		// }
+
+
+	}
+
+	setupSyncState() {
 		this.refCategories = base.syncState('categories', {
 			context: this,
 			state: 'allCategories',
 			asArray: true,
-			then: this.setState({categoryDataLoaded: true})
+			// then: this.setState({categoryDataLoaded: true})
 		});
 		this.refTopCategories = base.syncState('topCategories', {
 			context: this,
 			state: 'topCategories',
 			asArray: true,
-			then: this.setState({topCategoryDataLoaded: true})
+			// then: this.setState({topCategoryDataLoaded: true})
 		});
 		this.refComments = base.syncState('comments', {
 			context: this,
 			state: 'allComments',
 			asArray: true,
-			then: this.setState({commentDataLoaded: true})
+			// then: this.setState({commentDataLoaded: true})
 		});
 		this.refExamples = base.syncState('examples', {
 			context: this,
 			state: 'allExamples',
 			asArray: true,
-			then: this.setState({exampleDataLoaded: true})
+			// then: this.setState({exampleDataLoaded: true})
 		});
 		this.refLanguages2 = base.syncState('languages2', {
 			context: this,
 			state: 'allLanguages',
 			asArray: true,
-			then: this.setState({languageDataLoaded: true})
+			// then: this.setState({languageDataLoaded: true})
 		});
 		this.refSelectedLanguages = base.syncState('selectedLanguages', {
 			context: this,
 			state: 'selectedLanguages',
 			asArray: true,
-			then: this.setState({selectedLanguagesDataLoaded: true})
+			// then: this.setState({selectedLanguagesDataLoaded: true})
 		});
 		this.refUsers = base.syncState('users', {
 			context: this,
 			state: 'allUsers',
 			asArray: true,
-			then: this.setState({userDataLoaded: true})
+			// then: this.setState({userDataLoaded: true})
 		});
 		this.refCurrentUser = base.syncState('currentUser', {
 			context: this,
 			state: 'currentUser',
 			asArray: true,
-			then: this.setState({currentUserDataLoaded: true})
+			// then: this.setState({currentUserDataLoaded: true})
 		});
+	}
+
+
+	componentWillMount() {
+		// this runs right before the <Page> is rendered
+		console.log("Loading data...");
+		
+		this.getInitialData();
+		this.setupSyncState();
 
 		// if(categoryDataLoaded && topCategoryDataLoaded && commentDataLoaded && exampleDataLoaded && languageDataLoaded && selectedLanguagesDataLoaded && userDataLoaded) {
 		// 	this.setState({ allDataLoaded: true });
@@ -158,13 +323,6 @@ class Page extends Component {
 		// 	});
 		// }
 
-	}
-
-	componentDidMount() {
-		if(this.state.categoryDataLoaded && this.state.topCategoryDataLoaded && this.state.commentDataLoaded && this.state.exampleDataLoaded && this.state.languageDataLoaded && this.state.selectedLanguagesDataLoaded && this.state.userDataLoaded && this.state.currentUserDataLoaded) {
-			this.setState({ allDataLoaded: true });
-			console.log("All Data Loaded");
-		}
 	}
 
 	componentWillUnmount() {
@@ -382,8 +540,9 @@ class Page extends Component {
 	}
 
 	render() {
-
 		if (this.state.allDataLoaded) {
+			// console.log("All Data Loaded!");
+
 			var languagesComponent = <Languages
 				allLanguages = { this.state.allLanguages }
 				selectedLanguages = { this.state.selectedLanguages }

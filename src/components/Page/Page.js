@@ -414,15 +414,11 @@ class Page extends Component {
 
 
 		if(allCategories[category].count) {
-			console.log("True 1");
 			if(allCategories[category].count[language]) {
-				console.log("True 2");
 				if(allCategories[category].count[language][type]) {
-					console.log("True 3");
 					numTypes = allCategories[category].count[language][type].length + 1;
 					allCategories[category].count[language][type][numTypes] = index;
 				} else {
-					console.log("False 3");
 					var syntaxes = (allCategories[category]["count"][language]["syntaxes"]) ? allCategories[category]["count"][language]["syntaxes"] : [];
 					var examples = (allCategories[category]["count"][language]["examples"]) ? allCategories[category]["count"][language]["examples"] : [];
 					
@@ -447,7 +443,6 @@ class Page extends Component {
 					}
 				}
 			} else {
-				console.log("False 2");
 				var language0 = (allCategories[category]["count"]["0"]) ? allCategories[category]["count"]["0"] : {};
 				var language1 = (allCategories[category]["count"]["1"]) ? allCategories[category]["count"]["1"] : {};
 				var language2 = (allCategories[category]["count"]["2"]) ? allCategories[category]["count"]["2"] : {};
@@ -544,9 +539,9 @@ class Page extends Component {
 				}
 			}
 		} else {
-			console.log("False 1");
 			var id = allCategories[category].id;
-			var subCategories = (allCategories[category].subCategories) ? allCategories[category].subCategories : [];
+			var key = (allCategories[category].key) ? allCategories[category].key : '';
+			var subCategoryIDs = (allCategories[category].subCategoryIDs) ? allCategories[category].subCategoryIDs : [];
 			var relatedCategories = (allCategories[category].relatedCategories) ? allCategories[category].relatedCategories : [];
 			var isTopLevel = (allCategories[category].isTopLevel) ? allCategories[category].isTopLevel : null;
 			var name = (allCategories[category].name) ? allCategories[category].name : '';
@@ -562,7 +557,8 @@ class Page extends Component {
 					}
 				},
 				id,
-				subCategories,
+				key,
+				subCategoryIDs,
 				relatedCategories,
 				isTopLevel,
 				name,
@@ -572,15 +568,7 @@ class Page extends Component {
 		}
 		
 		allExamples[index] = object;
-		
-		// console.log(allCategories);
-		// console.log(allCategories[`${category}`]);
-		// console.log(allCategories[`${category}`][`count`]);
-		// console.log(allCategories[`${category}`][`count`][`${language}`]);
-		// console.log(allCategories[`${category}`][`count`][`${language}`][`${type}`]);
-		// console.log(allCategories[`${category}`][`count`][`${language}`][`${type}`][`${numTypes}`]);
-		
-		// allCategories[`${category}`][`count`][`${language}`][`${type}`][`${numTypes}`] = index;
+
 		this.setState({ allCategories: allCategories, allExamples: allExamples });
 	}
 

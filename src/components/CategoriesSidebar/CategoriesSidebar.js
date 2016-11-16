@@ -91,6 +91,9 @@ class CategoriesSidebar extends Component {
 					<button id="showCategories" onClick={this.toggleShow}>Categories<i className="fa fa-bars fa-rotate-270" aria-hidden="true"></i></button>
 					<div className={classnames('categoriesList')} ref={(div) => this.categoriesList = div}>
 						{this.props.topCategories.map(this.topCategory)}
+						<button id="createCategory">
+							<Link to='/create/category'><i className="fa fa-plus" aria-hidden="true"></i><span>Category</span></Link>
+						</button>
 					</div>
 				</div>
 

@@ -48,6 +48,27 @@ $sidebar-height-2: calc(100vh - (85px + 14px));
 		left: 0;
 		overflow: scroll;
 		height: $sidebar-height;
+
+		#createCategory {
+			position: absolute;
+			bottom: 10px;
+			padding: 10px 20px;
+			border-radius: 10px;
+			background: none;
+			border: 3px solid green;
+
+			&:hover {
+				background: white;
+			}
+			
+			a {
+				color: green
+			}
+
+			span {
+				padding-left: 5px;
+			}
+		}
 	}
 }
 

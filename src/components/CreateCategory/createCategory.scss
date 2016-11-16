@@ -1,0 +1,62 @@
+@import '../../styles/variables.scss';
+
+.createCategory-container {
+	h1 {
+		margin-bottom: 20px;
+	}
+
+	form div {
+		padding: 5px 0;
+
+		> span {
+			padding: 0 20px 0 0;
+
+			> input[type="radio"] {
+				margin-right: 5px;
+			}
+		}
+		
+		label {
+			min-width: 185px;
+			padding-right: 10px;
+
+			span {
+				display: block;
+				font-size: 12px;
+				font-weight: normal;
+			}
+		}
+
+		input {
+			width: 50%;
+			min-width: 200px;
+			height: 40px;
+		}
+
+		select {
+			min-width: 200px;
+			height: 40px;
+		}
+
+		textarea {
+			width: calc(100% - 200px);
+		}
+
+		#selectRelatedCategories {
+			height: auto;
+		}
+	}
+
+	button {
+		margin: 20px 20px 20px 0;
+		border-radius: 10px;
+		padding: 10px 30px;
+		cursor: pointer;
+		background-color: #9EBF93;
+	}
+
+	button:hover {
+		background-color: #647D5B;
+		color: white;
+	}
+}

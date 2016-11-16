@@ -39,7 +39,7 @@ class EditMenu extends Component {
 			return (
 				<div className={classnames('editMenu-container', `${isOpen}`)}>
 					<button>
-						<Link to='/create'><i className="fa fa-plus" aria-hidden="true"></i></Link>
+						<Link to='/create/snippet'><i className="fa fa-plus" aria-hidden="true"></i></Link>
 					</button>
 				</div>
 			);

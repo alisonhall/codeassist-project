@@ -17,6 +17,7 @@ import UserSettingsView from './views/UserSettingsView.js';
 import LoginView from './views/LoginView.js';
 import CategoryView from './views/CategoryView.js';
 import SearchResultsView from './views/SearchResultsView.js';
+import CreateCategoryView from './views/CreateCategoryView.js';
 import CreateSnippetView from './views/CreateSnippetView.js';
 import OpenedSyntaxCardView from './views/OpenedSyntaxCardView.js';
 import OpenedExampleCardView from './views/OpenedExampleCardView.js';
@@ -26,6 +27,7 @@ import Error404 from './views/Error404.js';
 import About from './components/About/About.js';
 import Accordion from './components/Accordion/Accordion.js';
 import CategoriesSidebar from './components/CategoriesSidebar/CategoriesSidebar.js';
+import CreateCategory from './components/CreateCategory/CreateCategory.js';
 import CreateSnippet from './components/CreateSnippet/CreateSnippet.js';
 import ExampleCards from './components/ExampleCards/ExampleCards.js';
 import Examples from './components/Examples/Examples.js';
@@ -67,7 +69,8 @@ const routes = (
     <Route path="/home" component={HomeView} />
     <Route path="/about" component={AboutView} />
     <Route path="/login" component={LoginView} />
-    <Route path="/create" component={CreateSnippetView} />
+    <Route path="/create/category" component={CreateCategoryView} />
+    <Route path="/create/snippet" component={CreateSnippetView} />
     <Route path="/user/(:userId)" component={UserSettingsView} />
     <Route path="/search/(:searchTerm)" component={SearchResultsView} />
   	<Route path="/category/(:categoryId)" component={CategoryView} />
@@ -78,6 +81,7 @@ const routes = (
     <Route path="/test/about" component={About} />
     <Route path="/test/accordion" component={Accordion} />
     <Route path="/test/categoriessidebar" component={CategoriesSidebar} />
+    <Route path="/test/createcategory" component={CreateCategory} />
     <Route path="/test/createsnippet" component={CreateSnippet} />
     <Route path="/test/examplecards" component={ExampleCards} />
     <Route path="/test/examples" component={Examples} />

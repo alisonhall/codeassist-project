@@ -569,6 +569,15 @@ class Page extends Component {
 
 			var aboutComponent = <About /> ;
 
+			var createCategoryComponent = <CreateCategory
+				allCategories = { this.state.allCategories }
+				allLanguages = { this.state.allLanguages }
+				topCategories = { this.state.topCategories }
+				newId = { this.state.allCategories.length }
+				user = { this.state.allUsers[this.state.currentUser] }
+				addCategory = { this.addCategory }
+			/>;
+
 			var createSnippetComponent = <CreateSnippet
 				allCategories = { this.state.allCategories }
 				allLanguages = { this.state.allLanguages }
@@ -618,6 +627,8 @@ class Page extends Component {
 				contentComponent = aboutComponent;
 			} else if (contentComponentStr == 'category') {
 				contentComponent = categoryComponent;
+			} else if (contentComponentStr == 'createcategory') {
+				contentComponent = createCategoryComponent;
 			} else if (contentComponentStr == 'createsnippet') {
 				contentComponent = createSnippetComponent;
 			} else if (contentComponentStr == 'error404') {

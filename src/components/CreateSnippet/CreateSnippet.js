@@ -115,8 +115,8 @@ class CreateSnippet extends Component {
 				<form onSubmit={this.onSubmit}>
 					<div>
 						<label htmlFor="selectType">Select Type:</label>
-						<input type="radio" name="selectType" value="Syntax" ref="selectTypeSyntax" />Syntax
-						<input type="radio" name="selectType" value="Example" ref="selectTypeExample" defaultChecked />Example
+						<span><input type="radio" name="selectType" value="Syntax" ref="selectTypeSyntax" /><span>Syntax</span></span>
+						<span><input type="radio" name="selectType" value="Example" ref="selectTypeExample" defaultChecked /><span>Example</span></span>
 					</div>
 					<div>
 						<label htmlFor="selectCategory">Select Category:</label>
@@ -140,7 +140,7 @@ class CreateSnippet extends Component {
 					</div>
 					<div>
 						<label htmlFor="enterDescription">Description:</label>
-						<textarea name="enterDescription" id="enterDescription" cols="30" rows="10" ref="enterDescription"></textarea>
+						<textarea name="enterDescription" id="enterDescription" cols="30" rows="5" ref="enterDescription"></textarea>
 					</div>
 					<div>
 						<label htmlFor="enterCode">Code Snippet:</label>

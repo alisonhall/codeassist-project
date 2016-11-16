@@ -150,6 +150,15 @@ class OpenSyntaxCard extends Component {
 			var numberOfComments = (example.commentIDs) ? example.commentIDs.length : 0;
 			var languageClass = "language-" + languageShort;
 
+			var languagePosition = null;
+			if(language.id == this.props.selectedLanguages[0]) {
+				languagePosition = 1;
+			} else if(language.id == this.props.selectedLanguages[1]) {
+				languagePosition = 2;
+			} else if(language.id == this.props.selectedLanguages[2]) {
+				languagePosition = 3;
+			}
+			
 			return (
 				<section className="openSyntaxCard-container">
 					<h2>Syntax for <Link to={'/category/' + categoryId}>{categoryName}</Link></h2>
@@ -166,7 +175,7 @@ class OpenSyntaxCard extends Component {
 						</div>
 
 						<div className="thirds">
-							<div className="languageStyle">{languageFull}</div>
+							<div className={classnames('languageStyle', `languageStyle${languagePosition}`)}>{languageFull}</div>
 						</div>
 					</div>
 

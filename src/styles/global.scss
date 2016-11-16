@@ -30,6 +30,14 @@ aside {
 	z-index: 9999;
 }
 
+footer {
+	margin-left: $sidebar-width-closed + 10px !important;
+}
+
+.container-fluid {
+	margin-left: $sidebar-width-closed + 10px !important;
+}
+
 .thirds {
 	width: 33%;
 	padding: 10px;
@@ -44,4 +52,11 @@ aside {
 
 .desc {
 	font-size: 0.938em;
+}
+
+/* Clearfix */
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
 }

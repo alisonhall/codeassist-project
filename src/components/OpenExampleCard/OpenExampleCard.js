@@ -151,15 +151,13 @@ class OpenExampleCard extends Component {
 			var languageClass = "language-" + languageShort;
 
 			var languagePosition = null;
-			if(language.id == selectedLanguages[0]) {
+			if(language.id == this.props.selectedLanguages[0]) {
 				languagePosition = 1;
-			} else if(language.id == selectedLanguages[1]) {
+			} else if(language.id == this.props.selectedLanguages[1]) {
 				languagePosition = 2;
-			} else if(language.id == selectedLanguages[2]) {
+			} else if(language.id == this.props.selectedLanguages[2]) {
 				languagePosition = 3;
 			}
-
-			var languagePositionStr = (languagePosition) ? 'languageStyle' + languagePosition : '';
 
 			return (
 				<section className="openExampleCard-container">
@@ -177,7 +175,7 @@ class OpenExampleCard extends Component {
 						</div>
 
 						<div className="thirds">
-							<div className="languageStyle">{languageFull}</div>
+							<div className={classnames('languageStyle', `languageStyle${languagePosition}`)}>{languageFull}</div>
 						</div>
 					</div>
 

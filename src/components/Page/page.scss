@@ -10,6 +10,8 @@
 	#content {
 		// width: 75%;
 		float: right;
+		width: 100%;
+		min-height: calc(100vh - 250px);
 	}
 }
 

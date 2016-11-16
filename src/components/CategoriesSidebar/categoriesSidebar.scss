@@ -1,17 +1,33 @@
 @import '../../styles/variables.scss';
+// 85px is the $header-height
+// 14px is the height adjustment
+$sidebar-height: calc(100vh - 85px);
+$sidebar-height-adjustment: -14px;
+$sidebar-height-2: calc(100vh - (85px + 14px));
 
 .categoriesSidebar-container {
+	&.hide {
+		display: block !important;
+		
+		#showCategories {
+			display: inline-block;
+		}
+
+		.categoriesList {
+			display: none;
+		}
+	}
 
 	#showCategories {
-		$buttonHeight: 1200px;
+		display: none;
 		margin: 0;
 		transform-origin: 0% 0%;
 		transform: rotate(270deg);
-		position: fixed;
-		top: 85px + $buttonHeight;
+		position: absolute;
+		top: $sidebar-height;
 		left: 0;
-		width: $buttonHeight;
-		height: 70px;
+		width: $sidebar-height;
+		height: $sidebar-width-closed;
 		text-align: right;
 		background-color: $sidebar-color;
 		padding: 0 20px;
@@ -23,20 +39,26 @@
 	}
 
 	.categoriesList {
+		display: inline-block;
 		background-color: $sidebar-color;
 		padding: 10px;
-		position: fixed;
-		width: 250px;
-		top: 85px;
+		position: absolute;
+		width: $sidebar-width-opened;
+		top: 0;
 		left: 0;
-		bottom: 0;
+		overflow: scroll;
+		height: $sidebar-height;
 	}
 }
 
-.categoriesSidebar-container.hide {
-	display: block !important;
+@media screen and (max-width: 991px) {
+	.categoriesSidebar-container {
+		#showCategories {
+			top: $sidebar-height-2;
+		}
 
-	.categoriesList {
-		display: none;
+		.categoriesList {
+			top: 0 + $sidebar-height-adjustment;
+		}
 	}
 }

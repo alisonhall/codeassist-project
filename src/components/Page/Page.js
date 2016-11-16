@@ -25,6 +25,7 @@ var base = Rebase.createClass({
 import About from './../About/About.js';
 import Accordion from './../Accordion/Accordion.js';
 import CategoriesSidebar from './../CategoriesSidebar/CategoriesSidebar.js';
+import CreateCategory from './../CreateCategory/CreateCategory.js';
 import CreateSnippet from './../CreateSnippet/CreateSnippet.js';
 import EditMenu from './../EditMenu/EditMenu.js';
 import ExampleCards from './../ExampleCards/ExampleCards.js';
@@ -76,6 +77,7 @@ class Page extends Component {
 
 		this.addToSelectedLanguages = this.addToSelectedLanguages.bind(this);
 		this.removeSelectedLanguage = this.removeSelectedLanguage.bind(this);
+		this.addCategory = this.addCategory.bind(this);
 		this.addExample = this.addExample.bind(this);
 
 		this.getInitialData = this.getInitialData.bind(this);
@@ -355,6 +357,49 @@ class Page extends Component {
 		var selectedLanguages = this.state.selectedLanguages;
 		selectedLanguages.splice(key, 1);
 		this.setState({ selectedLanguages: selectedLanguages });
+	}
+
+	addCategory(object, index, selectedParentCategory, isTopLevel) {
+		console.log("Add category to " + selectedParentCategory);
+		console.log(object, index, selectedParentCategory, isTopLevel);
+		var allCategories = this.state.allCategories;
+		var topCategories = this.state.topCategories;
+
+		if(isTopLevel) {
+			topCategories.push(`${index}`);
+				
+		} else {
+			if(allCategories[selectedParentCategory].subCategoryIDs) {
+				allCategories[selectedParentCategory].subCategoryIDs.push(`${index}`);
+			} else {
+				var id = allCategories[selectedParentCategory].id;
+				var key = (allCategories[selectedParentCategory].key) ? allCategories[selectedParentCategory].key : '';
+				var relatedCategoryIDs = (allCategories[selectedParentCategory].relatedCategoryIDs) ? allCategories[selectedParentCategory].relatedCategoryIDs : [];
+				var isTopLevel = (allCategories[selectedParentCategory].isTopLevel) ? allCategories[selectedParentCategory].isTopLevel : null;
+				var name = (allCategories[selectedParentCategory].name) ? allCategories[selectedParentCategory].name : '';
+				var alternativeNames = (allCategories[selectedParentCategory].alternativeNames) ? allCategories[selectedParentCategory].alternativeNames : [];
+				var description = (allCategories[selectedParentCategory].description) ? allCategories[selectedParentCategory].description : '';
+				var count = (allCategories[selectedParentCategory].count) ? allCategories[selectedParentCategory].count : '';
+
+				allCategories[selectedParentCategory] = {
+					subCategoryIDs: {
+						["0"]: `${index}`
+					},
+					id,
+					key,
+					relatedCategoryIDs,
+					isTopLevel,
+					name,
+					alternativeNames,
+					description,
+					count
+				}
+			}
+		}
+		
+		allCategories[index] = object;
+
+		this.setState({ allCategories: allCategories, topCategories: topCategories });
 	}
 
 	addExample(object, index, category, language, isSyntax) {

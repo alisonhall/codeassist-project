@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { IndexLink, Link, browserHistory } from 'react-router';
 import classnames from 'classnames';
+import moment from 'moment';
 import $ from 'jquery';
 
 // Styles
@@ -33,6 +34,7 @@ class CreateCategory extends Component {
 
 	onSubmit(event) {
 		event.preventDefault();
+		var timestamp = moment().format();
 
 		var object = {
 			"id": `${this.props.newId}`,
@@ -41,7 +43,11 @@ class CreateCategory extends Component {
 			"isTopLevel": this.state.isTopLevel,
 			"name": this.state.name,
 			"alternativeNames": this.state.relatedNames,
-			"description": this.state.description
+			"description": this.state.description,
+			"createdBy": this.props.user.id,
+			"editedBy": this.props.user.id,
+			"dateCreated": timestamp,
+			"dateEdited": timestamp,
 		}
 
 		this.setState({

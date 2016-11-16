@@ -11,17 +11,18 @@ class CreateSnippet extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			selectedType: '',
-			selectedCategory: '',
-			selectedLanguage: '',
-			selectedLevel: '',
-			enteredDescription: '',
-			enteredCode: '',
-			object: {}
+			object: {},
+			type: 'Example',
+			category: '0',
+			language: '0',
+			level: 'Beginner',
+			description: '',
+			code: '',
 		}
 
-		this.constructObject = this.constructObject.bind(this);
 		this.onSubmit = this.onSubmit.bind(this);
+		this.handleChange = this.handleChange.bind(this);
+		this.saveExample = this.saveExample.bind(this);
 		this.categoryOption = this.categoryOption.bind(this);
 		this.languageOption = this.languageOption.bind(this);
 	}
@@ -31,69 +32,53 @@ class CreateSnippet extends Component {
 		browserHistory.push('/');
 	}
 
-	constructObject() {
-		var object = {
-			
-		}
-
-		this.setState({object: object});
-
-		this.saveExample();
-	}
-
 	onSubmit(event) {
 		event.preventDefault();
-		console.log(this.refs);
-		// var selectedType = this.refs.selectType.value;
-		var selectedType;
+		var selectedType = this.state.type;
 		var isSyntax = false;
-		if(this.refs.selectTypeSyntax.checked) {
-			selectedType = this.refs.selectTypeSyntax.value;
+		var isHowTo = false;
+		if(selectedType == 'Syntax') {
 			isSyntax = true;
-		} else if (this.refs.selectTypeExample.checked) {
-			selectedType = this.refs.selectTypeExample.value;
+			isHowTo = false;
+		} else if (selectedType == 'Example') {
+			isSyntax = false;
+			isHowTo = false;
+		} else if (selectedType == 'How-To') {
+			isSyntax = false;
+			isHowTo = true;
 		} else {
 			console.log("ERROR: Select Type options");
 		}
 
-		var selectedCategory = this.refs.selectCategory.value;
-		var selectedLanguage = this.refs.selectLanguage.value;
-		var selectedLevel = this.refs.selectLevel.value;
-		var enteredDescription = this.refs.enterDescription.value;
-		var enteredCode = this.refs.enterCode.value;
-
 		var object = {
 			"id": this.props.newId,
-			"categoryID": selectedCategory,
-			"language": selectedLanguage,
+			"categoryID": this.state.category,
+			"language": this.state.language,
 			"createdBy": this.props.user.id,
 			"editedBy": this.props.user.id,
 			"commentIDs": [],
 			"dateCreated": "January 1 2016",
 			"dateEdited": "January 1 2016",
 			"syntax": isSyntax,
-			"howTo": false,
-			"description": enteredDescription,
-			"codeText": enteredCode,
+			"howTo": isHowTo,
+			"description": this.state.description,
+			"codeText": this.state.code,
 			"embeddedCode": "",
 			"image": "",
-			"level": selectedLevel,
+			"level": this.state.level,
 			"ranking": "1000"
 		}
 
 		this.setState({
-			selectedType: selectedType,
-			selectedCategory: selectedCategory,
-			selectedLanguage: selectedLanguage,
-			selectedLevel: selectedLevel,
-			enteredDescription: enteredDescription,
-			enteredCode: enteredCode,
 			object: {object}
 		});
 
-		// this.constructObject();
+		this.saveExample(object, Number(this.state.category), Number(this.state.language), isSyntax);
+	}
 
-		this.saveExample(object, Number(selectedCategory), Number(selectedLanguage), isSyntax);
+	handleChange(event) {
+		var value = event.target.value;
+		this.setState({[event.target.name]: value});
 	}
 
 	categoryOption(category, i) {
@@ -114,37 +99,38 @@ class CreateSnippet extends Component {
 				<h1>Create Snippet</h1>
 				<form onSubmit={this.onSubmit}>
 					<div>
-						<label htmlFor="selectType">Select Type:</label>
-						<span><input type="radio" name="selectType" value="Syntax" ref="selectTypeSyntax" /><span>Syntax</span></span>
-						<span><input type="radio" name="selectType" value="Example" ref="selectTypeExample" defaultChecked /><span>Example</span></span>
+						<label htmlFor="type">Select Type:</label>
+						<span><input type="radio" name="type" value="Syntax" ref="selectTypeSyntax" onChange={this.handleChange} /><span>Syntax</span></span>
+						<span><input type="radio" name="type" value="Example" ref="selectTypeExample" onChange={this.handleChange} defaultChecked /><span>Example</span></span>
+						<span><input type="radio" name="type" value="How-To" ref="selectTypeHowTo" onChange={this.handleChange} disabled /><span>How-To</span></span>
 					</div>
 					<div>
-						<label htmlFor="selectCategory">Select Category:</label>
-						<select name="selectCategory" id="selectCategory" ref="selectCategory">
+						<label htmlFor="category">Select Category:</label>
+						<select name="category" id="selectCategory" ref="selectCategory" value={this.state.category} onChange={this.handleChange}>
 							{this.props.allCategories.map(this.categoryOption)}
 						</select>
 					</div>
 					<div>
-						<label htmlFor="selectLanguage">Select Language:</label>
-						<select name="selectLanguage" id="selectLanguage" ref="selectLanguage">
+						<label htmlFor="language">Select Language:</label>
+						<select name="language" id="selectLanguage" ref="selectLanguage" value={this.state.language} onChange={this.handleChange}>
 							{this.props.allLanguages.map(this.languageOption)}
 						</select>
 					</div>
 					<div>
-						<label htmlFor="selectLevel">Select Level:</label>
-						<select name="selectLevel" id="selectLevel" ref="selectLevel">
+						<label htmlFor="level">Select Level:</label>
+						<select name="level" id="selectLevel" ref="selectLevel" value={this.state.level} onChange={this.handleChange}>
 							<option value="Beginner">Beginner</option>
 							<option value="Intermediate">Intermediate</option>
 							<option value="Advanced">Advanced</option>
 						</select>
 					</div>
 					<div>
-						<label htmlFor="enterDescription">Description:</label>
-						<textarea name="enterDescription" id="enterDescription" cols="30" rows="5" ref="enterDescription"></textarea>
+						<label htmlFor="description">Description:</label>
+						<textarea name="description" id="enterDescription" cols="30" rows="5" ref="enterDescription" value={this.state.description} onChange={this.handleChange} />
 					</div>
 					<div>
-						<label htmlFor="enterCode">Code Snippet:</label>
-						<textarea name="enterCode" id="enterCode" cols="30" rows="10" ref="enterCode"></textarea>
+						<label htmlFor="code">Code Snippet:</label>
+						<textarea name="code" id="enterCode" cols="30" rows="10" ref="enterCode" value={this.state.code} onChange={this.handleChange} />
 					</div>
 					
 					<button type="submit" id="submit">Submit Snippet</button>

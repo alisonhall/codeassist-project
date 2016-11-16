@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { IndexLink, Link, browserHistory } from 'react-router';
 import classnames from 'classnames';
+import moment from 'moment';
 import $ from 'jquery';
 
 // Styles
@@ -34,6 +35,8 @@ class CreateSnippet extends Component {
 
 	onSubmit(event) {
 		event.preventDefault();
+		var timestamp = moment().format();
+
 		var selectedType = this.state.type;
 		var isSyntax = false;
 		var isHowTo = false;
@@ -57,8 +60,8 @@ class CreateSnippet extends Component {
 			"createdBy": this.props.user.id,
 			"editedBy": this.props.user.id,
 			"commentIDs": [],
-			"dateCreated": "January 1 2016",
-			"dateEdited": "January 1 2016",
+			"dateCreated": timestamp,
+			"dateEdited": timestamp,
 			"syntax": isSyntax,
 			"howTo": isHowTo,
 			"description": this.state.description,

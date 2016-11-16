@@ -20,6 +20,10 @@
 			"name": "Conditional",
 			"alternativeNames": [],
 			"description": "",
+			"createdBy": "0",
+			"editedBy": "0",
+			"dateCreated": "2016-01-01T00:00:00-05:00",
+			"dateEdited": "2016-01-01T00:00:00-05:00",
 			"count": {
 				"0": {
 					"examples": [],
@@ -55,6 +59,10 @@
 			"name": "If Statement",
 			"alternativeNames": [],
 			"description": "",
+			"createdBy": "0",
+			"editedBy": "0",
+			"dateCreated": "2016-01-01T00:00:00-05:00",
+			"dateEdited": "2016-01-01T00:00:00-05:00",
 			"count": {
 				"0": {
 					"examples": [],
@@ -90,6 +98,10 @@
 			"name": "While Loop",
 			"alternativeNames": [],
 			"description": "",
+			"createdBy": "0",
+			"editedBy": "0",
+			"dateCreated": "2016-01-01T00:00:00-05:00",
+			"dateEdited": "2016-01-01T00:00:00-05:00",
 			"count": {
 				"0": {
 					"examples": [],
@@ -125,6 +137,10 @@
 			"name": "Data Types",
 			"alternativeNames": [],
 			"description": "These are data types.",
+			"createdBy": "0",
+			"editedBy": "0",
+			"dateCreated": "2016-01-01T00:00:00-05:00",
+			"dateEdited": "2016-01-01T00:00:00-05:00",
 			"count": {
 				"0": {
 					"examples": [],
@@ -160,6 +176,10 @@
 			"name": "String",
 			"alternativeNames": [],
 			"description": "Strings are just like text. They are a collection of characters.",
+			"createdBy": "0",
+			"editedBy": "0",
+			"dateCreated": "2016-01-01T00:00:00-05:00",
+			"dateEdited": "2016-01-01T00:00:00-05:00",
 			"count": {
 				"0": {
 					"examples": [],
@@ -195,6 +215,10 @@
 			"name": "Integer",
 			"alternativeNames": [],
 			"description": "Integers represent whole numbers. This means 0 to a large number, with no decimals or fractions. Arithmetic can be applied to integers.",
+			"createdBy": "0",
+			"editedBy": "0",
+			"dateCreated": "2016-01-01T00:00:00-05:00",
+			"dateEdited": "2016-01-01T00:00:00-05:00",
 			"count": {
 				"0": {
 					"examples": [],
@@ -230,6 +254,10 @@
 			"name": "Function",
 			"alternativeNames": [],
 			"description": "A function is a type of procedure or routine. Some programming languages make a distinction between a function, which returns a value, and a procedure, which performs some operation but does not return a value. Most programming languages come with a prewritten set of functions that are kept in a library.",
+			"createdBy": "0",
+			"editedBy": "0",
+			"dateCreated": "2016-01-01T00:00:00-05:00",
+			"dateEdited": "2016-01-01T00:00:00-05:00",
 			"count": {
 				"0": {
 					"examples": [5, 6],
@@ -342,8 +370,8 @@
 			"createdBy": "0",
 			"editedBy": "0",
 			"commentIDs": [],
-			"dateCreated": "January 1 2016",
-			"dateEdited": "January 1 2016",
+			"dateCreated": "2016-01-01T00:00:00-05:00",
+			"dateEdited": "2016-01-01T00:00:00-05:00",
 			"syntax": true,
 			"howTo": false,
 			"description": "Implicit string",
@@ -360,8 +388,8 @@
 			"createdBy": "0",
 			"editedBy": "0",
 			"commentIDs": [],
-			"dateCreated": "January 1 2016",
-			"dateEdited": "January 1 2016",
+			"dateCreated": "2016-01-01T00:00:00-05:00",
+			"dateEdited": "2016-01-01T00:00:00-05:00",
 			"syntax": true,
 			"howTo": false,
 			"description": "Explicit string",
@@ -378,8 +406,8 @@
 			"createdBy": "0",
 			"editedBy": "0",
 			"commentIDs": ["0"],
-			"dateCreated": "January 1 2016",
-			"dateEdited": "January 1 2016",
+			"dateCreated": "2016-01-01T00:00:00-05:00",
+			"dateEdited": "2016-01-01T00:00:00-05:00",
 			"syntax": false,
 			"howTo": false,
 			"description": "Implicit string",
@@ -396,8 +424,8 @@
 			"createdBy": "0",
 			"editedBy": "0",
 			"commentIDs": [],
-			"dateCreated": "January 1 2016",
-			"dateEdited": "January 1 2016",
+			"dateCreated": "2016-01-01T00:00:00-05:00",
+			"dateEdited": "2016-01-01T00:00:00-05:00",
 			"syntax": false,
 			"howTo": false,
 			"description": "Explicit string",
@@ -414,8 +442,8 @@
 			"createdBy": "0",
 			"editedBy": "0",
 			"commentIDs": [],
-			"dateCreated": "January 1 2016",
-			"dateEdited": "January 1 2016",
+			"dateCreated": "2016-01-01T00:00:00-05:00",
+			"dateEdited": "2016-01-01T00:00:00-05:00",
 			"syntax": true,
 			"howTo": false,
 			"description": "Function with arguments",
@@ -432,8 +460,8 @@
 			"createdBy": "0",
 			"editedBy": "0",
 			"commentIDs": [],
-			"dateCreated": "January 1 2016",
-			"dateEdited": "January 1 2016",
+			"dateCreated": "2016-01-01T00:00:00-05:00",
+			"dateEdited": "2016-01-01T00:00:00-05:00",
 			"syntax": false,
 			"howTo": false,
 			"description": "Function without an argument",
@@ -450,8 +478,8 @@
 			"createdBy": "0",
 			"editedBy": "0",
 			"commentIDs": [],
-			"dateCreated": "January 1 2016",
-			"dateEdited": "January 1 2016",
+			"dateCreated": "2016-01-01T00:00:00-05:00",
+			"dateEdited": "2016-01-01T00:00:00-05:00",
 			"syntax": false,
 			"howTo": false,
 			"description": "Creating a function and calling it",
@@ -468,8 +496,8 @@
 			"createdBy": "0",
 			"editedBy": "0",
 			"commentIDs": [],
-			"dateCreated": "January 1 2016",
-			"dateEdited": "January 1 2016",
+			"dateCreated": "2016-01-01T00:00:00-05:00",
+			"dateEdited": "2016-01-01T00:00:00-05:00",
 			"syntax": true,
 			"howTo": false,
 			"description": "Creating a function with a return value",
@@ -486,8 +514,8 @@
 			"createdBy": "0",
 			"editedBy": "0",
 			"commentIDs": [],
-			"dateCreated": "January 1 2016",
-			"dateEdited": "January 1 2016",
+			"dateCreated": "2016-01-01T00:00:00-05:00",
+			"dateEdited": "2016-01-01T00:00:00-05:00",
 			"syntax": false,
 			"howTo": false,
 			"description": "Creating a function and calling it",
@@ -513,7 +541,7 @@
 			"password": "aaa",
 			"ranking": "1000",
 			"permissionLevel": "admin",
-			"dateSignedUp": "January 1 2016"
+			"dateSignedUp": "2016-01-01T00:00:00-05:00"
 		}
 	},
 	"comments": {
@@ -521,7 +549,7 @@
 			"id": "0",
 			"exampleID": "0",
 			"createdBy": "0",
-			"dateCreated": "January 1 2016",
+			"dateCreated": "2016-01-01T00:00:00-05:00",
 			"commentText": "Sample comment"
 		}
 	}

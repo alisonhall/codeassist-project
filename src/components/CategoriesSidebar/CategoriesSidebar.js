@@ -20,8 +20,21 @@ class CategoriesSidebar extends Component {
 
 		this.topCategory = this.topCategory.bind(this);
 		this.subCategory = this.subCategory.bind(this);
+		this.singleCategory = this.singleCategory.bind(this);
 		this.handleClickOutside = this.handleClickOutside.bind(this);
 		this.toggleShow = this.toggleShow.bind(this);
+	}
+
+	singleCategory(category, i) {
+		return(
+			<Accordion
+				key={i}
+				index={i}
+				title={category.name}
+				item={category}
+				subContent={null}
+			/>
+		);
 	}
 
 	subCategory(category, i) {
@@ -90,7 +103,8 @@ class CategoriesSidebar extends Component {
 				<div className={classnames('categoriesSidebar-container', `${showStatus}`)}>
 					<button id="showCategories" onClick={this.toggleShow}>Categories<i className="fa fa-bars fa-rotate-270" aria-hidden="true"></i></button>
 					<div className={classnames('categoriesList')} ref={(div) => this.categoriesList = div}>
-						{this.props.topCategories.map(this.topCategory)}
+						{/*}{this.props.topCategories.map(this.topCategory)}{*/}
+						{this.props.allCategories.map(this.singleCategory)}
 						<button id="createCategory">
 							<Link to='/create/category'><i className="fa fa-plus" aria-hidden="true"></i><span>Category</span></Link>
 						</button>

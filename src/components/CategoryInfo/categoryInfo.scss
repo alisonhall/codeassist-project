@@ -1,0 +1,26 @@
+@import '../../styles/variables.scss';
+
+.categoryInfo-container {
+	
+	.alternativeNames,
+	.siblingCategories,
+	.subCategories,
+	.relatedCategories {
+		.thisCategory {
+			display: none;
+		}
+		
+		.content span {
+			// padding: 0 5px;
+
+			&:after {
+				content: ', ';
+			}
+
+			&:last-child:after {
+				content: '';
+			}
+		}
+	}
+
+}

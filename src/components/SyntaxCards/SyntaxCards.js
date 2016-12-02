@@ -30,7 +30,10 @@ class SyntaxCards extends Component {
 		var editedBy = (this.props.editedBy) ? this.props.editedBy.username : '';
 		var dateEdited = this.props.example.dateEdited;
 		var codeText = this.props.example.codeText;
-		var numberOfComments = (this.props.example.commentIDs) ? this.props.example.commentIDs.length : 0;
+		var numberOfComments = '';
+		if(this.props.example.commentIDs) {
+			numberOfComments = (this.props.example.commentIDs == 'None') ? 0 : this.props.example.commentIDs.length;
+		}
 		var languageClass = "language-" + language;
 		var exampleId = this.props.example.id;
 

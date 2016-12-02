@@ -15,7 +15,7 @@ class CreateCategory extends Component {
 			object: {},
 			name: '',
 			relatedNames: [],
-			parentCategory: 'null',
+			parentCategory: 'None',
 			relatedCategories: [],
 			description: '',
 			isTopLevel: true
@@ -27,34 +27,38 @@ class CreateCategory extends Component {
 		this.handleChange = this.handleChange.bind(this);
 	}
 
-	saveCategory(object, selectedParentCategory, isTopLevel) {
-		this.props.addCategory(object, this.props.newId, selectedParentCategory, isTopLevel);
-		browserHistory.push('/');
+	saveCategory(object, selectedParentCategory, isTopLevel, relatedCategoryIDs) {
+		this.props.addCategory(object, this.props.newId, selectedParentCategory, isTopLevel, relatedCategoryIDs);
+		browserHistory.push('/category/' + this.props.newId);
 	}
 
 	onSubmit(event) {
 		event.preventDefault();
 		var timestamp = moment().format();
+		var relatedCategories = (this.state.relatedCategories.length > 0) ? this.state.relatedCategories : 'None';
+		var relatedNames = (this.state.relatedNames.length > 0) ? this.state.relatedNames : 'None';
 
 		var object = {
 			"id": `${this.props.newId}`,
 			"key": `${this.props.newId}`,
-			"relatedCategoryIDs": this.state.relatedCategories,
+			"relatedCategoryIDs": relatedCategories,
 			"isTopLevel": this.state.isTopLevel,
+			"parentCategory": this.state.parentCategory,
 			"name": this.state.name,
-			"alternativeNames": this.state.relatedNames,
+			"alternativeNames": relatedNames,
 			"description": this.state.description,
 			"createdBy": this.props.user.id,
 			"editedBy": this.props.user.id,
 			"dateCreated": timestamp,
 			"dateEdited": timestamp,
+			"subCategoryIDs": 'None'
 		}
 
 		this.setState({
 			object: {object}
 		});
 
-		this.saveCategory(object, Number(this.state.parentCategory), this.state.isTopLevel);
+		this.saveCategory(object, Number(this.state.parentCategory), this.state.isTopLevel, this.state.relatedCategories);
 	}
 
 	handleChange(event) {
@@ -65,16 +69,16 @@ class CreateCategory extends Component {
 			value = [];
 			for (var i = 0, l = options.length; i < l; i++) {
 				if (options[i].selected) {
-					value.push(options[i].value);
+					value.push(Number(options[i].value));
 				}
 			}
 		} else if(event.target.name == 'relatedNames') {
 			value = event.target.value.split(',');
 			for (var i = 0; i < value.length; i++) {
-				value[i] = $.trim(value[i]);
+				// value[i] = $.trim(value[i]);
 			}
 		} else if(event.target.name == 'parentCategory') {
-			if(event.target.value == 'null') {
+			if(event.target.value == 'None') {
 				this.setState({isTopLevel: true});
 			} else {
 				this.setState({isTopLevel: false});
@@ -109,7 +113,7 @@ class CreateCategory extends Component {
 					<div>
 						<label htmlFor="parentCategory">Select Parent Category:</label>
 						<select name="parentCategory" id="selectParentCategory" ref="selectParentCategory" value={this.state.parentCategory} onChange={this.handleChange}>
-							<option key={-1} value="null">None</option>
+							<option key={-1} value="None">None</option>
 							{this.props.allCategories.map(this.categoryOption)}
 						</select>
 					</div>

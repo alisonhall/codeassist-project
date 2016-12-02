@@ -30,7 +30,7 @@ class CreateSnippet extends Component {
 
 	saveExample(object, selectedCategory, selectedLanguage, isSyntax) {
 		this.props.addExample(object, this.props.newId, selectedCategory, selectedLanguage, isSyntax);
-		browserHistory.push('/');
+		browserHistory.push('/category/' + selectedCategory);
 	}
 
 	onSubmit(event) {
@@ -69,7 +69,8 @@ class CreateSnippet extends Component {
 			"embeddedCode": "",
 			"image": "",
 			"level": this.state.level,
-			"ranking": "1000"
+			"ranking": "1000",
+			"commentIDs" : "None"
 		}
 
 		this.setState({

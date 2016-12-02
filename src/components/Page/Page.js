@@ -75,13 +75,24 @@ class Page extends Component {
 			selectedLanguages: [],
 
 			contentComponent: '',
-			currentUser: ''
+			currentUser: []
 		};
 
 		this.addToSelectedLanguages = this.addToSelectedLanguages.bind(this);
 		this.removeSelectedLanguage = this.removeSelectedLanguage.bind(this);
 		this.addCategory = this.addCategory.bind(this);
 		this.addExample = this.addExample.bind(this);
+		this.editCategory = this.editCategory.bind(this);
+		this.deleteCategory = this.deleteCategory.bind(this);
+		this.addRelatedCategory = this.addRelatedCategory.bind(this);
+		this.removeRelatedCategory = this.removeRelatedCategory.bind(this);
+		this.removeRelatedCategory2 = this.removeRelatedCategory2.bind(this);
+		this.checkRelatedCategories = this.checkRelatedCategories.bind(this);
+		this.addToTopCategories = this.addToTopCategories.bind(this);
+		this.removeFromTopCategories = this.removeFromTopCategories.bind(this);
+		this.removeFromParentCategory = this.removeFromParentCategory.bind(this);
+		this.addToParentCategory = this.addToParentCategory.bind(this);
+		this.checkParentCategory = this.checkParentCategory.bind(this);
 
 		this.getInitialData = this.getInitialData.bind(this);
 		this.setupSyncState = this.setupSyncState.bind(this);
@@ -239,6 +250,9 @@ class Page extends Component {
 				currentUserDataLoaded: true,
 				allDataLoaded: allDataLoaded
 			})
+
+			// console.log("Data Loaded: ", this.state);
+
 		}).catch(error => {
 			//handle error
 			noErrors = false;
@@ -248,7 +262,6 @@ class Page extends Component {
 		// if(numFetches == totalFetches && noErrors) {
 		// 	this.setState({allDataLoaded: true});
 		// }
-
 
 	}
 
@@ -303,7 +316,6 @@ class Page extends Component {
 		});
 	}
 
-
 	componentWillMount() {
 		// this runs right before the <Page> is rendered
 		console.log("Loading data...");
@@ -341,7 +353,6 @@ class Page extends Component {
 		base.removeBinding(this.refCurrentUser);
 	}
 
-
 	addToSelectedLanguages(key) {
 		// console.log(this.state);
 		console.log("Select language " + key);
@@ -362,47 +373,248 @@ class Page extends Component {
 		this.setState({ selectedLanguages: selectedLanguages });
 	}
 
-	addCategory(object, index, selectedParentCategory, isTopLevel) {
-		console.log("Add category to " + selectedParentCategory);
-		console.log(object, index, selectedParentCategory, isTopLevel);
+	addRelatedCategory(newCategoryId, relatedCategoryId) {
+		console.log("addRelatedCategory newCategoryId:", newCategoryId, " relatedCategoryId:", relatedCategoryId);
 		var allCategories = this.state.allCategories;
-		var topCategories = this.state.topCategories;
 
-		if(isTopLevel) {
-			topCategories.push(`${index}`);
-				
+		console.log("allCategories[relatedCategoryId].relatedCategoryIDs", allCategories[relatedCategoryId].relatedCategoryIDs);
+		if(allCategories[relatedCategoryId].relatedCategoryIDs && allCategories[relatedCategoryId].relatedCategoryIDs !== 'None') {
+			allCategories[relatedCategoryId].relatedCategoryIDs.push(newCategoryId);
 		} else {
-			if(allCategories[selectedParentCategory].subCategoryIDs) {
-				allCategories[selectedParentCategory].subCategoryIDs.push(`${index}`);
-			} else {
-				var id = allCategories[selectedParentCategory].id;
-				var key = (allCategories[selectedParentCategory].key) ? allCategories[selectedParentCategory].key : '';
-				var relatedCategoryIDs = (allCategories[selectedParentCategory].relatedCategoryIDs) ? allCategories[selectedParentCategory].relatedCategoryIDs : [];
-				var isTopLevel = (allCategories[selectedParentCategory].isTopLevel) ? allCategories[selectedParentCategory].isTopLevel : null;
-				var name = (allCategories[selectedParentCategory].name) ? allCategories[selectedParentCategory].name : '';
-				var alternativeNames = (allCategories[selectedParentCategory].alternativeNames) ? allCategories[selectedParentCategory].alternativeNames : [];
-				var description = (allCategories[selectedParentCategory].description) ? allCategories[selectedParentCategory].description : '';
-				var count = (allCategories[selectedParentCategory].count) ? allCategories[selectedParentCategory].count : '';
+			allCategories[relatedCategoryId]["relatedCategoryIDs"] = [newCategoryId];
+		}
 
-				allCategories[selectedParentCategory] = {
-					subCategoryIDs: {
-						["0"]: `${index}`
-					},
-					id,
-					key,
-					relatedCategoryIDs,
-					isTopLevel,
-					name,
-					alternativeNames,
-					description,
-					count
+		this.setState({allCategories: allCategories});
+	}
+
+	removeRelatedCategory(originalCategory, categoryId) {
+		var categoryId = Number(categoryId);
+		var originalCategory = Number(originalCategory);
+		console.log("removeRelatedCategory. Remove categoryId(", categoryId, ") from category originalCategory(", originalCategory, ")");
+		var allCategories = this.state.allCategories;
+
+		// console.log("allCategories[categoryId].relatedCategoryIDs.length", allCategories[categoryId].relatedCategoryIDs.length)
+		if(allCategories[originalCategory].relatedCategoryIDs.length > 0) {
+			var index = allCategories[originalCategory].relatedCategoryIDs.indexOf(categoryId);
+			// console.log("allCategories[categoryId].relatedCategoryIDs", allCategories[categoryId].relatedCategoryIDs, "Number(originalCategory)", Number(originalCategory), "index", index);
+			if (index > -1) {
+			    // console.log("removeRelatedCategory SPLICE");
+			    allCategories[originalCategory].relatedCategoryIDs.splice(index, 1);
+			}
+		} else {
+			allCategories[originalCategory].relatedCategoryIDs = 'None';
+		}
+
+		console.log("After removal: allCategories[originalCategory].relatedCategoryIDs", allCategories[originalCategory].relatedCategoryIDs);
+		
+		this.setState({allCategories: allCategories});
+	}
+
+	removeRelatedCategory2(categoryId, originalCategory) {
+		var categoryId = Number(categoryId);
+		var originalCategory = Number(originalCategory);
+		console.log("removeRelatedCategory. Remove categoryId(", categoryId, ") from category originalCategory(", originalCategory, ")");
+		var allCategories = this.state.allCategories;
+
+		// console.log("allCategories[categoryId].relatedCategoryIDs.length", allCategories[categoryId].relatedCategoryIDs.length)
+		if(allCategories[originalCategory].relatedCategoryIDs.length > 0) {
+			var index = allCategories[originalCategory].relatedCategoryIDs.indexOf(categoryId);
+			// console.log("allCategories[categoryId].relatedCategoryIDs", allCategories[categoryId].relatedCategoryIDs, "Number(originalCategory)", Number(originalCategory), "index", index);
+			if (index > -1) {
+			    // console.log("removeRelatedCategory SPLICE");
+			    allCategories[originalCategory].relatedCategoryIDs.splice(index, 1);
+			}
+		} else {
+			allCategories[originalCategory].relatedCategoryIDs = 'None';
+		}
+
+		console.log("After removal: allCategories[originalCategory].relatedCategoryIDs", allCategories[originalCategory].relatedCategoryIDs);
+		
+		this.setState({allCategories: allCategories});
+	}
+
+	checkRelatedCategories(originalIds, newIds, categoryId) {
+		console.log("checkRelatedCategories originalIds:", originalIds, " newIds:", newIds, " categoryId:", categoryId);
+		var allCategories = this.state.allCategories;
+
+		if(newIds == 'None') {
+			originalIds.map(this.removeRelatedCategory2.bind(this, categoryId));
+			// allCategories[categoryId].relatedCategoryIDs.map(this.removeRelatedCategory.bind(this, categoryId));
+
+		} else if (originalIds == 'None') {
+			newIds.map(this.addRelatedCategory.bind(this, categoryId));
+		} else {
+			for (var i = 0; i < newIds.length; i++) {
+				console.log("Loop 1. i", i, " newIds[i]", newIds[i]);
+
+				var index = originalIds.indexOf(newIds[i]);
+				if (index > -1) {
+				    console.log("No change. In both: newIds[i]", newIds[i], " originalIds[index]", originalIds[index], " i", i, " index", index);
+				} else {
+					console.log("Add: newIds[i]", newIds[i], " originalIds[index]", originalIds[index], " i", i, " index", index);
+					// this.addRelatedCategory(newCategoryId, relatedCategoryId);
+					// this.addRelatedCategory(newIds[i], originalIds);
+					// addRelatedCategory(newCategoryId, relatedCategoryId)
+
+					this.addRelatedCategory(categoryId, newIds[i]);
+				}
+			}
+
+			for (var j = 0; j < originalIds.length; j++) {
+				console.log("Loop 2. j", j, " originalIds[j]", originalIds[j]);
+
+				var index2 = newIds.indexOf(originalIds[j]);
+				if (index2 > -1) {
+					console.log("No change. In both: originalIds[j]", originalIds[j], " newIds[index]", newIds[index], " i", i, " index", index);
+				} else {
+					console.log("Remove: originalIds[j]", originalIds[j], " newIds[index2]", newIds[index2], " j", j, " index2", index2);
+					// this.removeRelatedCategory(categoryId, index);
+					// this.removeRelatedCategory(originalIds[j], originalIds);
+					this.removeRelatedCategory(originalIds[j], categoryId);
 				}
 			}
 		}
 		
+	}
+
+	addToTopCategories(categoryId) {
+		console.log("addToTopCategories categoryId:", categoryId);
+		var topCategories = this.state.topCategories;
+		topCategories.push(`${categoryId}`);
+		this.setState({ topCategories: topCategories });
+	}
+
+	removeFromTopCategories(categoryId) {
+		console.log("removeFromTopCategories categoryId:", categoryId);
+		var topCategories = this.state.topCategories;
+		var index = topCategories.indexOf(categoryId);
+		if (index > -1) {
+		    topCategories.splice(index, 1);
+		}
+		this.setState({ topCategories: topCategories });
+	}
+
+	removeFromParentCategory(parentCategoryId, categoryId) {
+		console.log("removeFromParentCategory parentCategoryId:", parentCategoryId, " categoryId:", categoryId);
+		var allCategories = this.state.allCategories;
+
+		if(allCategories[parentCategoryId].subCategoryIDs.length > 1) {
+			var index = allCategories[parentCategoryId].subCategoryIDs.indexOf(categoryId);
+			if (index > -1) {
+			    allCategories[parentCategoryId].subCategoryIDs.splice(index, 1);
+			}
+		} else {
+			var index = allCategories[parentCategoryId].subCategoryIDs.indexOf(categoryId);
+			if (index > -1) {
+				allCategories[parentCategoryId].subCategoryIDs = 'None';
+			}
+		}
+
+		this.setState({ allCategories: allCategories });
+	}
+
+	addToParentCategory(parentCategoryId, categoryId) {
+		console.log("addToParentCategory parentCategoryId:", parentCategoryId, " categoryId:", categoryId);
+		var allCategories = this.state.allCategories;
+
+		if(allCategories[parentCategoryId].subCategoryIDs && allCategories[parentCategoryId].subCategoryIDs !== 'None') {
+			allCategories[parentCategoryId].subCategoryIDs.push(`${categoryId}`);
+		} else {
+			allCategories[parentCategoryId].subCategoryIDs = [`${categoryId}`];
+		}
+	}
+
+	checkParentCategory(categoryId, originalParentCategory, newParentCategory) {
+		console.log("checkParentCategory categoryId:", categoryId, " originalParentCategory:", originalParentCategory, " newParentCategory:", newParentCategory);
+
+		if(originalParentCategory !== newParentCategory) {
+			console.log("Edit Category: Different parent category");
+			if(originalParentCategory == 'None') {
+				console.log("Edit Category: Remove from topCategories, change it's parent's subCategoryIDs");
+				this.removeFromTopCategories(categoryId);
+			    this.addToParentCategory(newParentCategory, categoryId);
+
+			} else if (newParentCategory == 'None') {
+				console.log("Edit Category: Add to topCategories, change it's parent's subCategoryIDs");
+				this.addToTopCategories(categoryId);
+				this.removeFromParentCategory(originalParentCategory, categoryId);
+
+			} else {
+				console.log("Edit Category: Just change it's parent's subCategoryIDs");
+				this.removeFromParentCategory(originalParentCategory, categoryId);
+				this.addToParentCategory(newParentCategory, categoryId);
+			}
+		} else {
+			console.log("Edit Category: Same parent category, do nothing");
+		}
+
+	}
+
+	addCategory(object, index, selectedParentCategory, isTopLevel, relatedCategoryIDs) {
+		console.log("Add category to " + selectedParentCategory);
+		console.log("\tfunction attributes:", object, index, selectedParentCategory, isTopLevel, relatedCategoryIDs);
+		var allCategories = this.state.allCategories;
+
+		if(isTopLevel) {
+			// topCategories.push(`${index}`);
+			this.addToTopCategories(index);
+				
+		} else {
+			this.addToParentCategory(selectedParentCategory, index);
+		}
+
+		if(relatedCategoryIDs !== 'None') {
+			relatedCategoryIDs.map(this.addRelatedCategory.bind(this, index));
+		} else {
+			// this.addRelatedCategory(this, index);
+		}
+		
 		allCategories[index] = object;
 
-		this.setState({ allCategories: allCategories, topCategories: topCategories });
+		this.setState({ allCategories: allCategories });
+	}
+
+	deleteCategory(categoryId) {
+		console.log("Delete Category " + categoryId);
+		var allCategories = this.state.allCategories;
+
+		if(allCategories[categoryId].isTopLevel) {
+			this.removeFromTopCategories(categoryId);
+		} else {
+			var parentCategory = allCategories[categoryId].parentCategory;
+			this.removeFromParentCategory(parentCategory, categoryId);
+		}
+
+		if(allCategories[categoryId].relatedCategoryIDs !== 'None') {
+			allCategories[categoryId].relatedCategoryIDs.map(this.removeRelatedCategory.bind(this, categoryId));
+		}
+
+		allCategories[categoryId] = null;
+
+		this.setState({ allCategories: allCategories });
+	}
+
+	editCategory(object, categoryId, originalParentCategory, newParentCategory) {
+		console.log("Editing Category " + categoryId);
+		console.log(object, categoryId, originalParentCategory, newParentCategory);
+		var originalRelatedCategories = this.state.allCategories[categoryId].relatedCategoryIDs;
+		var allCategories = this.state.allCategories;
+
+		this.checkParentCategory(categoryId, originalParentCategory, newParentCategory);
+
+		console.log("Before Edit Saving ", allCategories[categoryId]);
+		allCategories[categoryId] = { ...object };
+
+		// console.log("Edit RelatedCategoryIDs originalRelatedCategories:", originalRelatedCategories, " allCategories[categoryId].relatedCategoryIDs:", allCategories[categoryId].relatedCategoryIDs);
+		if(originalRelatedCategories !== allCategories[categoryId].relatedCategoryIDs) {
+			console.log("Edit RelatedCategoryIDs: Change related categories");
+			this.checkRelatedCategories(originalRelatedCategories, allCategories[categoryId].relatedCategoryIDs, categoryId);
+		} else {
+			console.log("Edit RelatedCategoryIDs: Do nothing");
+		}
+
+		this.setState({ allCategories: allCategories });
+		console.log("After Edit Saving ", allCategories[categoryId]);
 	}
 
 	addExample(object, index, category, language, isSyntax) {
@@ -446,100 +658,26 @@ class Page extends Component {
 					}
 				}
 			} else {
-				var language0 = (allCategories[category]["count"]["0"]) ? allCategories[category]["count"]["0"] : {};
-				var language1 = (allCategories[category]["count"]["1"]) ? allCategories[category]["count"]["1"] : {};
-				var language2 = (allCategories[category]["count"]["2"]) ? allCategories[category]["count"]["2"] : {};
-				var language3 = (allCategories[category]["count"]["3"]) ? allCategories[category]["count"]["3"] : {};
-				var language4 = (allCategories[category]["count"]["4"]) ? allCategories[category]["count"]["4"] : {};
-				var language5 = (allCategories[category]["count"]["5"]) ? allCategories[category]["count"]["5"] : {};
+				var totalNumLanguages = this.state.allLanguages.length;
 
-				if(language == 0) {
-					allCategories[category]["count"] = {
-						// [0]: language0,
-						[1]: language1,
-						[2]: language2,
-						[3]: language3,
-						[4]: language4,
-						[5]: language5,
-						[language]: {
+				var countObjects = [];
+
+				for (var i = 0; i < this.state.allLanguages.length; i++) {
+					var languageObject = (allCategories[category]["count"][i]) ? allCategories[category]["count"][i] : {};
+
+					if (language == i) {
+						countObjects.push({
 							[type]: {
 								[0]: index
 							}
-						}
+						});
+					} else {
+						countObjects.push(languageObject);
 					}
-				} else if (language == 1) {
-					allCategories[category]["count"] = {
-						[0]: language0,
-						// [1]: language1,
-						[2]: language2,
-						[3]: language3,
-						[4]: language4,
-						[5]: language5,
-						[language]: {
-							[type]: {
-								[0]: index
-							}
-						}
-					}
-				} else if (language == 2) {
-					allCategories[category]["count"] = {
-						[0]: language0,
-						[1]: language1,
-						// [2]: language2,
-						[3]: language3,
-						[4]: language4,
-						[5]: language5,
-						[language]: {
-							[type]: {
-								[0]: index
-							}
-						}
-					}
-				} else if (language == 3) {
-					allCategories[category]["count"] = {
-						[0]: language0,
-						[1]: language1,
-						[2]: language2,
-						// [3]: language3,
-						[4]: language4,
-						[5]: language5,
-						[language]: {
-							[type]: {
-								[0]: index
-							}
-						}
-					}
-				} else if (language == 4) {
-					allCategories[category]["count"] = {
-						[0]: language0,
-						[1]: language1,
-						[2]: language2,
-						[3]: language3,
-						// [4]: language4,
-						[5]: language5,
-						[language]: {
-							[type]: {
-								[0]: index
-							}
-						}
-					}
-				} else if (language == 5) {
-					allCategories[category]["count"] = {
-						[0]: language0,
-						[1]: language1,
-						[2]: language2,
-						[3]: language3,
-						[4]: language4,
-						// [5]: language5,
-						[language]: {
-							[type]: {
-								[0]: index
-							}
-						}
-					}
-				} else {
-					console.log("ERROR: language in allCategories[category][count]");
+					
 				}
+
+				allCategories[category]["count"] = { ...countObjects };
 			}
 		} else {
 			var id = allCategories[category].id;
@@ -600,7 +738,11 @@ class Page extends Component {
 				allComments = { this.state.allComments }
 				allDataLoaded = { this.state.allDataLoaded }
 				params = { this.props.params }
+				topCategories = { this.state.topCategories }
 				selectedLanguages = { this.state.selectedLanguages }
+				currentUserId = { this.state.currentUser }
+				editCategory = { this.editCategory }
+				deleteCategory = { this.deleteCategory }
 			/>;
 
 			var aboutComponent = <About /> ;

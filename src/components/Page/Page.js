@@ -21,10 +21,13 @@ var base = Rebase.createClass({
 	storageBucket: "code-assist.appspot.com"
 });
 
+
+
 // Components
 import About from './../About/About.js';
 import Accordion from './../Accordion/Accordion.js';
 import CategoriesSidebar from './../CategoriesSidebar/CategoriesSidebar.js';
+import CategoryInfo from './../CategoryInfo/CategoryInfo.js';
 import CreateCategory from './../CreateCategory/CreateCategory.js';
 import CreateSnippet from './../CreateSnippet/CreateSnippet.js';
 import EditMenu from './../EditMenu/EditMenu.js';

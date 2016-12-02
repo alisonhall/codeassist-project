@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { IndexLink, Link } from 'react-router';
 import classnames from 'classnames';
+import moment from 'moment';
 import $ from 'jquery';
 
 // Components
@@ -8,6 +9,7 @@ import ExampleCards from './../ExampleCards/ExampleCards.js';
 import SyntaxCards from './../SyntaxCards/SyntaxCards.js';
 import NoContent from './../NoContent/NoContent.js';
 import NoLanguage from './../NoLanguage/NoLanguage.js';
+import CategoryInfo from './../CategoryInfo/CategoryInfo.js';
 
 // Styles
 import './examples.scss';
@@ -16,10 +18,12 @@ import './examples.scss';
 class Examples extends Component {
 	constructor(props) {
 		super(props);
+
 		this.eachExample = this.eachExample.bind(this);
 		this.eachSyntax = this.eachSyntax.bind(this);
 		this.renderExamples = this.renderExamples.bind(this);
 		this.renderSyntaxes = this.renderSyntaxes.bind(this);
+		this.displayCategoryInfo = this.displayCategoryInfo.bind(this);
 	}
 
 	eachExample(exampleId, i) {
@@ -86,7 +90,7 @@ class Examples extends Component {
 		if (thisCategory.count[language]) {
 			if(thisCategory.count[language].examples) {
 				return (
-					<section className={classnames('syntax', `language${language}`)} key={i}>
+					<section className={classnames('example', `language${language}`)} key={i}>
 						{thisCategory.count[language].examples.map(this.eachExample)}
 					</section>
 				);
@@ -100,7 +104,7 @@ class Examples extends Component {
 		if (thisCategory.count[language]) {
 			if(thisCategory.count[language].syntaxes) {
 				return (
-					<section className={classnames('example', `language${language}`)} key={i}>
+					<section className={classnames('syntax', `language${language}`)} key={i}>
 						{thisCategory.count[language].syntaxes.map(this.eachSyntax)}
 					</section>
 				);
@@ -108,12 +112,26 @@ class Examples extends Component {
 		}
 	}
 
+	displayCategoryInfo() {
+		return(
+			<CategoryInfo 
+				allCategories = { this.props.allCategories }
+				topCategories = { this.props.topCategories }
+				allUsers = { this.props.allUsers }
+				allDataLoaded = { this.props.allDataLoaded }
+				params = { this.props.params }
+				currentUserId = { this.props.currentUserId }
+				editCategory = { this.props.editCategory }
+				deleteCategory = { this.props.deleteCategory }
+			/>
+		);
+	}
+
 	render() {
 		if (this.props.allDataLoaded && (this.props.allCategories[this.props.params.categoryId])) {
 			var thisCategory = (this.props.allCategories[this.props.params.categoryId]) ? this.props.allCategories[this.props.params.categoryId] : null;
 			// console.log(thisCategory);
-			var categoryTitle = (thisCategory) ? thisCategory.name : '';
-			var categoryDescription = (thisCategory) ? thisCategory.description : '';
+
 			var languages = this.props.selectedLanguages;
 			var numLanguageClass = 'numLanguages-' + languages.length;
 
@@ -144,8 +162,7 @@ class Examples extends Component {
 				if (hasExamples && hasSyntaxes) {
 					return (
 						<div className='examples-container'>
-							<h2>{categoryTitle}</h2>
-							<p>{categoryDescription}</p>
+							{this.displayCategoryInfo()}
 
 							<h4>Syntaxes</h4>
 							<div className={classnames('syntaxes', numLanguageClass)}>
@@ -161,8 +178,7 @@ class Examples extends Component {
 				} else if (hasSyntaxes) {
 					return (
 						<div className='examples-container'>
-							<h2>{categoryTitle}</h2>
-							<p>{categoryDescription}</p>
+							{this.displayCategoryInfo()}
 
 							<h4>Syntaxes</h4>
 							<div className={classnames('syntaxes', numLanguageClass)}>
@@ -179,8 +195,7 @@ class Examples extends Component {
 				} else if (hasExamples) {
 					return (
 						<div className='examples-container'>
-							<h2>{categoryTitle}</h2>
-							<p>{categoryDescription}</p>
+							{this.displayCategoryInfo()}
 
 							<h4>Syntaxes</h4>
 							<div className={classnames('syntaxes', numLanguageClass)}>
@@ -196,8 +211,7 @@ class Examples extends Component {
 				} else {
 					return (
 						<div className='examples-container'>
-							<h2>{categoryTitle}</h2>
-							<p>{categoryDescription}</p>
+							{this.displayCategoryInfo()}
 							<NoContent />
 						</div>
 					);
@@ -206,8 +220,7 @@ class Examples extends Component {
 			} else {
 				return (
 					<div className='examples-container'>
-						<h2>{categoryTitle}</h2>
-						<p>{categoryDescription}</p>
+						{this.displayCategoryInfo()}
 						<NoLanguage />
 					</div>
 				);
@@ -247,7 +260,11 @@ Examples.propTypes = {
 	allComments: PropTypes.array,
 	allDataLoaded: PropTypes.bool,
 	params: PropTypes.object,
-	selectedLanguages: PropTypes.array
+	topCategories: PropTypes.array,
+	selectedLanguages: PropTypes.array,
+	currentUserId: PropTypes.array,
+	editCategory: PropTypes.func,
+	deleteCategory: PropTypes.func
 };
 
 // Examples.defaultProps = {

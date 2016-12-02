@@ -1,0 +1,453 @@
+{
+  "categories" : [ {
+    "alternativeNames" : "None",
+    "createdBy" : "0",
+    "dateCreated" : "2016-01-01T00:00:00-05:00",
+    "dateEdited" : "2016-01-01T00:00:00-05:00",
+    "description" : "",
+    "editedBy" : "0",
+    "id" : "0",
+    "isTopLevel" : true,
+    "key" : "0",
+    "name" : "Conditional",
+    "parentCategory" : "None",
+    "relatedCategoryIDs" : "None",
+    "subCategoryIDs" : [ "1", "2" ]
+  }, {
+    "alternativeNames" : "None",
+    "createdBy" : "0",
+    "dateCreated" : "2016-01-01T00:00:00-05:00",
+    "dateEdited" : "2016-01-01T00:00:00-05:00",
+    "description" : "",
+    "editedBy" : "0",
+    "id" : "1",
+    "isTopLevel" : false,
+    "key" : "1",
+    "name" : "If Statement",
+    "parentCategory" : "0",
+    "relatedCategoryIDs" : "None",
+    "subCategoryIDs" : "None"
+  }, {
+    "alternativeNames" : "None",
+    "createdBy" : "0",
+    "dateCreated" : "2016-01-01T00:00:00-05:00",
+    "dateEdited" : "2016-01-01T00:00:00-05:00",
+    "description" : "",
+    "editedBy" : "0",
+    "id" : "2",
+    "isTopLevel" : false,
+    "key" : "2",
+    "name" : "While Loop",
+    "parentCategory" : "0",
+    "relatedCategoryIDs" : "None",
+    "subCategoryIDs" : "None"
+  }, {
+    "alternativeNames" : "None",
+    "createdBy" : "0",
+    "dateCreated" : "2016-01-01T00:00:00-05:00",
+    "dateEdited" : "2016-01-01T00:00:00-05:00",
+    "description" : "These are data types.",
+    "editedBy" : "0",
+    "id" : "3",
+    "isTopLevel" : true,
+    "key" : "3",
+    "name" : "Data Types",
+    "parentCategory" : "None",
+    "relatedCategoryIDs" : "None",
+    "subCategoryIDs" : [ "4", "5" ]
+  }, {
+    "alternativeNames" : "None",
+    "count" : {
+      "0" : {
+        "syntaxes" : [ 0 ]
+      },
+      "5" : {
+        "examples" : [ 2, 3 ],
+        "syntaxes" : [ 1 ]
+      }
+    },
+    "createdBy" : "0",
+    "dateCreated" : "2016-01-01T00:00:00-05:00",
+    "dateEdited" : "2016-01-01T00:00:00-05:00",
+    "description" : "Strings are just like text. They are a collection of characters.",
+    "editedBy" : "0",
+    "id" : "4",
+    "isTopLevel" : false,
+    "key" : "4",
+    "name" : "String",
+    "parentCategory" : "3",
+    "relatedCategoryIDs" : "None",
+    "subCategoryIDs" : "None"
+  }, {
+    "alternativeNames" : "None",
+    "createdBy" : "0",
+    "dateCreated" : "2016-01-01T00:00:00-05:00",
+    "dateEdited" : "2016-01-01T00:00:00-05:00",
+    "description" : "Integers represent whole numbers. This means 0 to a large number, with no decimals or fractions. Arithmetic can be applied to integers.",
+    "editedBy" : "0",
+    "id" : "5",
+    "isTopLevel" : false,
+    "key" : "5",
+    "name" : "Integer",
+    "parentCategory" : "3",
+    "relatedCategories" : "None",
+    "subCategories" : "None"
+  }, {
+    "alternativeNames" : "None",
+    "count" : {
+      "0" : {
+        "examples" : [ 5, 6 ],
+        "syntaxes" : [ 4 ]
+      },
+      "5" : {
+        "examples" : [ 8 ],
+        "syntaxes" : [ 7 ]
+      },
+      "6" : {
+        "examples" : [ 9, null, 10 ],
+        "syntaxes" : [ 11 ]
+      }
+    },
+    "createdBy" : "0",
+    "dateCreated" : "2016-01-01T00:00:00-05:00",
+    "dateEdited" : "2016-01-01T00:00:00-05:00",
+    "description" : "A function is a type of procedure or routine. Some programming languages make a distinction between a function, which returns a value, and a procedure, which performs some operation but does not return a value. Most programming languages come with a prewritten set of functions that are kept in a library.",
+    "editedBy" : "0",
+    "id" : "6",
+    "isTopLevel" : true,
+    "key" : "6",
+    "name" : "Function",
+    "parentCategory" : "None",
+    "relatedCategories" : "None",
+    "subCategories" : "None"
+  } ],
+  "comments" : [ {
+    "commentText" : "Sample comment",
+    "createdBy" : "0",
+    "dateCreated" : "2016-01-01T00:00:00-05:00",
+    "exampleID" : "0",
+    "id" : "0",
+    "key" : "0"
+  } ],
+  "currentUser" : [ "0" ],
+  "examples" : [ {
+    "categoryID" : "4",
+    "codeText" : "var stringName = 'This is a string'",
+    "commentIDs" : "None",
+    "createdBy" : "0",
+    "dateCreated" : "2016-01-01T00:00:00-05:00",
+    "dateEdited" : "2016-01-01T00:00:00-05:00",
+    "description" : "Implicit string",
+    "editedBy" : "0",
+    "embeddedCode" : "",
+    "howTo" : false,
+    "id" : "0",
+    "image" : "",
+    "key" : "0",
+    "language" : "0",
+    "level" : "Beginner",
+    "ranking" : "1000",
+    "syntax" : true
+  }, {
+    "categoryID" : "4",
+    "codeText" : "var stringName: String = 'This is also a string'",
+    "commentIDs" : "None",
+    "createdBy" : "0",
+    "dateCreated" : "2016-01-01T00:00:00-05:00",
+    "dateEdited" : "2016-01-01T00:00:00-05:00",
+    "description" : "Explicit string",
+    "editedBy" : "0",
+    "embeddedCode" : "",
+    "howTo" : false,
+    "id" : "1",
+    "image" : "",
+    "key" : "1",
+    "language" : "5",
+    "level" : "Intermediate",
+    "ranking" : "500",
+    "syntax" : true
+  }, {
+    "categoryID" : "4",
+    "codeText" : "var stringName = 'This is a string'",
+    "commentIDs" : [ "0" ],
+    "createdBy" : "0",
+    "dateCreated" : "2016-01-01T00:00:00-05:00",
+    "dateEdited" : "2016-01-01T00:00:00-05:00",
+    "description" : "Implicit string",
+    "editedBy" : "0",
+    "embeddedCode" : "",
+    "howTo" : false,
+    "id" : "2",
+    "image" : "",
+    "key" : "2",
+    "language" : "5",
+    "level" : "Beginner",
+    "ranking" : "1000",
+    "syntax" : false
+  }, {
+    "categoryID" : "4",
+    "codeText" : "var stringName: String = 'This is also a string'",
+    "commentIDs" : "None",
+    "createdBy" : "0",
+    "dateCreated" : "2016-01-01T00:00:00-05:00",
+    "dateEdited" : "2016-01-01T00:00:00-05:00",
+    "description" : "Explicit string",
+    "editedBy" : "0",
+    "embeddedCode" : "",
+    "howTo" : false,
+    "id" : "3",
+    "image" : "",
+    "key" : "3",
+    "language" : "5",
+    "level" : "Intermediate",
+    "ranking" : "500",
+    "syntax" : false
+  }, {
+    "categoryID" : "6",
+    "codeText" : "function functionName(arguments){\n\t// runs code\n}",
+    "commentIDs" : "None",
+    "createdBy" : "0",
+    "dateCreated" : "2016-01-01T00:00:00-05:00",
+    "dateEdited" : "2016-01-01T00:00:00-05:00",
+    "description" : "Function with arguments",
+    "editedBy" : "0",
+    "embeddedCode" : "",
+    "howTo" : false,
+    "id" : "4",
+    "image" : "",
+    "key" : "4",
+    "language" : "0",
+    "level" : "Beginner",
+    "ranking" : "500",
+    "syntax" : true
+  }, {
+    "categoryID" : "6",
+    "codeText" : "var counter = 0;\nfunction addToCounter (){\n\tcounter = counter + 1;\n}",
+    "commentIDs" : "None",
+    "createdBy" : "0",
+    "dateCreated" : "2016-01-01T00:00:00-05:00",
+    "dateEdited" : "2016-01-01T00:00:00-05:00",
+    "description" : "Function without an argument",
+    "editedBy" : "0",
+    "embeddedCode" : "",
+    "howTo" : false,
+    "id" : "5",
+    "image" : "",
+    "key" : "5",
+    "language" : "0",
+    "level" : "Beginner",
+    "ranking" : "500",
+    "syntax" : false
+  }, {
+    "categoryID" : "6",
+    "codeText" : "var user1 = 'frank';\nvar user2 = 'mike';\n\nfunction welcomeFunction (arg){\n\talert ('welcome '+arg);\n}\n\nwelcomeFunction ('greg');\nwelcomeFunction (user1);",
+    "commentIDs" : "None",
+    "createdBy" : "0",
+    "dateCreated" : "2016-01-01T00:00:00-05:00",
+    "dateEdited" : "2016-01-01T00:00:00-05:00",
+    "description" : "Creating a function and calling it",
+    "editedBy" : "0",
+    "embeddedCode" : "",
+    "howTo" : false,
+    "id" : "6",
+    "image" : "",
+    "key" : "6",
+    "language" : "0",
+    "level" : "Beginner",
+    "ranking" : "500",
+    "syntax" : false
+  }, {
+    "categoryID" : "6",
+    "codeText" : "func functionName(Parameters) -> returntype {\n\tStatement1\n\tStatement2\n\t---\n\tStatement N\n\treturn parameters\n}",
+    "commentIDs" : "None",
+    "createdBy" : "0",
+    "dateCreated" : "2016-01-01T00:00:00-05:00",
+    "dateEdited" : "2016-01-01T00:00:00-05:00",
+    "description" : "Creating a function with a return value",
+    "editedBy" : "0",
+    "embeddedCode" : "",
+    "howTo" : false,
+    "id" : "7",
+    "image" : "",
+    "key" : "7",
+    "language" : "5",
+    "level" : "Beginner",
+    "ranking" : "500",
+    "syntax" : true
+  }, {
+    "categoryID" : "6",
+    "codeText" : "func student(name: String) -> String {\n\treturn name\n}\n\nprintln(student('First Program'))\nprintln(student('About Functions'))",
+    "commentIDs" : "None",
+    "createdBy" : "0",
+    "dateCreated" : "2016-01-01T00:00:00-05:00",
+    "dateEdited" : "2016-01-01T00:00:00-05:00",
+    "description" : "Creating a function and calling it",
+    "editedBy" : "0",
+    "embeddedCode" : "",
+    "howTo" : false,
+    "id" : "8",
+    "image" : "",
+    "key" : "8",
+    "language" : "5",
+    "level" : "Beginner",
+    "ranking" : "500",
+    "syntax" : false
+  }, {
+    "categoryID" : "6",
+    "codeText" : "var Hello = React.createClass({\n    render: function() {\n        var names = ['Jake', 'Jon', 'Thruster'];\n        return (\n            <ul>\n                {names.map(function(name, index){\n                    return <li key={ index }>{name}</li>;\n                  })}\n            </ul>\n        )\n    }\n});",
+    "createdBy" : "0",
+    "dateCreated" : "2016-12-02T10:31:19-05:00",
+    "dateEdited" : "2016-12-02T10:31:19-05:00",
+    "description" : "A map with an internal function.",
+    "editedBy" : "0",
+    "embeddedCode" : "",
+    "howTo" : false,
+    "id" : 9,
+    "image" : "",
+    "key" : "9",
+    "language" : "6",
+    "level" : "Beginner",
+    "ranking" : "1000",
+    "syntax" : false
+  }, {
+    "categoryID" : "6",
+    "codeText" : "var Hello = React.createClass({\n    expand: function(name, index) {\n         return <li key={ index }>{name}</li>;\n    },\n    render: function() {\n        var names = ['Jake', 'Jon', 'Thruster'];\n        return (\n            <ul>\n                {names.map(this.expand())}\n            </ul>\n        )\n    }\n});",
+    "createdBy" : "0",
+    "dateCreated" : "2016-12-02T10:34:32-05:00",
+    "dateEdited" : "2016-12-02T10:34:32-05:00",
+    "description" : "A map with an external function.",
+    "editedBy" : "0",
+    "embeddedCode" : "",
+    "howTo" : false,
+    "id" : 10,
+    "image" : "",
+    "key" : "10",
+    "language" : "6",
+    "level" : "Beginner",
+    "ranking" : "1000",
+    "syntax" : false
+  }, {
+    "categoryID" : "6",
+    "codeText" : "arrayOrObject.map(function(item, index){\n       return <li key={ index }>{item}</li>;\n})}",
+    "createdBy" : "0",
+    "dateCreated" : "2016-12-02T10:51:35-05:00",
+    "dateEdited" : "2016-12-02T10:51:35-05:00",
+    "description" : "A map with an internal function.",
+    "editedBy" : "0",
+    "embeddedCode" : "",
+    "howTo" : false,
+    "id" : 11,
+    "image" : "",
+    "key" : "11",
+    "language" : "6",
+    "level" : "Beginner",
+    "ranking" : "1000",
+    "syntax" : true
+  } ],
+  "languages" : {
+    "css" : {
+      "alternativeNames" : [ "Cascading Style Sheets" ],
+      "fullName" : "CSS",
+      "relatedLanguages" : [ "scss" ]
+    },
+    "html" : {
+      "alternativeNames" : [ "Hypertext Markup Language" ],
+      "fullName" : "HTML",
+      "relatedLanguages" : "None"
+    },
+    "javascript" : {
+      "alternativeNames" : "None",
+      "fullName" : "Javascript",
+      "relatedLanguages" : [ "jquery" ]
+    },
+    "jquery" : {
+      "alternativeNames" : "None",
+      "fullName" : "jQuery",
+      "relatedLanguages" : [ "javascript" ]
+    },
+    "jsx" : {
+      "alternativeNames" : [ "React", "ReactJS", "JSX" ],
+      "fullName" : "React JSX",
+      "relatedLanguages" : "None"
+    },
+    "scss" : {
+      "alternativeNames" : [ "SASS" ],
+      "fullName" : "SCSS",
+      "relatedLanguages" : [ "css" ]
+    },
+    "swift" : {
+      "alternativeNames" : "None",
+      "fullName" : "Swift",
+      "relatedLanguages" : "None"
+    }
+  },
+  "languages2" : [ {
+    "alternativeNames" : "None",
+    "fullName" : "Javascript",
+    "id" : "0",
+    "key" : "0",
+    "name" : "javascript",
+    "relatedLanguages" : [ "jquery" ]
+  }, {
+    "alternativeNames" : "None",
+    "fullName" : "jQuery",
+    "id" : "1",
+    "key" : "1",
+    "name" : "jquery",
+    "relatedLanguages" : [ "javascript" ]
+  }, {
+    "alternativeNames" : [ "Hypertext Markup Language" ],
+    "fullName" : "HTML",
+    "id" : "2",
+    "key" : "2",
+    "name" : "html",
+    "relatedLanguages" : "None"
+  }, {
+    "alternativeNames" : [ "Cascading Style Sheets" ],
+    "fullName" : "CSS",
+    "id" : "3",
+    "key" : "3",
+    "name" : "css",
+    "relatedLanguages" : [ "scss" ]
+  }, {
+    "alternativeNames" : [ "SASS" ],
+    "fullName" : "SCSS",
+    "id" : "4",
+    "key" : "4",
+    "name" : "scss",
+    "relatedLanguages" : [ "css" ]
+  }, {
+    "alternativeNames" : "None",
+    "fullName" : "Swift",
+    "id" : "5",
+    "key" : "5",
+    "name" : "swift",
+    "relatedLanguages" : "None"
+  }, {
+    "alternativeNames" : [ "ReactJSX", "React", "ReactJS", "JSX" ],
+    "fullName" : "React JSX",
+    "id" : "6",
+    "key" : "6",
+    "name" : "jsx",
+    "relatedLanguages" : "None"
+  } ],
+  "selectedLanguages" : [ "6" ],
+  "topCategories" : [ "0", "3", "6" ],
+  "users" : [ {
+    "commentIDs" : [ "0" ],
+    "createdExampleIDs" : [ "0", "1" ],
+    "dateSignedUp" : "2016-01-01T00:00:00-05:00",
+    "editedExampleIDs" : [ "0", "1" ],
+    "email" : "admin@codeassist.com",
+    "favouriteLanguages" : "None",
+    "favouritesIDs" : "None",
+    "id" : "0",
+    "key" : "0",
+    "password" : "aaa",
+    "permissionLevel" : "admin",
+    "ranking" : "1000",
+    "savedIDs" : "None",
+    "socialMedia" : "",
+    "username" : "admin"
+  } ]
+}

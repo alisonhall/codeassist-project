@@ -15,10 +15,11 @@
 		"0": {
 			"id": "0",
 			"subCategoryIDs": ["1", "2"],
-			"relatedCategoryIDs": [],
+			"relatedCategoryIDs": "None",
 			"isTopLevel": true,
+			"parentCategory": "None",
 			"name": "Conditional",
-			"alternativeNames": [],
+			"alternativeNames": "None",
 			"description": "",
 			"createdBy": "0",
 			"editedBy": "0",
@@ -46,6 +47,10 @@
 					"syntaxes": []
 				},
 				"5": {
+					"examples": [],
+					"syntaxes": []
+				},
+				"6": {
 					"examples": [],
 					"syntaxes": []
 				}
@@ -53,11 +58,12 @@
 		}, 
 		"1": {
 			"id": "1",
-			"subCategoryIDs": [],
-			"relatedCategoryIDs": [],
+			"subCategoryIDs": "None",
+			"relatedCategoryIDs": "None",
 			"isTopLevel": false,
+			"parentCategory": "0",
 			"name": "If Statement",
-			"alternativeNames": [],
+			"alternativeNames": "None",
 			"description": "",
 			"createdBy": "0",
 			"editedBy": "0",
@@ -85,6 +91,10 @@
 					"syntaxes": []
 				},
 				"5": {
+					"examples": [],
+					"syntaxes": []
+				},
+				"6": {
 					"examples": [],
 					"syntaxes": []
 				}
@@ -92,11 +102,12 @@
 		},
 		"2": {
 			"id": "2",
-			"subCategoryIDs": [],
-			"relatedCategoryIDs": [],
+			"subCategoryIDs": "None",
+			"relatedCategoryIDs": "None",
 			"isTopLevel": false,
+			"parentCategory": "0",
 			"name": "While Loop",
-			"alternativeNames": [],
+			"alternativeNames": "None",
 			"description": "",
 			"createdBy": "0",
 			"editedBy": "0",
@@ -124,6 +135,10 @@
 					"syntaxes": []
 				},
 				"5": {
+					"examples": [],
+					"syntaxes": []
+				},
+				"6": {
 					"examples": [],
 					"syntaxes": []
 				}
@@ -132,10 +147,11 @@
 		"3": {
 			"id": "3",
 			"subCategoryIDs": ["4", "5"],
-			"relatedCategoryIDs": [],
+			"relatedCategoryIDs": "None",
 			"isTopLevel": true,
+			"parentCategory": "None",
 			"name": "Data Types",
-			"alternativeNames": [],
+			"alternativeNames": "None",
 			"description": "These are data types.",
 			"createdBy": "0",
 			"editedBy": "0",
@@ -165,16 +181,21 @@
 				"5": {
 					"examples": [],
 					"syntaxes": []
+				},
+				"6": {
+					"examples": [],
+					"syntaxes": []
 				}
 			}
 		},
 		"4": {
 			"id": "4",
-			"subCategoryIDs": [],
-			"relatedCategoryIDs": [],
+			"subCategoryIDs": "None",
+			"relatedCategoryIDs": "None",
 			"isTopLevel": false,
+			"parentCategory": "3",
 			"name": "String",
-			"alternativeNames": [],
+			"alternativeNames": "None",
 			"description": "Strings are just like text. They are a collection of characters.",
 			"createdBy": "0",
 			"editedBy": "0",
@@ -204,16 +225,21 @@
 				"5": {
 					"examples": [2, 3],
 					"syntaxes": [1]
+				},
+				"6": {
+					"examples": [],
+					"syntaxes": []
 				}
 			}
 		},
 		"5": {
 			"id": "5",
-			"subCategories": [],
-			"relatedCategories": [],
+			"subCategories": "None",
+			"relatedCategories": "None",
 			"isTopLevel": false,
+			"parentCategory": "3",
 			"name": "Integer",
-			"alternativeNames": [],
+			"alternativeNames": "None",
 			"description": "Integers represent whole numbers. This means 0 to a large number, with no decimals or fractions. Arithmetic can be applied to integers.",
 			"createdBy": "0",
 			"editedBy": "0",
@@ -243,16 +269,21 @@
 				"5": {
 					"examples": [],
 					"syntaxes": []
+				},
+				"6": {
+					"examples": [],
+					"syntaxes": []
 				}
 			}
 		},
 		"6": {
 			"id": "6",
-			"subCategories": [],
-			"relatedCategories": [],
+			"subCategories": "None",
+			"relatedCategories": "None",
 			"isTopLevel": true,
+			"parentCategory": "None",
 			"name": "Function",
-			"alternativeNames": [],
+			"alternativeNames": "None",
 			"description": "A function is a type of procedure or routine. Some programming languages make a distinction between a function, which returns a value, and a procedure, which performs some operation but does not return a value. Most programming languages come with a prewritten set of functions that are kept in a library.",
 			"createdBy": "0",
 			"editedBy": "0",
@@ -282,6 +313,10 @@
 				"5": {
 					"examples": [8],
 					"syntaxes": [7]
+				},
+				"6": {
+					"examples": [],
+					"syntaxes": []
 				}
 			}
 		}
@@ -290,15 +325,15 @@
 		"javascript": {
 			"relatedLanguages": ["jquery"],
 			"fullName": "Javascript",
-			"alternativeNames": []
+			"alternativeNames": "None"
 		},
 		"jquery": {
 			"relatedLanguages": ["javascript"],
 			"fullName": "jQuery",
-			"alternativeNames": []
+			"alternativeNames": "None"
 		},
 		"html": {
-			"relatedLanguages": [],
+			"relatedLanguages": "None",
 			"fullName": "HTML",
 			"alternativeNames": ["Hypertext Markup Language"]
 		},
@@ -313,9 +348,14 @@
 			"alternativeNames": ["SASS"]
 		},
 		"swift": {
-			"relatedLanguages": [],
+			"relatedLanguages": "None",
 			"fullName": "Swift",
-			"alternativeNames": []
+			"alternativeNames": "None"
+		},
+		"jsx": {
+			"relatedLanguages": "None",
+			"fullName": "React JSX",
+			"alternativeNames": ["React", "ReactJS", "JSX"]
 		}
 	},
 	"languages2": {
@@ -324,19 +364,19 @@
 			"name": "javascript",
 			"relatedLanguages": ["jquery"],
 			"fullName": "Javascript",
-			"alternativeNames": []
+			"alternativeNames": "None"
 		},
 		"1": {
 			"id": "1",
 			"name": "jquery",
 			"relatedLanguages": ["javascript"],
 			"fullName": "jQuery",
-			"alternativeNames": []
+			"alternativeNames": "None"
 		},
 		"2": {
 			"id": "2",
 			"name": "html",
-			"relatedLanguages": [],
+			"relatedLanguages": "None",
 			"fullName": "HTML",
 			"alternativeNames": ["Hypertext Markup Language"]
 		},
@@ -357,9 +397,16 @@
 		"5": {
 			"id": "5",
 			"name": "swift",
-			"relatedLanguages": [],
+			"relatedLanguages": "None",
 			"fullName": "Swift",
-			"alternativeNames": []
+			"alternativeNames": "None"
+		},
+		"6": {
+			"id": "6",
+			"name": "jsx",
+			"relatedLanguages": "None",
+			"fullName": "React JSX",
+			"alternativeNames": ["ReactJSX", "React", "ReactJS", "JSX"]
 		}
 	},
 	"examples": {
@@ -369,7 +416,7 @@
 			"language": "0",
 			"createdBy": "0",
 			"editedBy": "0",
-			"commentIDs": [],
+			"commentIDs": "None",
 			"dateCreated": "2016-01-01T00:00:00-05:00",
 			"dateEdited": "2016-01-01T00:00:00-05:00",
 			"syntax": true,
@@ -387,7 +434,7 @@
 			"language": "5",
 			"createdBy": "0",
 			"editedBy": "0",
-			"commentIDs": [],
+			"commentIDs": "None",
 			"dateCreated": "2016-01-01T00:00:00-05:00",
 			"dateEdited": "2016-01-01T00:00:00-05:00",
 			"syntax": true,
@@ -423,7 +470,7 @@
 			"language": "5",
 			"createdBy": "0",
 			"editedBy": "0",
-			"commentIDs": [],
+			"commentIDs": "None",
 			"dateCreated": "2016-01-01T00:00:00-05:00",
 			"dateEdited": "2016-01-01T00:00:00-05:00",
 			"syntax": false,
@@ -441,7 +488,7 @@
 			"language": "0",
 			"createdBy": "0",
 			"editedBy": "0",
-			"commentIDs": [],
+			"commentIDs": "None",
 			"dateCreated": "2016-01-01T00:00:00-05:00",
 			"dateEdited": "2016-01-01T00:00:00-05:00",
 			"syntax": true,
@@ -459,7 +506,7 @@
 			"language": "0",
 			"createdBy": "0",
 			"editedBy": "0",
-			"commentIDs": [],
+			"commentIDs": "None",
 			"dateCreated": "2016-01-01T00:00:00-05:00",
 			"dateEdited": "2016-01-01T00:00:00-05:00",
 			"syntax": false,
@@ -477,7 +524,7 @@
 			"language": "0",
 			"createdBy": "0",
 			"editedBy": "0",
-			"commentIDs": [],
+			"commentIDs": "None",
 			"dateCreated": "2016-01-01T00:00:00-05:00",
 			"dateEdited": "2016-01-01T00:00:00-05:00",
 			"syntax": false,
@@ -495,7 +542,7 @@
 			"language": "5",
 			"createdBy": "0",
 			"editedBy": "0",
-			"commentIDs": [],
+			"commentIDs": "None",
 			"dateCreated": "2016-01-01T00:00:00-05:00",
 			"dateEdited": "2016-01-01T00:00:00-05:00",
 			"syntax": true,
@@ -513,7 +560,7 @@
 			"language": "5",
 			"createdBy": "0",
 			"editedBy": "0",
-			"commentIDs": [],
+			"commentIDs": "None",
 			"dateCreated": "2016-01-01T00:00:00-05:00",
 			"dateEdited": "2016-01-01T00:00:00-05:00",
 			"syntax": false,
@@ -533,9 +580,9 @@
 			"commentIDs": ["0"],
 			"createdExampleIDs": ["0", "1"],
 			"editedExampleIDs": ["0", "1"],
-			"favouritesIDs": [],
-			"savedIDs": [],
-			"favouriteLanguages": [],
+			"favouritesIDs": "None",
+			"savedIDs": "None",
+			"favouriteLanguages": "None",
 			"email": "admin@codeassist.com",
 			"socialMedia": "",
 			"password": "aaa",

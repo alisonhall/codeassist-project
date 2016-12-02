@@ -116,7 +116,7 @@ class OpenExampleCard extends Component {
 	}
 
 	checkForComments(comments) {
-		if(comments !== null) {
+		if(comments !== 'None') {
 			return (
 				comments.map(this.displayComment)
 			);
@@ -146,8 +146,8 @@ class OpenExampleCard extends Component {
 			var editedByUsername = editedBy.username;
 			var dateEdited = example.dateEdited;
 			var codeText = example.codeText;
-			var comments = (example.commentIDs) ? example.commentIDs : null;
-			var numberOfComments = (example.commentIDs) ? example.commentIDs.length : 0;
+			var comments = example.commentIDs;
+			var numberOfComments = (example.commentIDs == 'None') ? 0 : example.commentIDs.length;
 			var languageClass = "language-" + languageShort;
 
 			var languagePosition = null;

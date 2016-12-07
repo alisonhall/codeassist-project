@@ -70,7 +70,8 @@ class CreateSnippet extends Component {
 			"image": "",
 			"level": this.state.level,
 			"ranking": "1000",
-			"commentIDs" : "None"
+			"commentIDs": "None",
+			"isActive": true
 		}
 
 		this.setState({

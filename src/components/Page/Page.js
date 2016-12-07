@@ -84,6 +84,10 @@ class Page extends Component {
 		this.addExample = this.addExample.bind(this);
 		this.editCategory = this.editCategory.bind(this);
 		this.deleteCategory = this.deleteCategory.bind(this);
+		this.editExample = this.editExample.bind(this);
+		this.deleteExample = this.deleteExample.bind(this);
+		this.restoreExample = this.restoreExample.bind(this);
+
 		this.addRelatedCategory = this.addRelatedCategory.bind(this);
 		this.removeRelatedCategory = this.removeRelatedCategory.bind(this);
 		this.removeRelatedCategory2 = this.removeRelatedCategory2.bind(this);
@@ -93,6 +97,8 @@ class Page extends Component {
 		this.removeFromParentCategory = this.removeFromParentCategory.bind(this);
 		this.addToParentCategory = this.addToParentCategory.bind(this);
 		this.checkParentCategory = this.checkParentCategory.bind(this);
+		this.removeExampleFromOldLocation = this.removeExampleFromOldLocation.bind(this);
+		this.addExampleToNewLocation = this.addExampleToNewLocation.bind(this);
 
 		this.getInitialData = this.getInitialData.bind(this);
 		this.setupSyncState = this.setupSyncState.bind(this);
@@ -654,7 +660,7 @@ class Page extends Component {
 							},
 						}
 					} else {
-						console.log("ERROR: type in allCategories[category][count][language]");
+						console.log("ERROR: unknown type in allCategories[category][count][language]");
 					}
 				}
 			} else {
@@ -688,6 +694,11 @@ class Page extends Component {
 			var name = (allCategories[category].name) ? allCategories[category].name : '';
 			var alternativeNames = (allCategories[category].alternativeNames) ? allCategories[category].alternativeNames : [];
 			var description = (allCategories[category].description) ? allCategories[category].description : '';
+			var dateCreated = (allCategories[category].dateCreated) ? allCategories[category].dateCreated : '';
+			var dateEdited = (allCategories[category].dateEdited) ? allCategories[category].dateEdited : '';
+			var editedBy = (allCategories[category].editedBy) ? allCategories[category].editedBy : '';
+			var createdBy = (allCategories[category].createdBy) ? allCategories[category].createdBy : '';
+			var parentCategory = (allCategories[category].parentCategory) ? allCategories[category].parentCategory : '';
 
 			allCategories[category] = {
 				["count"]: {
@@ -704,7 +715,12 @@ class Page extends Component {
 				isTopLevel,
 				name,
 				alternativeNames,
-				description
+				description,
+				dateCreated,
+				dateEdited,
+				editedBy,
+				createdBy,
+				parentCategory
 			}
 		}
 		
@@ -712,6 +728,145 @@ class Page extends Component {
 
 		this.setState({ allCategories: allCategories, allExamples: allExamples });
 	}
+
+	removeExampleFromOldLocation(exampleId, category, language, type) {
+		console.log("removeExampleFromOldLocation", exampleId, category, language, type);
+		var allCategories = this.state.allCategories;
+
+		console.log(allCategories[category]["count"][language][type]);
+		var index = allCategories[category]["count"][language][type].indexOf(exampleId);
+		if (index > -1) {
+		    allCategories[category]["count"][language][type].splice(index, 1);
+		}
+		console.log(allCategories[category]["count"][language][type]);
+		
+		this.setState({ allCategories: allCategories });
+	}
+
+	addExampleToNewLocation(exampleId, category, language, type) {
+		console.log("addExampleToNewLocation", exampleId, category, language, type);
+		var allCategories = this.state.allCategories;
+
+		if(allCategories[category].count) {
+			if(allCategories[category].count[language]) {
+				if(allCategories[category].count[language][type]) {
+					allCategories[category].count[language][type].push(exampleId);
+				} else {
+					var syntaxes = (allCategories[category]["count"][language]["syntaxes"]) ? allCategories[category]["count"][language]["syntaxes"] : [];
+					var examples = (allCategories[category]["count"][language]["examples"]) ? allCategories[category]["count"][language]["examples"] : [];
+					
+					if(type == 'syntaxes') {
+						allCategories[category]["count"][language] = {
+							// ["syntaxes"]: syntaxes,
+							["examples"]: examples,
+							[type]: {
+								[0]: exampleId
+							},
+						}
+					} else if (type == 'examples') {
+						allCategories[category]["count"][language] = {
+							// ["examples"]: examples,
+							["syntaxes"]: syntaxes,
+							[type]: {
+								[0]: exampleId
+							},
+						}
+					} else {
+						console.log("ERROR: unknown type in allCategories[category][count][language]");
+					}
+				}
+			} else {
+				var totalNumLanguages = this.state.allLanguages.length;
+
+				var countObjects = [];
+
+				for (var i = 0; i < this.state.allLanguages.length; i++) {
+					var languageObject = (allCategories[category]["count"][i]) ? allCategories[category]["count"][i] : {};
+
+					if (language == i) {
+						countObjects.push({
+							[type]: {
+								[0]: exampleId
+							}
+						});
+					} else {
+						countObjects.push(languageObject);
+					}
+					
+				}
+
+				allCategories[category]["count"] = { ...countObjects };
+			}
+		} else {
+			var id = allCategories[category].id;
+			var key = (allCategories[category].key) ? allCategories[category].key : '';
+			var subCategoryIDs = (allCategories[category].subCategoryIDs) ? allCategories[category].subCategoryIDs : [];
+			var relatedCategories = (allCategories[category].relatedCategories) ? allCategories[category].relatedCategories : [];
+			var isTopLevel = (allCategories[category].isTopLevel) ? allCategories[category].isTopLevel : null;
+			var name = (allCategories[category].name) ? allCategories[category].name : '';
+			var alternativeNames = (allCategories[category].alternativeNames) ? allCategories[category].alternativeNames : [];
+			var description = (allCategories[category].description) ? allCategories[category].description : '';
+			var dateCreated = (allCategories[category].dateCreated) ? allCategories[category].dateCreated : '';
+			var dateEdited = (allCategories[category].dateEdited) ? allCategories[category].dateEdited : '';
+			var editedBy = (allCategories[category].editedBy) ? allCategories[category].editedBy : '';
+			var createdBy = (allCategories[category].createdBy) ? allCategories[category].createdBy : '';
+			var parentCategory = (allCategories[category].parentCategory) ? allCategories[category].parentCategory : '';
+
+			allCategories[category] = {
+				["count"]: {
+					[language]: {
+						[type]: {
+							[0]: exampleId
+						}
+					}
+				},
+				id,
+				key,
+				subCategoryIDs,
+				relatedCategories,
+				isTopLevel,
+				name,
+				alternativeNames,
+				description,
+				dateCreated,
+				dateEdited,
+				editedBy,
+				createdBy,
+				parentCategory
+			}
+		}
+
+		this.setState({ allCategories: allCategories });
+	}
+
+	editExample(object, exampleId, oldExampleType, newExampleType, oldCategoryId, newCategoryId, oldLanguageId, newLanguageId) {
+		console.log("Edit Example ", exampleId);
+		console.log(object, exampleId, oldExampleType, newExampleType, oldCategoryId, newCategoryId, oldLanguageId, newLanguageId);
+		var allExamples = this.state.allExamples;
+
+		if(oldExampleType !== newExampleType || oldCategoryId !== newCategoryId || oldLanguageId !== newLanguageId) {
+			this.removeExampleFromOldLocation(Number(exampleId), Number(oldCategoryId), Number(oldLanguageId), oldExampleType);
+			this.addExampleToNewLocation(Number(exampleId), Number(newCategoryId), Number(newLanguageId), newExampleType);
+		}
+
+		allExamples[exampleId] = { ...object };
+
+		this.setState({ allExamples: allExamples });
+	};
+
+	restoreExample(exampleId) {
+		console.log("Restore Example ", exampleId);
+		var allExamples = this.state.allExamples;
+		allExamples[exampleId].isActive = true;
+		this.setState({ allExamples: allExamples });
+	};
+
+	deleteExample(exampleId) {
+		console.log("Delete Example ", exampleId);
+		var allExamples = this.state.allExamples;
+		allExamples[exampleId].isActive = false;
+		this.setState({ allExamples: allExamples });
+	};
 
 	render() {
 		if (this.state.allDataLoaded) {
@@ -779,6 +934,10 @@ class Page extends Component {
 				allDataLoaded = { this.state.allDataLoaded }
 				params = { this.props.params }
 				selectedLanguages = { this.state.selectedLanguages }
+				currentUserId = { this.state.currentUser }
+				editExample = { this.editExample }
+				deleteExample = { this.deleteExample }
+				restoreExample = { this.restoreExample }
 			/>;
 
 			var openSyntaxCardComponent = <OpenSyntaxCard
@@ -790,6 +949,10 @@ class Page extends Component {
 				allDataLoaded = { this.state.allDataLoaded }
 				params = { this.props.params }
 				selectedLanguages = { this.state.selectedLanguages }
+				currentUserId = { this.state.currentUser }
+				editExample = { this.editExample }
+				deleteExample = { this.deleteExample }
+				restoreExample = { this.restoreExample }
 			/>;
 
 			var searchResultsComponent = <SearchResults /> ;

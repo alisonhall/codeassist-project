@@ -5,6 +5,10 @@
 	padding: 20px;
 	margin: 10px 10px 10px 0;
 
+	&.exampleInactive {
+		color: gray;
+	}
+
 	.languageStyle {
 		padding: 5px;
 		margin-bottom: 5px;

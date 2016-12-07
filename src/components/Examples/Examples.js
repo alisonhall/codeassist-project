@@ -24,6 +24,7 @@ class Examples extends Component {
 		this.renderExamples = this.renderExamples.bind(this);
 		this.renderSyntaxes = this.renderSyntaxes.bind(this);
 		this.displayCategoryInfo = this.displayCategoryInfo.bind(this);
+		this.checkIfActive = this.checkIfActive.bind(this);
 	}
 
 	eachExample(exampleId, i) {
@@ -33,6 +34,7 @@ class Examples extends Component {
 		var editedBy = this.props.allUsers[example.editedBy];
 		var createdBy = this.props.allUsers[example.createdBy];
 		var isSyntax = example.syntax;
+		var isActive = this.props.allExamples[exampleId].isActive;
 		var column;
 
 		for (var i = 0; i < this.props.selectedLanguages.length; i++) {
@@ -41,18 +43,20 @@ class Examples extends Component {
 			}
 		}
 
-		return (
-			<ExampleCards 
-				key={exampleId}
-				example={example}
-				language={language}
-				category={category}
-				editedBy={editedBy}
-				createdBy={createdBy}
-				allComments={this.props.allComments}
-				column={column}
-			></ExampleCards>
-		);
+		if(isActive) {
+			return (
+				<ExampleCards 
+					key={exampleId}
+					example={example}
+					language={language}
+					category={category}
+					editedBy={editedBy}
+					createdBy={createdBy}
+					allComments={this.props.allComments}
+					column={column}
+				></ExampleCards>
+			);
+		}
 	}
 
 	eachSyntax(exampleId, i) {
@@ -62,6 +66,7 @@ class Examples extends Component {
 		var editedBy = this.props.allUsers[example.editedBy];
 		var createdBy = this.props.allUsers[example.createdBy];
 		var isSyntax = example.syntax;
+		var isActive = this.props.allExamples[exampleId].isActive;
 		var column;
 
 		for (var i = 0; i < this.props.selectedLanguages.length; i++) {
@@ -70,18 +75,20 @@ class Examples extends Component {
 			}
 		}
 
-		return (
-			<SyntaxCards 
-				key={exampleId}
-				example={example}
-				language={language}
-				category={category}
-				editedBy={editedBy}
-				createdBy={createdBy}
-				allComments={this.props.allComments}
-				column={column}
-			></SyntaxCards>
-		);
+		if(isActive) {
+			return (
+				<SyntaxCards 
+					key={exampleId}
+					example={example}
+					language={language}
+					category={category}
+					editedBy={editedBy}
+					createdBy={createdBy}
+					allComments={this.props.allComments}
+					column={column}
+				></SyntaxCards>
+			);
+		}
 	}
 
 	renderExamples(language, i) {
@@ -127,6 +134,17 @@ class Examples extends Component {
 		);
 	}
 
+	checkIfActive(array) {
+		var isActive = false;
+		for (var i = 0; i < array.length; i++) {
+			if(this.props.allExamples[array[i]].isActive) {
+				isActive = true;
+				return isActive;
+			}
+		}
+		return isActive;
+	}
+
 	render() {
 		if (this.props.allDataLoaded && (this.props.allCategories[this.props.params.categoryId])) {
 			var thisCategory = (this.props.allCategories[this.props.params.categoryId]) ? this.props.allCategories[this.props.params.categoryId] : null;
@@ -150,10 +168,12 @@ class Examples extends Component {
 							var examplesLength = (thisCategory.count[languages[i]] && thisCategory.count[languages[i]].examples) ? thisCategory.count[languages[i]].examples.length : 0;
 							var syntaxesLength = (thisCategory.count[languages[i]] && thisCategory.count[languages[i]].syntaxes) ? thisCategory.count[languages[i]].syntaxes.length : 0;
 							if (examplesLength > 0) {
-								hasExamples = true;
+								// hasExamples = true;
+								hasExamples = this.checkIfActive(thisCategory.count[languages[i]].examples);
 							}
 							if (syntaxesLength > 0) {
-								hasSyntaxes = true;
+								// hasSyntaxes = true;
+								hasSyntaxes = this.checkIfActive(thisCategory.count[languages[i]].syntaxes);
 							}
 						}
 					}

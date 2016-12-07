@@ -135,11 +135,14 @@ class Examples extends Component {
 	}
 
 	checkIfActive(array) {
+		// console.log("checkIfActive ", array);
 		var isActive = false;
 		for (var i = 0; i < array.length; i++) {
-			if(this.props.allExamples[array[i]].isActive) {
-				isActive = true;
-				return isActive;
+			if(this.props.allExamples[array[i]]) {
+				if(this.props.allExamples[array[i]].isActive) {
+					isActive = true;
+					return isActive;
+				}
 			}
 		}
 		return isActive;

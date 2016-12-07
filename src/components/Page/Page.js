@@ -733,12 +733,10 @@ class Page extends Component {
 		console.log("removeExampleFromOldLocation", exampleId, category, language, type);
 		var allCategories = this.state.allCategories;
 
-		console.log(allCategories[category]["count"][language][type]);
 		var index = allCategories[category]["count"][language][type].indexOf(exampleId);
 		if (index > -1) {
 		    allCategories[category]["count"][language][type].splice(index, 1);
 		}
-		console.log(allCategories[category]["count"][language][type]);
 		
 		this.setState({ allCategories: allCategories });
 	}

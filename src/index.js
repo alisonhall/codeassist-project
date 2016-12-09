@@ -19,7 +19,6 @@ import CategoryView from './views/CategoryView.js';
 import SearchResultsView from './views/SearchResultsView.js';
 import CreateCategoryView from './views/CreateCategoryView.js';
 import CreateSnippetView from './views/CreateSnippetView.js';
-import OpenedSyntaxCardView from './views/OpenedSyntaxCardView.js';
 import OpenedExampleCardView from './views/OpenedExampleCardView.js';
 import Error404 from './views/Error404.js';
 
@@ -40,10 +39,8 @@ import Login from './components/Login/Login.js';
 import NoContent from './components/NoContent/NoContent.js';
 import NoLanguage from './components/NoLanguage/NoLanguage.js';
 import OpenExampleCard from './components/OpenExampleCard/OpenExampleCard.js';
-import OpenSyntaxCard from './components/OpenSyntaxCard/OpenSyntaxCard.js';
 // import Page from './components/Page/Page.js';
 import SearchResults from './components/SearchResults/SearchResults.js';
-import SyntaxCards from './components/SyntaxCards/SyntaxCards.js';
 import Test from './components/Test/Test.js';
 import UserSettings from './components/UserSettings/UserSettings.js';
 
@@ -75,7 +72,6 @@ const routes = (
     <Route path="/user/(:userId)" component={UserSettingsView} />
     <Route path="/search/(:searchTerm)" component={SearchResultsView} />
   	<Route path="/category/(:categoryId)" component={CategoryView} />
-  	<Route path="/syntax/(:syntaxId)" component={OpenedSyntaxCardView} />
   	<Route path="/example/(:exampleId)" component={OpenedExampleCardView} />
 
     <Route path="/test" component={Test} />
@@ -95,9 +91,7 @@ const routes = (
     <Route path="/test/nocontent" component={NoContent} />
     <Route path="/test/nolanguage" component={NoLanguage} />
     <Route path="/test/openexamplecard" component={OpenExampleCard} />
-    <Route path="/test/opensyntaxcard" component={OpenSyntaxCard} />
     <Route path="/test/searchresults" component={SearchResults} />
-    <Route path="/test/syntaxcards" component={SyntaxCards} />
     <Route path="/test/usersettings" component={UserSettings} />
 
     <Route path="*" component={Error404} />

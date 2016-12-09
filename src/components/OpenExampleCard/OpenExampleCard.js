@@ -53,9 +53,6 @@ class OpenExampleCard extends Component {
 		this.onRestore = this.onRestore.bind(this);
 		this.categoryOption = this.categoryOption.bind(this);
 		this.languageOption = this.languageOption.bind(this);
-		this.categoryNames = this.categoryNames.bind(this);
-		this.checkCategoryIds = this.checkCategoryIds.bind(this);
-		this.splitElements = this.splitElements.bind(this);
 	}
 
 	componentWillMount() {
@@ -96,9 +93,13 @@ class OpenExampleCard extends Component {
 			var exampleType;
 			if(example.syntax && !example.howTo) {
 				exampleType = 'syntax';
-			} else {
+			} else if(!example.syntax && !example.howTo) {
 				exampleType = 'example';
+			} else {
+				exampleType = 'howTo';
 			}
+
+			console.log("loadSpecificData exampleType", exampleType);
 
 			var isActive = example.isActive;
 			var languageId = example.language;
@@ -234,30 +235,7 @@ class OpenExampleCard extends Component {
 
 	handleChange(event) {
 		var value;
-
-		// if(event.target.name == 'newRelatedCategoryIDs') {
-		// 	var options = event.target.options;
-		// 	value = [];
-		// 	for (var i = 0, l = options.length; i < l; i++) {
-		// 		if (options[i].selected) {
-		// 			value.push(Number(options[i].value));
-		// 		}
-		// 	}
-		// } else if(event.target.name == 'newCategoryAlternativeNames') {
-		// 	value = event.target.value.split(',');
-		// 	for (var i = 0; i < value.length; i++) {
-		// 		value[i] = $.trim(value[i]);
-		// 	}
-		// } else if(event.target.name == 'newParentCategory') {
-		// 	if(event.target.value == 'None') {
-		// 		this.setState({newIsTopLevel: true});
-		// 	} else {
-		// 		this.setState({newIsTopLevel: false});
-		// 	}
-		// 	value = event.target.value;
-		// } else {
-			value = event.target.value;
-		// }
+		value = event.target.value;
 
 		this.setState({[event.target.name]: value});
 	}
@@ -268,7 +246,6 @@ class OpenExampleCard extends Component {
 
 		var newParentCategory = this.state.newParentCategory;
 		var newExampleDescription = this.state.newExampleDescription;
-		// var newEditedBy = this.props.currentUserId[0];
 		var newEditedBy = this.props.allUsers[this.props.currentUserId[0]];
 		var newLevel = this.state.newLevel;
 		var newLanguageId = this.state.newLanguageId;
@@ -280,9 +257,9 @@ class OpenExampleCard extends Component {
 		var oldExampleType;
 		var formattedNewExampleType;
 
-		if(this.props.allExamples[this.state.exampleId].isSyntax && !this.props.allExamples[this.state.exampleId].howTo) {
+		if(this.props.allExamples[this.state.exampleId].syntax && !this.props.allExamples[this.state.exampleId].howTo) {
 			oldExampleType = 'syntaxes';
-		} else if (!this.props.allExamples[this.state.exampleId].isSyntax && !this.props.allExamples[this.state.exampleId].howTo) {
+		} else if (!this.props.allExamples[this.state.exampleId].syntax && !this.props.allExamples[this.state.exampleId].howTo) {
 			oldExampleType = 'examples';
 		} else {
 			oldExampleType = 'howTos';
@@ -301,6 +278,8 @@ class OpenExampleCard extends Component {
 			howTo = true;
 			formattedNewExampleType = 'howTos';
 		}
+
+		console.log("onSave this.state.exampleType:", this.state.exampleType, " this.state.newExampleType:", this.state.newExampleType, " oldExampleType:", oldExampleType, " formattedNewExampleType:", formattedNewExampleType);
 
 		var object = {
 			"id": this.state.exampleId,
@@ -332,15 +311,7 @@ class OpenExampleCard extends Component {
 			level: newLevel,
 			exampleType: newExampleType,
 			codeText: newCodeText,
-			dateEdited: newDateEdited,
-
-			// newExampleDescription: this.state.description,
-			// newLevel: this.state.level,
-			// newParentCategory: this.state.categoryId,
-			// newLanguage: this.state.level,
-			// newEditedBy: this.state.editedBy,
-			// newExampleType: this.state.exampleType,
-			// newCodeText: this.state.codeText
+			dateEdited: newDateEdited
 		});
 
 		this.toggleEditMode();
@@ -357,7 +328,6 @@ class OpenExampleCard extends Component {
 	onRestore() {
 		this.setState({ isActive: true });
 		this.props.restoreExample(this.state.exampleId);
-		// browserHistory.push('/category/' + this.state.categoryId);
 	}
 
 	categoryOption(category, i) {
@@ -372,67 +342,18 @@ class OpenExampleCard extends Component {
 		);
 	}
 
-	categoryNames(categoryId, i) {
-		// console.log("categoryNames attributes: ", categoryId, i);
-		var categoryName;
-		if(categoryId == 'None') {
-			categoryName = "None";
-			return (
-				<span key={i}>{categoryName}</span>
-			);
-		} else if (categoryId == this.state.categoryId) {
-			categoryName = (this.props.allCategories[categoryId].name) ? this.props.allCategories[categoryId].name : '';
-			return (
-				<span key={i} className="thisCategory">{categoryName}</span>
-			);
-		} else {
-			categoryName = (this.props.allCategories[categoryId].name) ? this.props.allCategories[categoryId].name : '';
-			return (
-				<span key={i}><Link to={`/category/${categoryId}`}>{categoryName}</Link></span>
-			);
-		}
-	}
-
-	checkCategoryIds(value) {
-		// console.log("checkCategoryIds value: ", value);
-		if ((value == 'None') || (value.length <= 0)) {
-			// console.log("111");
-			return (
-				<span key="0">None</span>
-			);
-		} else if (Array.isArray(value)) {
-			// console.log("222");
-			return (
-				value.map(this.categoryNames)
-			);
-		} else {
-			// console.log("333");
-			var categoryName = (this.props.allCategories) ? this.props.allCategories[value].name : '';
-			return (
-				<span key="0"><Link to={`/category/${value}`}>{categoryName}</Link></span>
-			);
-		}
-	}
-
-	splitElements(value, index) {
-		return(
-			<span key={index}>{value}</span>
-		);
-	}
-
 	render() {
 		var exampleId = this.state.exampleId;
-		// var example = this.state.example;
 
 		if(this.props.allDataLoaded && exampleId && this.props.allCategories && this.props.allLanguages && this.props.allUsers) {
 
 			var example = this.state.example;
 			var categoryId = this.state.categoryId;
-			// var category = this.state.category;
 			var category = this.props.allCategories[this.state.categoryId];
 			var language = this.props.allLanguages[this.state.languageId];
 			var createdBy = this.state.createdBy;
 			var editedBy = this.state.editedBy;
+			var exampleType = this.state.exampleType;
 
 			var categoryName = (category) ? category.name : '';
 			var languageFull = (language) ? language.fullName : '';
@@ -468,9 +389,9 @@ class OpenExampleCard extends Component {
 						<form onSubmit={this.onSave}>
 							<div>
 								<label htmlFor="newExampleType">Select Type:</label>
-								<span><input type="radio" name="newExampleType" value="syntax" ref="selectTypeSyntax" onChange={this.handleChange} /><span>Syntax</span></span>
-								<span><input type="radio" name="newExampleType" value="example" ref="selectTypeExample" onChange={this.handleChange} defaultChecked /><span>Example</span></span>
-								<span><input type="radio" name="newExampleType" value="howTo" ref="selectTypeHowTo" onChange={this.handleChange} disabled /><span>How-To</span></span>
+								<span><input type="radio" name="newExampleType" value="syntax" ref="selectTypeSyntax" onChange={this.handleChange} defaultChecked={(exampleType == 'syntax') ? true : false} /><span>Syntax</span></span>
+								<span><input type="radio" name="newExampleType" value="example" ref="selectTypeExample" onChange={this.handleChange} defaultChecked={(exampleType == 'example') ? true : false} /><span>Example</span></span>
+								<span><input type="radio" name="newExampleType" value="howTo" ref="selectTypeHowTo" onChange={this.handleChange} defaultChecked={(exampleType == 'howTo') ? true : false} disabled /><span>How-To</span></span>
 							</div>
 
 							<div>
@@ -519,9 +440,15 @@ class OpenExampleCard extends Component {
 						<h2>Example of <Link to={'/category/' + categoryId}>{categoryName}</Link></h2>
 						<div className="row">
 							<div className="thirds">
-								<p>Rank {ranking}
-								<br />{dateCreated}
-								<br />Level: {level}</p>
+								<p>
+									{exampleType !== 'syntax' ? (
+										<span>Rank {ranking}<br /></span>
+									) : 
+										null
+									}
+									{dateCreated}<br />
+									Level: {level}
+								</p>
 							</div>
 
 							<div className="thirds">
@@ -542,11 +469,15 @@ class OpenExampleCard extends Component {
 
 						<pre><code className={languageClass}>{codeText}</code></pre>
 
-						<p className="commentNum">{numberOfComments} comments</p>
-
-						<div className="comments">
-							{this.checkForComments(comments)}
-						</div>
+						{exampleType !== 'syntax' ? (
+							<div className="comments">
+								<p className="commentNum">{numberOfComments} comments</p>
+								{this.checkForComments(comments)}
+							</div>
+						) : 
+							null
+						}
+						
 					</section>
 				);
 			}

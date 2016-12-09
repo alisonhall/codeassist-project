@@ -6,7 +6,6 @@ import $ from 'jquery';
 
 // Components
 import ExampleCards from './../ExampleCards/ExampleCards.js';
-import SyntaxCards from './../SyntaxCards/SyntaxCards.js';
 import NoContent from './../NoContent/NoContent.js';
 import NoLanguage from './../NoLanguage/NoLanguage.js';
 import CategoryInfo from './../CategoryInfo/CategoryInfo.js';
@@ -20,14 +19,13 @@ class Examples extends Component {
 		super(props);
 
 		this.eachExample = this.eachExample.bind(this);
-		this.eachSyntax = this.eachSyntax.bind(this);
 		this.renderExamples = this.renderExamples.bind(this);
-		this.renderSyntaxes = this.renderSyntaxes.bind(this);
 		this.displayCategoryInfo = this.displayCategoryInfo.bind(this);
 		this.checkIfActive = this.checkIfActive.bind(this);
 	}
 
 	eachExample(exampleId, i) {
+		// console.log("eachExample", exampleId, i);
 		var example = this.props.allExamples[exampleId];
 		var language = this.props.allLanguages[example.language];
 		var category = this.props.allCategories[example.categoryID];
@@ -59,60 +57,16 @@ class Examples extends Component {
 		}
 	}
 
-	eachSyntax(exampleId, i) {
-		var example = this.props.allExamples[exampleId];
-		var language = this.props.allLanguages[example.language];
-		var category = this.props.allCategories[example.categoryID];
-		var editedBy = this.props.allUsers[example.editedBy];
-		var createdBy = this.props.allUsers[example.createdBy];
-		var isSyntax = example.syntax;
-		var isActive = this.props.allExamples[exampleId].isActive;
-		var column;
-
-		for (var i = 0; i < this.props.selectedLanguages.length; i++) {
-			if (this.props.selectedLanguages[i] == language.id) {
-				column = i + 1;
-			}
-		}
-
-		if(isActive) {
-			return (
-				<SyntaxCards 
-					key={exampleId}
-					example={example}
-					language={language}
-					category={category}
-					editedBy={editedBy}
-					createdBy={createdBy}
-					allComments={this.props.allComments}
-					column={column}
-				></SyntaxCards>
-			);
-		}
-	}
-
-	renderExamples(language, i) {
+	renderExamples(type, language, i) {
+		// console.log("renderExamples", type, language, i);
 		var thisCategory = this.props.allCategories[this.props.params.categoryId];
 
 		if (thisCategory.count[language]) {
-			if(thisCategory.count[language].examples) {
+			if(thisCategory.count[language][type]) {
+				// console.log(thisCategory.count[language][type]);
 				return (
 					<section className={classnames('example', `language${language}`)} key={i}>
-						{thisCategory.count[language].examples.map(this.eachExample)}
-					</section>
-				);
-			}
-		}
-	}
-
-	renderSyntaxes(language, i) {
-		var thisCategory = this.props.allCategories[this.props.params.categoryId];
-
-		if (thisCategory.count[language]) {
-			if(thisCategory.count[language].syntaxes) {
-				return (
-					<section className={classnames('syntax', `language${language}`)} key={i}>
-						{thisCategory.count[language].syntaxes.map(this.eachSyntax)}
+						{thisCategory.count[language][type].map(this.eachExample)}
 					</section>
 				);
 			}
@@ -189,12 +143,12 @@ class Examples extends Component {
 
 							<h4>Syntaxes</h4>
 							<div className={classnames('syntaxes', numLanguageClass)}>
-								{languages.map(this.renderSyntaxes)}
+								{languages.map(this.renderExamples.bind(this, 'syntaxes'))}
 							</div>
 
 							<h4>Examples</h4>
 							<div className={classnames('examples', numLanguageClass)}>
-								{languages.map(this.renderExamples)}
+								{languages.map(this.renderExamples.bind(this, 'examples'))}
 							</div>
 						</div>
 					);
@@ -205,7 +159,7 @@ class Examples extends Component {
 
 							<h4>Syntaxes</h4>
 							<div className={classnames('syntaxes', numLanguageClass)}>
-								{languages.map(this.renderSyntaxes)}
+								{languages.map(this.renderExamples.bind(this, 'syntaxes'))}
 							</div>
 
 							<h4>Examples</h4>
@@ -227,7 +181,7 @@ class Examples extends Component {
 
 							<h4>Examples</h4>
 							<div className={classnames('examples', numLanguageClass)}>
-								{languages.map(this.renderExamples)}
+								{languages.map(this.renderExamples.bind(this, 'examples'))}
 							</div>
 						</div>
 					);

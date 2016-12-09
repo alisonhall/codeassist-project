@@ -36,18 +36,39 @@ class ExampleCards extends Component {
 		var languageClass = "language-" + language;
 		var exampleId = this.props.example.id;
 
+		var exampleType;
+		if(this.props.example.syntax && !this.props.example.howTo) {
+			exampleType = 'syntax';
+		} else if(!this.props.example.syntax && !this.props.example.howTo) {
+			exampleType = 'example';
+		} else {
+			exampleType = 'howTo';
+		}
+
 		return (
 			<section className={classnames('exampleCards-container', `column-${this.props.column}`)}>
 				<div className="row">
 					<div className="thirds">
-						<p>Rank {ranking}
-						<br />{dateCreated}
-						<br />Level: {level}</p>
+						<p>
+							{exampleType !== 'syntax' ? (
+								<span>Rank {ranking}<br /></span>
+							) : 
+								null
+							}
+							{dateCreated}<br />
+							Level: {level}
+						</p>
 					</div>
 
 					<div className="thirds">
-						<p>Created By: <i className="fa fa-user" aria-hidden="true"></i> <Link to={'/user/' + createdBy}>{createdBy}</Link>
-						<br />Edited By: <i className="fa fa-user" aria-hidden="true"></i> <Link to={'/user/' + editedBy}>{editedBy}</Link></p>
+						<p>
+							{exampleType !== 'syntax' ? (
+								<span>Created By: <i className="fa fa-user" aria-hidden="true"></i> <Link to={'/user/' + createdBy}>{createdBy}</Link><br /></span>
+							) : 
+								null
+							}
+							Edited By: <i className="fa fa-user" aria-hidden="true"></i> <Link to={'/user/' + editedBy}>{editedBy}</Link>
+							</p>
 					</div>
 
 					<div className="thirds">
@@ -61,7 +82,11 @@ class ExampleCards extends Component {
 
 				<pre><code className={languageClass}>{codeText}</code></pre>
 
-				<p className="commentNum">{numberOfComments} comments</p>
+				{exampleType !== 'syntax' ? (
+					<p className="commentNum">{numberOfComments} comments</p>
+				) : 
+					null
+				}
 
 				<Link to={'/example/' + exampleId}>Expand</Link>
 			</section>

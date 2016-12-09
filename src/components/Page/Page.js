@@ -41,10 +41,8 @@ import Login from './../Login/Login.js';
 import NoContent from './../NoContent/NoContent.js';
 import NoLanguage from './../NoLanguage/NoLanguage.js';
 import OpenExampleCard from './../OpenExampleCard/OpenExampleCard.js';
-import OpenSyntaxCard from './../OpenSyntaxCard/OpenSyntaxCard.js';
 // import Page from './../Page/Page.js';
 import SearchResults from './../SearchResults/SearchResults.js';
-import SyntaxCards from './../SyntaxCards/SyntaxCards.js';
 import UserSettings from './../UserSettings/UserSettings.js';
 
 // Styles
@@ -938,21 +936,6 @@ class Page extends Component {
 				restoreExample = { this.restoreExample }
 			/>;
 
-			var openSyntaxCardComponent = <OpenSyntaxCard
-				allCategories = { this.state.allCategories }
-				allExamples = { this.state.allExamples }
-				allLanguages = { this.state.allLanguages }
-				allUsers = { this.state.allUsers }
-				allComments = { this.state.allComments }
-				allDataLoaded = { this.state.allDataLoaded }
-				params = { this.props.params }
-				selectedLanguages = { this.state.selectedLanguages }
-				currentUserId = { this.state.currentUser }
-				editExample = { this.editExample }
-				deleteExample = { this.deleteExample }
-				restoreExample = { this.restoreExample }
-			/>;
-
 			var searchResultsComponent = <SearchResults /> ;
 
 			var userSettingsComponent = <UserSettings /> ;
@@ -978,8 +961,6 @@ class Page extends Component {
 				contentComponent = loginComponent;
 			} else if (contentComponentStr == 'openedexamplecard') {
 				contentComponent = openExampleCardComponent;
-			} else if (contentComponentStr == 'openedsyntaxcard') {
-				contentComponent = openSyntaxCardComponent;
 			} else if (contentComponentStr == 'searchresults') {
 				contentComponent = searchResultsComponent;
 			} else if (contentComponentStr == 'usersettings') {

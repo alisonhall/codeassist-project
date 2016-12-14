@@ -1,7 +1,23 @@
 @import '../../styles/variables.scss';
 
 .categoryInfo-container {
-	
+	p {
+		font-weight: bold;
+
+		.content {
+			font-weight: normal;
+		}
+	}
+
+	.description {
+		font-size: 1.2em;
+		margin-bottom: 20px;
+	}
+
+	.fa {
+		padding-right: 5px;
+	}
+
 	.alternativeNames,
 	.siblingCategories,
 	.subCategories,
@@ -11,8 +27,6 @@
 		}
 		
 		.content span {
-			// padding: 0 5px;
-
 			&:after {
 				content: ', ';
 			}
@@ -23,4 +37,32 @@
 		}
 	}
 
+	.alternativeNames,
+	.relatedCategories,
+	.parentCategory,
+	.siblingCategories,
+	.subCategories {
+		width: 60%;
+		margin: 0px 0px 0px 50px;
+
+	}
+
+	.editButton,
+	.deleteButton,
+	.submitButton,
+	.cancelButton {
+		border: 3px solid $gray-color;
+		background: none;
+		border-radius: 10px;
+		padding: 10px 20px;
+		margin-right: 20px;
+
+		&:hover {
+			border-color: black;
+		}
+	}
+
+	.editButton {
+		margin-left: 50px;
+	}
 }

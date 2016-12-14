@@ -323,10 +323,10 @@ class CategoryInfo extends Component {
 							<p>SubCategories: <span>{this.checkCategoryIds(subCategoryIDs)}</span></p>
 						</div>
 						
-						<button type="submit" id="submit">Submit Category</button>
+						<button className="submitButton" type="submit" id="submit"><i className="fa fa-floppy-o" aria-hidden="true"></i>Save Category</button>
 					</form>
 
-					<button onClick={this.toggleEditMode}>Cancel</button>
+					<button className="cancelButton" onClick={this.toggleEditMode}><i className="fa fa-ban" aria-hidden="true"></i>Cancel</button>
 				</div>
 			);
 		} else {
@@ -340,8 +340,8 @@ class CategoryInfo extends Component {
 					<p className="siblingCategories">Sibling Categories: <span className="content">{this.checkCategoryIds(siblingCategories)}</span></p>
 					<p className="subCategories">SubCategories: <span className="content">{this.checkCategoryIds(subCategoryIDs)}</span></p>
 					<p className="relatedCategories">Related Categories: <span className="content">{this.checkCategoryIds(relatedCategoryIDs)}</span></p>
-					<button className="editButton" onClick={this.toggleEditMode}>Edit Category</button>
-					<button className="deleteButton" onClick={this.onDelete}>Delete Category</button>
+					<button className="editButton" onClick={this.toggleEditMode}><i className="fa fa-pencil" aria-hidden="true"></i>Edit Category</button>
+					<button className="deleteButton" onClick={this.onDelete}><i className="fa fa-trash-o" aria-hidden="true"></i>Delete Category</button>
 				</div>
 			);
 		}

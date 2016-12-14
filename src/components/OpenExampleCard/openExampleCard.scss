@@ -5,6 +5,19 @@
 	padding: 20px;
 	margin: 10px 10px 10px 0;
 
+	h3 {
+		font-size: 1.2em;
+		margin: 30px 0 10px;
+	}
+
+	.desc {
+		font-size: 1.1em;
+	}
+
+	.fa {
+		padding-right: 5px;
+	}
+
 	&.exampleInactive {
 		color: gray;
 	}
@@ -34,5 +47,20 @@
 	
 	.comment {
 		border: 1px solid $gray-color;
+	}
+
+	.editButton,
+	.deleteButton,
+	.submitButton,
+	.cancelButton {
+		border: 3px solid $gray-color;
+		background: none;
+		border-radius: 10px;
+		padding: 10px 20px;
+		margin-right: 20px;
+
+		&:hover {
+			border-color: black;
+		}
 	}
 }

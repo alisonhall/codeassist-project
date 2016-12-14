@@ -879,6 +879,7 @@ class Page extends Component {
 				allCategories = { this.state.allCategories }
 				topCategories = { this.state.topCategories }
 				allDataLoaded = { this.state.allDataLoaded }
+				params = { this.props.params }
 			/>;
 
 			var categoryComponent = <Examples
@@ -992,10 +993,23 @@ class Page extends Component {
 
 		} else {
 
-			return ( <div className = "page-container"
+			return ( <div className = "page-container loading"
 				key = { this.state.allDataLoaded } >
-				Loading... </div>
-
+				Loading... 
+					<div className="loader">
+					  <svg>
+					  <path fill="#000" d="M43.935,25.145c0-10.318-8.364-18.683-18.683-18.683c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615c8.072,0,14.615,6.543,14.615,14.615H43.935z">
+					    <animateTransform attributeType="xml"
+					      attributeName="transform"
+					      type="rotate"
+					      from="0 25 25"
+					      to="360 25 25"
+					      dur="1s"
+					      repeatCount="indefinite"/>
+					    </path>
+					  </svg>
+					</div>
+				</div>
 			);
 		}
 	}

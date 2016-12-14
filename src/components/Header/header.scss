@@ -8,6 +8,7 @@ header {
 
 #logo {
 	display: inline-block;
+	margin-left: 0;
 
 	h1 {
 		font-family: 'Unica One', cursive;
@@ -53,4 +54,14 @@ header {
 
 .fa-user {
 	margin-left: 5px;
+}
+
+@media screen and (max-width: 675px) {
+	header .row {
+		margin-left: -90px;
+	}
+
+	header input {
+		width: 80%;
+	}
 }

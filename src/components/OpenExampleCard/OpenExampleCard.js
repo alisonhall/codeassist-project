@@ -99,7 +99,7 @@ class OpenExampleCard extends Component {
 				exampleType = 'howTo';
 			}
 
-			console.log("loadSpecificData exampleType", exampleType);
+			// console.log("loadSpecificData exampleType", exampleType);
 
 			var isActive = example.isActive;
 			var languageId = example.language;
@@ -279,7 +279,7 @@ class OpenExampleCard extends Component {
 			formattedNewExampleType = 'howTos';
 		}
 
-		console.log("onSave this.state.exampleType:", this.state.exampleType, " this.state.newExampleType:", this.state.newExampleType, " oldExampleType:", oldExampleType, " formattedNewExampleType:", formattedNewExampleType);
+		// console.log("onSave this.state.exampleType:", this.state.exampleType, " this.state.newExampleType:", this.state.newExampleType, " oldExampleType:", oldExampleType, " formattedNewExampleType:", formattedNewExampleType);
 
 		var object = {
 			"id": this.state.exampleId,
@@ -370,7 +370,7 @@ class OpenExampleCard extends Component {
 			var numberOfComments = (example.commentIDs == 'None') ? 0 : example.commentIDs.length;
 			var languageClass = "language-" + languageShort;
 
-			var deleteButton = (example.isActive) ? <button className="deleteButton" onClick={this.onDelete}>Delete Example</button> : <button className="deleteButton" onClick={this.onRestore}>Restore Example</button>
+			var deleteButton = (example.isActive) ? <button className="deleteButton" onClick={this.onDelete}><i className="fa fa-trash-o" aria-hidden="true"></i>Delete Example</button> : <button className="deleteButton" onClick={this.onRestore}><i className="fa fa-undo" aria-hidden="true"></i>Restore Example</button>
 			var isActiveStatus = (this.state.isActive) ? 'exampleActive' : 'exampleInactive';
 
 			var languagePosition = null;
@@ -428,10 +428,10 @@ class OpenExampleCard extends Component {
 								<textarea name="newCodeText" id="enterCode" cols="30" rows="10" ref="enterCode" value={this.state.newCodeText} onChange={this.handleChange} />
 							</div>
 							
-							<button type="submit" id="submit">Submit Example</button>
+							<button className="submitButton" type="submit" id="submit"><i className="fa fa-floppy-o" aria-hidden="true"></i>Save Example</button>
 						</form>
 
-						<button onClick={this.toggleEditMode}>Cancel</button>
+						<button className="cancelButton" onClick={this.toggleEditMode}><i className="fa fa-ban" aria-hidden="true"></i>Cancel</button>
 					</section>
 				);
 			} else {
@@ -461,7 +461,7 @@ class OpenExampleCard extends Component {
 							</div>
 						</div>
 
-						<button className="editButton" onClick={this.toggleEditMode}>Edit Example</button>
+						<button className="editButton" onClick={this.toggleEditMode}><i className="fa fa-pencil" aria-hidden="true"></i>Edit Example</button>
 						{deleteButton}
 
 						<h3>Description:</h3>

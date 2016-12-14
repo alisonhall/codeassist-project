@@ -1,11 +1,44 @@
 @import '../../styles/variables.scss';
 
 .accordion-container {
-	.accordionContent {
-		padding-left: 20px;
+	// min-height: 35px;
+	border-top: 1px solid black;
+
+	.accordion-content {
+		display: none;
+		margin-left: 20px;
+		// padding-left: 20px;
+		background-color: darken($sidebar-color, 20);
+	}
+
+	.accordion-button {
+		float: right;
+		height: 34px;
+		width: 40px;
+		border: 0;
+		background: darken($sidebar-color, 40);
+	}
+
+	a {
+		display: inline-block;
+		padding: 7px 20px 7px 10px;
+		min-height: 27px;
+	}	
+
+	&.isActive > .accordion-content {
+		display: block;
+	}
+
+	&.open > .accordion-content {
+		display: block;
+	}
+
+	&.open > .accordion-button {
+		background: darken($sidebar-color, 60);
 	}
 
 	.active {
 		color: #000;
+		font-weight: bold;
 	}
 }

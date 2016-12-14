@@ -41,7 +41,7 @@ $sidebar-height-2: calc(100vh - (85px + 14px));
 	.categoriesList {
 		display: inline-block;
 		background-color: $sidebar-color;
-		padding: 10px;
+		// padding: 10px;
 		position: absolute;
 		width: $sidebar-width-opened;
 		top: 0;
@@ -51,8 +51,10 @@ $sidebar-height-2: calc(100vh - (85px + 14px));
 
 		#createCategory {
 			position: absolute;
-			bottom: 10px;
+			left: 20px;
+			bottom: 20px;
 			padding: 10px 20px;
+
 			border-radius: 10px;
 			background: none;
 			border: 3px solid green;
@@ -69,6 +71,16 @@ $sidebar-height-2: calc(100vh - (85px + 14px));
 				padding-left: 5px;
 			}
 		}
+	}
+
+	ul {
+		// padding-left: 10px;
+		// margin-top: 14px;
+	}
+
+	li {
+		// min-height: 35px;
+		// border-top: 1px solid black;
 	}
 }
 

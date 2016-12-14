@@ -18,68 +18,54 @@ class CategoriesSidebar extends Component {
 			showSidebar: false
 		};
 
-		this.topCategory = this.topCategory.bind(this);
-		this.subCategory = this.subCategory.bind(this);
 		this.singleCategory = this.singleCategory.bind(this);
 		this.handleClickOutside = this.handleClickOutside.bind(this);
 		this.toggleShow = this.toggleShow.bind(this);
+		this.checkForSubCategory = this.checkForSubCategory.bind(this);
+	}
+
+	checkForSubCategory(categoryId, i) {
+		// console.log("checkForSubCategory categoryId", categoryId, i);
+		if (this.props.allCategories[categoryId].subCategoryIDs == 'None') {
+			// console.log("childCategory categoryId", categoryId, i);
+			return (
+				<li key={i}>
+					<Accordion
+						key={i}
+						item={this.props.allCategories[categoryId]}
+						subContent={null}
+						params={this.props.params}
+					/>
+				</li>
+			);
+		} else {
+			// console.log("parentCategory categoryId", categoryId, i);
+			return (
+				<li key={i}>
+					<Accordion
+						key={i}
+						item={this.props.allCategories[categoryId]}
+						subContent={this.props.allCategories[categoryId].subCategoryIDs.map(this.checkForSubCategory)}
+						params={this.props.params}
+					/>
+					{/*}<ul>
+						{this.props.allCategories[categoryId].subCategoryIDs.map(this.checkForSubCategory)}
+					</ul>{*/}
+				</li>
+			);
+		}
 	}
 
 	singleCategory(category, i) {
+		// console.log("singleCategory category", category, i);
 		return(
 			<Accordion
-				key={i}
-				index={i}
-				title={category.name}
+				key={category.id}
 				item={category}
 				subContent={null}
+				params={this.props.params}
 			/>
 		);
-	}
-
-	subCategory(category, i) {
-		// console.log("subCategory");
-		for (var j = category.length - 1; j >= 0; j--) {
-			// console.log("For loop " + j);
-			var categoryId = Number(category[j]);
-
-			return(
-				<Accordion
-					key={categoryId}
-					index={categoryId}
-					title={this.props.allCategories[categoryId].name}
-					item={this.props.allCategories[category[j]]}
-					subContent={null}
-				/>
-			);
-		}
-		
-	}
-
-	topCategory(category, i) {
-		var categoryId = Number(this.props.allCategories[category].id);
-
-		if (this.props.allCategories[category].subCategoryIDs) {
-			return (
-				<Accordion
-					key={categoryId}
-					index={categoryId}
-					title={this.props.allCategories[categoryId].name} 
-					item={this.props.allCategories[categoryId]}
-					subContent={this.props.allCategories[categoryId].subCategoryIDs.map(this.subCategory)}
-				/>
-			);
-		} else {
-			return (
-				<Accordion
-					key={categoryId}
-					index={categoryId}
-					title={this.props.allCategories[categoryId].name} 
-					item={this.props.allCategories[categoryId]}
-					subContent={null}
-				/>
-			);
-		}
 	}
 
 	handleClickOutside() {
@@ -103,8 +89,10 @@ class CategoriesSidebar extends Component {
 				<div className={classnames('categoriesSidebar-container', `${showStatus}`)}>
 					<button id="showCategories" onClick={this.toggleShow}>Categories<i className="fa fa-bars fa-rotate-270" aria-hidden="true"></i></button>
 					<div className={classnames('categoriesList')} ref={(div) => this.categoriesList = div}>
-						{/*}{this.props.topCategories.map(this.topCategory)}{*/}
-						{this.props.allCategories.map(this.singleCategory)}
+						<ul>
+							{this.props.topCategories.map(this.checkForSubCategory)}
+						</ul>
+						{/*}{this.props.allCategories.map(this.singleCategory)}{*/}
 						<button id="createCategory">
 							<Link to='/create/category'><i className="fa fa-plus" aria-hidden="true"></i><span>Category</span></Link>
 						</button>
@@ -126,7 +114,8 @@ class CategoriesSidebar extends Component {
 CategoriesSidebar.propTypes = {
 	allDataLoaded: PropTypes.bool,
 	allCategories: PropTypes.array,
-	topCategories: PropTypes.array
+	topCategories: PropTypes.array,
+	params: PropTypes.object
 };
 
 // CategoriesSidebar.defaultProps = {

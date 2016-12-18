@@ -18,6 +18,44 @@
 		padding-right: 5px;
 	}
 
+	form > div {
+		margin-bottom: 15px;
+	}
+
+	label {
+		width: 200px;
+
+		span {
+			font-weight: normal;
+			font-size: 0.8em;
+		}
+	}
+
+	input,
+	select,
+	textarea {
+		min-width: 300px;
+		min-height: 40px;
+	}
+
+	.siblingCategoriesEdit,
+	.subCategoriesEdit {
+		margin: 0;
+		
+		p {
+			> span {
+				span {
+					font-weight: normal;
+					padding-right: 5px;
+				}
+			}
+		}
+	}
+
+	.cancelButton {
+		padding: 10px 0 20px;
+	}
+
 	.alternativeNames,
 	.siblingCategories,
 	.subCategories,

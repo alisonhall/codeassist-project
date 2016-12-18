@@ -3,14 +3,6 @@ import { IndexLink, Link } from 'react-router';
 import classnames from 'classnames';
 import $ from 'jquery';
 import firebase from 'firebase';
-// import firebaseApp from 'firebase/app';
-// import firebaseAuth from 'firebase/auth';
-// import database from 'firebase/database';
-// var gcloud = require('google-cloud');
-// var gcs = gcloud.storage();
-// var bucket = gcs.bucket('code-assist.appspot.com');
-// import base from './../../base.js';
-// import app from './../../base.js';
 
 var Rebase = require('re-base');
 

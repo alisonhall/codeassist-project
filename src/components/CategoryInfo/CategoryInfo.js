@@ -315,12 +315,12 @@ class CategoryInfo extends Component {
 							</select>
 						</div>
 
-						<div>
-							<p>Sibling Categories: <span>{this.checkCategoryIds(siblingCategories)}</span></p>
+						<div className="siblingCategoriesEdit">
+							<p><span>Sibling Categories: </span><span>{this.checkCategoryIds(siblingCategories)}</span></p>
 						</div>
 
-						<div>
-							<p>SubCategories: <span>{this.checkCategoryIds(subCategoryIDs)}</span></p>
+						<div className="subCategoriesEdit">
+							<p><span>SubCategories: </span><span>{this.checkCategoryIds(subCategoryIDs)}</span></p>
 						</div>
 						
 						<button className="submitButton" type="submit" id="submit"><i className="fa fa-floppy-o" aria-hidden="true"></i>Save Category</button>

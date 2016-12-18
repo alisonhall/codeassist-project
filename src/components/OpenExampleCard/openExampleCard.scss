@@ -18,6 +18,34 @@
 		padding-right: 5px;
 	}
 
+	form > div {
+		margin-bottom: 15px;
+
+		> span {
+			padding: 0 20px 0 0;
+
+			> input[type="radio"] {
+				margin-right: 5px;
+			}
+		}
+	}
+
+	label {
+		width: 200px;
+
+		span {
+			font-weight: normal;
+			font-size: 0.8em;
+		}
+	}
+
+	input,
+	select,
+	textarea {
+		min-width: 300px;
+		min-height: 40px;
+	}
+
 	&.exampleInactive {
 		color: gray;
 	}

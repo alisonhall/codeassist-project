@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { IndexLink, Link, browserHistory } from 'react-router';
 import classnames from 'classnames';
 import moment from 'moment';

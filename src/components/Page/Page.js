@@ -1,17 +1,20 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { IndexLink, Link } from 'react-router';
 import classnames from 'classnames';
 import $ from 'jquery';
 import firebase from 'firebase';
 
-var Rebase = require('re-base');
+import base from './../../base.js';
 
-var base = Rebase.createClass({
-	apiKey: "AIzaSyAnEDbmWbdr72O2IeCY1Qicj3c4LLkL9cU",
-	authDomain: "code-assist.firebaseapp.com",
-	databaseURL: "https://code-assist.firebaseio.com",
-	storageBucket: "code-assist.appspot.com"
-});
+// var Rebase = require('re-base');
+
+// var base = Rebase.createClass({
+// 	apiKey: "AIzaSyAnEDbmWbdr72O2IeCY1Qicj3c4LLkL9cU",
+// 	authDomain: "code-assist.firebaseapp.com",
+// 	databaseURL: "https://code-assist.firebaseio.com",
+// 	storageBucket: "code-assist.appspot.com"
+// });
 
 
 

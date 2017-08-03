@@ -36,7 +36,6 @@ class CategoriesSidebar extends Component {
 					<Accordion
 						item={this.props.allCategories[categoryId]}
 						subContent={null}
-						params={match}
 					/>
 				</li>
 			);
@@ -47,7 +46,6 @@ class CategoriesSidebar extends Component {
 					<Accordion
 						item={this.props.allCategories[categoryId]}
 						subContent={this.props.allCategories[categoryId].subCategoryIDs.map(this.checkForSubCategory)}
-						params={this.props.params}
 					/>
 					{/*}<ul>
 						{this.props.allCategories[categoryId].subCategoryIDs.map(this.checkForSubCategory)}
@@ -63,7 +61,6 @@ class CategoriesSidebar extends Component {
 			<Accordion
 				item={category}
 				subContent={null}
-				params={this.props.params}
 			/>
 		);
 	}

@@ -25,11 +25,11 @@ class Accordion extends Component {
 	}
 
 	componentWillMount() {
-		console.log("this.props", this.props);
-		console.log("this.props.item", this.props.item);
-		if(this.props.params.match.params.categoryId == this.props.item.id) {
-			this.setState({isActive: true});
-		}
+		// console.log("this.props", this.props);
+		// console.log("this.props.item", this.props.item);
+		// if(match.params.categoryId == this.props.item.id) {
+		// 	this.setState({isActive: true});
+		// }
 
 		this.setState({
 			name: this.props.item.name,
@@ -91,8 +91,7 @@ class Accordion extends Component {
 
 Accordion.propTypes = {
 	item: PropTypes.object,
-	subContent: PropTypes.array,
-	params: PropTypes.object
+	subContent: PropTypes.array
 };
 
 // Accordion.defaultProps = {

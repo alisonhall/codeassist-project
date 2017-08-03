@@ -61,7 +61,7 @@ class Examples extends Component {
 
 	renderExamples(type, language, i) {
 		// console.log("renderExamples", type, language, i);
-		var thisCategory = this.props.allCategories[this.props.params.categoryId];
+		var thisCategory = this.props.allCategories[this.props.thisCategoryId];
 
 		if (thisCategory.count[language]) {
 			if(thisCategory.count[language][type]) {
@@ -82,10 +82,10 @@ class Examples extends Component {
 				topCategories = { this.props.topCategories }
 				allUsers = { this.props.allUsers }
 				allDataLoaded = { this.props.allDataLoaded }
-				params = { this.props.params }
 				currentUserId = { this.props.currentUserId }
 				editCategory = { this.props.editCategory }
 				deleteCategory = { this.props.deleteCategory }
+				thisCategoryId = { this.props.thisCategoryId }
 			/>
 		);
 	}
@@ -105,8 +105,8 @@ class Examples extends Component {
 	}
 
 	render() {
-		if (this.props.allDataLoaded && (this.props.allCategories[this.props.params.categoryId])) {
-			var thisCategory = (this.props.allCategories[this.props.params.categoryId]) ? this.props.allCategories[this.props.params.categoryId] : null;
+		if (this.props.allDataLoaded && (this.props.allCategories[this.props.thisCategoryId])) {
+			var thisCategory = (this.props.allCategories[this.props.thisCategoryId]) ? this.props.allCategories[this.props.thisCategoryId] : null;
 			// console.log(thisCategory);
 
 			var languages = this.props.selectedLanguages;
@@ -238,12 +238,12 @@ Examples.propTypes = {
 	allUsers: PropTypes.array,
 	allComments: PropTypes.array,
 	allDataLoaded: PropTypes.bool,
-	params: PropTypes.object,
 	topCategories: PropTypes.array,
 	selectedLanguages: PropTypes.array,
 	currentUserId: PropTypes.array,
 	editCategory: PropTypes.func,
-	deleteCategory: PropTypes.func
+	deleteCategory: PropTypes.func,
+	thisCategoryId: PropTypes.number
 };
 
 // Examples.defaultProps = {

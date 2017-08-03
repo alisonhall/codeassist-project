@@ -15,7 +15,7 @@ class CategoryInfo extends Component {
 		super(props);
 		this.state = {
 			isEditing: false,
-			categoryId: this.props.params.categoryId,
+			categoryId: this.props.thisCategoryId,
 			categoryTitle: '',
 			categoryDescription: '',
 			subCategoryIDs: [],
@@ -51,7 +51,7 @@ class CategoryInfo extends Component {
 	}
 
 	componentWillReceiveProps(nextProps) {
-		var thisCategory = (nextProps.allCategories[nextProps.params.categoryId]) ? nextProps.allCategories[nextProps.params.categoryId] : null;
+		var thisCategory = (nextProps.allCategories[this.props.thisCategoryId]) ? nextProps.allCategories[this.props.thisCategoryId] : null;
 
 		var categoryTitle = (thisCategory) ? thisCategory.name : 'Loading...';
 		var categoryDescription = (thisCategory) ? thisCategory.description : '';
@@ -66,7 +66,7 @@ class CategoryInfo extends Component {
 		var dateCreated = (thisCategory) ? thisCategory.dateCreated : '';
 
 		this.setState({
-			categoryId: nextProps.params.categoryId,
+			categoryId: this.props.thisCategoryId,
 			categoryTitle: categoryTitle,
 			categoryDescription: categoryDescription,
 			subCategoryIDs: subCategoryIDs,
@@ -374,10 +374,10 @@ CategoryInfo.propTypes = {
 	topCategories: PropTypes.array,
 	allUsers: PropTypes.array,
 	allDataLoaded: PropTypes.bool,
-	params: PropTypes.object,
 	currentUserId: PropTypes.array,
 	editCategory: PropTypes.func,
-	deleteCategory: PropTypes.func
+	deleteCategory: PropTypes.func,
+	thisCategoryId: PropTypes.number
 };
 
 // CategoryInfo.defaultProps = {

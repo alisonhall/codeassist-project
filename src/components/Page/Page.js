@@ -49,8 +49,8 @@ import './page.scss';
 class Page extends Component {
 	constructor(props) {
 		super(props);
-		console.log(this);
-		console.log(props);
+		// console.log(this);
+		// console.log(props);
 		this.state = {
 			categoryDataLoaded: false,
 			languageDataLoaded: false,
@@ -869,158 +869,151 @@ class Page extends Component {
 	};
 
 	render() {
-		// <Router>
-		// 	{this.state.allDataLoaded ? (
-		// 		return("ss")
-		// 	) : (
-				
-		// 	)}
-			// if (this.state.allDataLoaded) {
-			if (this.state.numFetches == this.state.totalFetches) {
-				console.log("All Data Loaded!");
-				console.log("this.state:", this.state);
-				return ( <div className = "page-container" >
-					<Header />
+		if (this.state.numFetches == this.state.totalFetches) {
+			console.log("All Data Loaded!");
+			// console.log("this.state:", this.state);
+			return ( <div className = "page-container" >
+				<Header />
 
-					<aside id = "categories" className = "col-md-2" >
-						 <div id = "react-categories" > 
-							 {/* { <CategoriesSidebar
+				<aside id = "categories" className = "col-md-2" >
+					<div id = "react-categories" > 
+						{/* {console.log(this.state.numFetches, this.state.allDataLoaded)} */}
+						<CategoriesSidebar
+							allCategories = { this.state.allCategories }
+							topCategories = { this.state.topCategories }
+							allDataLoaded = { this.state.allDataLoaded }
+						/> 
+					</div> 
+				</aside>
+
+				<div className = "container-fluid" >
+				<section id = "languages" >
+				<div id = "react-languages" className = "col-md-12" > 
+					{ <Languages
+						allLanguages = { this.state.allLanguages }
+						selectedLanguages = { this.state.selectedLanguages }
+						addToSelectedLanguages = { this.addToSelectedLanguages }
+						removeSelectedLanguage = { this.removeSelectedLanguage }
+					/>}
+					</div> </section>
+
+				<section id = "content" className = "col-md-11 col-md-offset-1" > 
+					<Switch>
+						<Route exact={true} path="/" render={() => (
+							<Home/>
+						)} />
+						<Route path="/home" render={() => (
+							<Home/>
+						)} />
+						<Route path="/about" render={(Component) => (
+							<About />
+						)} />
+						<Route path="/login" render={() => (
+							<Login/>
+						)} />
+						<Route path="/create/category" render={() => (
+							<CreateCategory
 								allCategories = { this.state.allCategories }
+								allLanguages = { this.state.allLanguages }
 								topCategories = { this.state.topCategories }
+								newId = { this.state.allCategories.length }
+								user = { this.state.allUsers[this.state.currentUser] }
+								addCategory = { this.addCategory }
+							/>
+						)} />
+						<Route path="/create/snippet" render={() => (
+							<CreateSnippet
+								allCategories = { this.state.allCategories }
+								allLanguages = { this.state.allLanguages }
+								newId = { this.state.allExamples.length }
+								user = { this.state.allUsers[this.state.currentUser] }
+								addExample = { this.addExample }
+							/>
+						)} />
+						<Route path="/user/:userId" render={() => (
+							<UserSettings />
+						)} />
+						<Route path="/search/:searchTerm" render={() => (
+							<SearchResults />
+						)} />
+						<Route path="/category/:categoryId" render={({ match }) => (
+							<Examples
+								allCategories = { this.state.allCategories }
+								allExamples = { this.state.allExamples }
+								allLanguages = { this.state.allLanguages }
+								allUsers = { this.state.allUsers }
+								allComments = { this.state.allComments }
 								allDataLoaded = { this.state.allDataLoaded }
-								params = { console.log(this) }
-							/> }  */}
-						</div> 
-					</aside>
+								topCategories = { this.state.topCategories }
+								selectedLanguages = { this.state.selectedLanguages }
+								currentUserId = { this.state.currentUser }
+								editCategory = { this.editCategory }
+								deleteCategory = { this.deleteCategory }
+								thisCategoryId = { Number(match.params.categoryId) }
+							/>  
+						)} />
+						<Route path="/example/:exampleId" render={({ match }) => (
+							 <OpenExampleCard
+								allCategories = { this.state.allCategories }
+								allExamples = { this.state.allExamples }
+								allLanguages = { this.state.allLanguages }
+								allUsers = { this.state.allUsers }
+								allComments = { this.state.allComments }
+								allDataLoaded = { this.state.allDataLoaded }
+								selectedLanguages = { this.state.selectedLanguages }
+								currentUserId = { this.state.currentUser }
+								editExample = { this.editExample }
+								deleteExample = { this.deleteExample }
+								restoreExample = { this.restoreExample }
+								thisExampleId = { Number(match.params.exampleId) }
+							/>  
+						)} />
+						<Route render={() => (
+							<h1>Error 404: Page Not Found</h1>
+						)} />
 
-					<div className = "container-fluid" >
-					<section id = "languages" >
-					<div id = "react-languages" className = "col-md-12" > 
-						{ <Languages
-							allLanguages = { this.state.allLanguages }
-							selectedLanguages = { this.state.selectedLanguages }
-							addToSelectedLanguages = { this.addToSelectedLanguages }
-							removeSelectedLanguage = { this.removeSelectedLanguage }
-						/>}
-					 </div> </section>
+						{/* { contentComponent }  */}
+					</Switch>
+				</section>
 
-					<section id = "content" className = "col-md-11 col-md-offset-1" > 
-						<Switch>
-							<Route exact={true} path="/" render={() => (
-								<Home/>
-							)} />
-							<Route path="/home" render={() => (
-								<Home/>
-							)} />
-							<Route path="/about" render={(Component) => (
-								<About />
-							)} />
-							<Route path="/login" render={() => (
-								<Login/>
-							)} />
-							<Route path="/create/category" render={() => (
-								<CreateCategory
-									allCategories = { this.state.allCategories }
-									allLanguages = { this.state.allLanguages }
-									topCategories = { this.state.topCategories }
-									newId = { this.state.allCategories.length }
-									user = { this.state.allUsers[this.state.currentUser] }
-									addCategory = { this.addCategory }
-								/>
-							)} />
-							<Route path="/create/snippet" render={() => (
-								<CreateSnippet
-									allCategories = { this.state.allCategories }
-									allLanguages = { this.state.allLanguages }
-									newId = { this.state.allExamples.length }
-									user = { this.state.allUsers[this.state.currentUser] }
-									addExample = { this.addExample }
-								/>
-							)} />
-							<Route path="/user/:userId" render={() => (
-								<UserSettings />
-							)} />
-							<Route path="/search/:searchTerm" render={() => (
-								<SearchResults />
-							)} />
-							<Route path="/category/:categoryId" render={() => (
-								{/* <Examples
-									allCategories = { this.state.allCategories }
-									allExamples = { this.state.allExamples }
-									allLanguages = { this.state.allLanguages }
-									allUsers = { this.state.allUsers }
-									allComments = { this.state.allComments }
-									allDataLoaded = { this.state.allDataLoaded }
-									params = { this.props.params }
-									topCategories = { this.state.topCategories }
-									selectedLanguages = { this.state.selectedLanguages }
-									currentUserId = { this.state.currentUser }
-									editCategory = { this.editCategory }
-									deleteCategory = { this.deleteCategory }
-								/>  */}
-							)} />
-							<Route path="/example/:exampleId" render={() => (
-								{/* <OpenExampleCard
-									allCategories = { this.state.allCategories }
-									allExamples = { this.state.allExamples }
-									allLanguages = { this.state.allLanguages }
-									allUsers = { this.state.allUsers }
-									allComments = { this.state.allComments }
-									allDataLoaded = { this.state.allDataLoaded }
-									params = { this.props.params }
-									selectedLanguages = { this.state.selectedLanguages }
-									currentUserId = { this.state.currentUser }
-									editExample = { this.editExample }
-									deleteExample = { this.deleteExample }
-									restoreExample = { this.restoreExample }
-								/>  */}
-							)} />
-							<Route render={() => (
-								<h1>Error 404: Page Not Found</h1>
-							)} />
+				<EditMenu />
+				</div>
 
-							{/* { contentComponent }  */}
-						</Switch>
-					</section>
+				<Footer />
+				</div>
+			);
 
-					<EditMenu />
-					</div>
-
-					<Footer />
-					</div>
-				);
-
-			} else {
-				console.log("Not all data loaded!");
-				
-				return ( <div className = "page-container loading"
-					key = { this.state.allDataLoaded } >
-					Loading... 
-						<div className="loader">
+		} else {
+			// console.log("Not all data loaded!");
+			
+			return ( 
+				<div className = "page-container loading" key = { this.state.allDataLoaded } >
+					<p>Loading...</p>
+					<div className="loader">
 						<svg>
-						<path fill="#000" d="M43.935,25.145c0-10.318-8.364-18.683-18.683-18.683c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615c8.072,0,14.615,6.543,14.615,14.615H43.935z">
-							<animateTransform attributeType="xml"
-							attributeName="transform"
-							type="rotate"
-							from="0 25 25"
-							to="360 25 25"
-							dur="1s"
-							repeatCount="indefinite"/>
+							<path fill="#000" d="M43.935,25.145c0-10.318-8.364-18.683-18.683-18.683c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615c8.072,0,14.615,6.543,14.615,14.615H43.935z">
+								<animateTransform attributeType="xml"
+									attributeName="transform"
+									type="rotate"
+									from="0 25 25"
+									to="360 25 25"
+									dur="1s"
+									repeatCount="indefinite"
+								/>
 							</path>
 						</svg>
-						</div>
 					</div>
-				);
-			}
-		// </Router>
+				</div>
+			);
+		}
 	}
 }
 
-Page.propTypes = {
+// Page.propTypes = {
 	// contentComponent: PropTypes.string,
-	params: PropTypes.object
+	// params: PropTypes.object
 	// urlData: PropTypes.object
-};
+// };
 
 // Page.defaultProps = {
 // 	allDataLoaded: false

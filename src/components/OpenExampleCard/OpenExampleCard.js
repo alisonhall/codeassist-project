@@ -59,7 +59,7 @@ class OpenExampleCard extends Component {
 
 	componentWillMount() {
 		var promise = new Promise((resolve, reject) => {
-			var exampleId = this.props.params.exampleId;
+			var exampleId = this.props.thisExampleId;
 			var example = this.props.allExamples[exampleId];
 
 			if ((typeof exampleId !== 'undefined') && (typeof example !== 'undefined')) {
@@ -502,13 +502,13 @@ OpenExampleCard.propTypes = {
 	allUsers: PropTypes.array,
 	allComments: PropTypes.array,
 	allDataLoaded: PropTypes.bool,
-	params: PropTypes.object,
 	selectedLanguages: PropTypes.array,
 	allDataLoaded: PropTypes.bool,
 	currentUserId: PropTypes.array,
 	editExample: PropTypes.func,
 	deleteExample: PropTypes.func,
-	restoreExample: PropTypes.func
+	restoreExample: PropTypes.func,
+	thisExampleId: PropTypes.number
 };
 
 // OpenExampleCard.defaultProps = {

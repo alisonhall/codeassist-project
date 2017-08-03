@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { IndexLink, Link } from 'react-router';
+// import { IndexLink, Link } from 'react-router';
+import { BrowserRouter as Router, Link, Route, NavLink } from 'react-router-dom';
 import classnames from 'classnames';
 import $ from 'jquery';
 
@@ -24,7 +25,9 @@ class Accordion extends Component {
 	}
 
 	componentWillMount() {
-		if(this.props.params.categoryId == this.props.item.id) {
+		console.log("this.props", this.props);
+		console.log("this.props.item", this.props.item);
+		if(this.props.params.match.params.categoryId == this.props.item.id) {
 			this.setState({isActive: true});
 		}
 
@@ -61,21 +64,21 @@ class Accordion extends Component {
 		if(this.props.subContent == null) {
 			return(
 				<div className={classnames('accordion-container', 'accordion', 'noContent', `${open}`, `${isActive}`)}>
-					<span className="link"><IndexLink 
+					<span className="link"><NavLink 
 						activeClassName='active' 
 						to={'/category/' + this.state.categoryId}>
 							{this.state.name}
-					</IndexLink></span>
+					</NavLink></span>
 				</div>
 			);
 		} else {
 			return(
 				<div className={classnames('accordion-container', 'accordion', 'hasContent', `${open}`, `${isActive}`)}>
-					<span className="link"><IndexLink 
+					<span className="link"><NavLink 
 						activeClassName='active' 
 						to={'/category/' + this.state.categoryId}>
 							{this.state.name}
-					</IndexLink></span>
+					</NavLink></span>
 					<button className="accordion-button" onClick={this.toggle}><i className={classnames('fa', `${buttonContent}`)} aria-hidden="true"></i></button>
 					<ul className="accordion-content">
 						{this.props.subContent}

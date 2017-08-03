@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { IndexLink, Link } from 'react-router';
+// import { IndexLink, Link } from 'react-router';
+import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 import classnames from 'classnames';
 import enhanceWithClickOutside from 'react-click-outside';
 import $ from 'jquery';

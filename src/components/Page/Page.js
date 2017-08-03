@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { IndexLink, Link } from 'react-router';
+// import { IndexLink, Link } from 'react-router';
+import { BrowserRouter as Router, Switch, Link, Route } from 'react-router-dom';
 import classnames from 'classnames';
 import $ from 'jquery';
 import firebase from 'firebase';
@@ -44,9 +45,12 @@ import UserSettings from './../UserSettings/UserSettings.js';
 import './page.scss';
 
 
+// const Page = ({match}) => {
 class Page extends Component {
 	constructor(props) {
 		super(props);
+		console.log(this);
+		console.log(props);
 		this.state = {
 			categoryDataLoaded: false,
 			languageDataLoaded: false,
@@ -56,7 +60,7 @@ class Page extends Component {
 			allDataLoaded: false,
 			topCategoryDataLoaded: false,
 			selectedLanguagesDataLoaded: false,
-			currentUserDataLoaded: false,
+			currentUserDataLoaded: true,
 
 			allCategories: [],
 			allLanguages: [],
@@ -67,8 +71,10 @@ class Page extends Component {
 			topCategories: [],
 			selectedLanguages: [],
 
-			contentComponent: '',
-			currentUser: []
+			currentUser: [[0, "0"]],
+
+			numFetches: 0,
+			totalFetches: 7
 		};
 
 		this.addToSelectedLanguages = this.addToSelectedLanguages.bind(this);
@@ -107,8 +113,8 @@ class Page extends Component {
 	}
 
 	getInitialData() {
-		var numFetches = 0;
-		var totalFetches = 8;
+		// var numFetches = 0;
+		// var totalFetches = 8;
 		var noErrors = true;
 
 		base.fetch('categories', {
@@ -116,8 +122,8 @@ class Page extends Component {
 			asArray: true
 		}).then(data => {
 			// console.log(data);
-			numFetches++;
-			var allDataLoaded = (numFetches == totalFetches && noErrors) ? true : false;
+			this.state.numFetches++;
+			var allDataLoaded = (this.state.numFetches == this.state.totalFetches && noErrors) ? true : false;
 			this.setState({
 				allCategories: data,
 				categoryDataLoaded: true,
@@ -134,8 +140,8 @@ class Page extends Component {
 			asArray: true
 		}).then(data => {
 			// console.log(data);
-			numFetches++;
-			var allDataLoaded = (numFetches == totalFetches && noErrors) ? true : false;
+			this.state.numFetches++;
+			var allDataLoaded = (this.state.numFetches == this.state.totalFetches && noErrors) ? true : false;
 			this.setState({
 				topCategories: data,
 				topCategoryDataLoaded: true,
@@ -152,8 +158,8 @@ class Page extends Component {
 			asArray: true
 		}).then(data => {
 			// console.log(data);
-			numFetches++;
-			var allDataLoaded = (numFetches == totalFetches && noErrors) ? true : false;
+			this.state.numFetches++;
+			var allDataLoaded = (this.state.numFetches == this.state.totalFetches && noErrors) ? true : false;
 			this.setState({
 				allComments: data,
 				commentDataLoaded: true,
@@ -170,8 +176,8 @@ class Page extends Component {
 			asArray: true
 		}).then(data => {
 			// console.log(data);
-			numFetches++;
-			var allDataLoaded = (numFetches == totalFetches && noErrors) ? true : false;
+			this.state.numFetches++;
+			var allDataLoaded = (this.state.numFetches == this.state.totalFetches && noErrors) ? true : false;
 			this.setState({
 				allExamples: data,
 				exampleDataLoaded: true,
@@ -188,8 +194,8 @@ class Page extends Component {
 			asArray: true
 		}).then(data => {
 			// console.log(data);
-			numFetches++;
-			var allDataLoaded = (numFetches == totalFetches && noErrors) ? true : false;
+			this.state.numFetches++;
+			var allDataLoaded = (this.state.numFetches == this.state.totalFetches && noErrors) ? true : false;
 			this.setState({
 				allLanguages: data,
 				languageDataLoaded: true,
@@ -206,8 +212,8 @@ class Page extends Component {
 			asArray: true
 		}).then(data => {
 			// console.log(data);
-			numFetches++;
-			var allDataLoaded = (numFetches == totalFetches && noErrors) ? true : false;
+			this.state.numFetches++;
+			var allDataLoaded = (this.state.numFetches == this.state.totalFetches && noErrors) ? true : false;
 			this.setState({
 				selectedLanguages: data,
 				selectedLanguagesDataLoaded: true,
@@ -223,9 +229,9 @@ class Page extends Component {
 			context: this,
 			asArray: true
 		}).then(data => {
-			// console.log(data);
-			numFetches++;
-			var allDataLoaded = (numFetches == totalFetches && noErrors) ? true : false;
+			console.log("data:", data, "this.state:", this.state);
+			this.state.numFetches++;
+			var allDataLoaded = (this.state.numFetches == this.state.totalFetches && noErrors) ? true : false;
 			this.setState({
 				allUsers: data,
 				userDataLoaded: true,
@@ -237,26 +243,29 @@ class Page extends Component {
 			console.log("Firebase Fetch ERROR: " + error);
 		});
 
-		base.fetch('currentUser', {
-			context: this,
-			asArray: true
-		}).then(data => {
-			// console.log(data);
-			numFetches++;
-			var allDataLoaded = (numFetches == totalFetches && noErrors) ? true : false;
-			this.setState({
-				currentUser: data,
-				currentUserDataLoaded: true,
-				allDataLoaded: allDataLoaded
-			})
+		// base.fetch('currentUser', {
+		// 	context: this,
+		// 	asArray: true
+		// }).then(data => {
+		// 	console.log("data:", data, "this.state:", this.state);
+		// 	numFetches++;
+		// 	var allDataLoaded = (numFetches == totalFetches && noErrors) ? true : false;
+		// 	console.log("local allDataLoaded:", allDataLoaded);
+		// 	console.log("this.state:", this.state);
+		// 	this.setState({
+		// 		currentUser: data,
+		// 		currentUserDataLoaded: true,
+		// 		allDataLoaded: allDataLoaded
+		// 	})
 
-			// console.log("Data Loaded: ", this.state);
+		// 	console.log("Data Loaded: ", this.state, "allDataLoaded", allDataLoaded, "this.state.allDataLoaded", this.state.allDataLoaded);
 
-		}).catch(error => {
-			//handle error
-			noErrors = false;
-			console.log("Firebase Fetch ERROR: " + error);
-		});
+		// }).catch(error => {
+		// 	//handle error
+		// 	noErrors = false;
+		// 	console.log("Firebase Fetch ERROR: " + error);
+		// 	console.log("Data Partially Loaded: ", this.state);
+		// });
 
 		// if(numFetches == totalFetches && noErrors) {
 		// 	this.setState({allDataLoaded: true});
@@ -318,7 +327,7 @@ class Page extends Component {
 	componentWillMount() {
 		// this runs right before the <Page> is rendered
 		console.log("Loading data...");
-		
+
 		this.getInitialData();
 		this.setupSyncState();
 
@@ -860,159 +869,157 @@ class Page extends Component {
 	};
 
 	render() {
-		if (this.state.allDataLoaded) {
-			// console.log("All Data Loaded!");
+		// <Router>
+		// 	{this.state.allDataLoaded ? (
+		// 		return("ss")
+		// 	) : (
+				
+		// 	)}
+			// if (this.state.allDataLoaded) {
+			if (this.state.numFetches == this.state.totalFetches) {
+				console.log("All Data Loaded!");
+				console.log("this.state:", this.state);
+				return ( <div className = "page-container" >
+					<Header />
 
-			var languagesComponent = <Languages
-				allLanguages = { this.state.allLanguages }
-				selectedLanguages = { this.state.selectedLanguages }
-				addToSelectedLanguages = { this.addToSelectedLanguages }
-				removeSelectedLanguage = { this.removeSelectedLanguage }
-			/>;
+					<aside id = "categories" className = "col-md-2" >
+						 <div id = "react-categories" > 
+							 {/* { <CategoriesSidebar
+								allCategories = { this.state.allCategories }
+								topCategories = { this.state.topCategories }
+								allDataLoaded = { this.state.allDataLoaded }
+								params = { console.log(this) }
+							/> }  */}
+						</div> 
+					</aside>
 
-			var categoriesComponent = <CategoriesSidebar
-				allCategories = { this.state.allCategories }
-				topCategories = { this.state.topCategories }
-				allDataLoaded = { this.state.allDataLoaded }
-				params = { this.props.params }
-			/>;
+					<div className = "container-fluid" >
+					<section id = "languages" >
+					<div id = "react-languages" className = "col-md-12" > 
+						{ <Languages
+							allLanguages = { this.state.allLanguages }
+							selectedLanguages = { this.state.selectedLanguages }
+							addToSelectedLanguages = { this.addToSelectedLanguages }
+							removeSelectedLanguage = { this.removeSelectedLanguage }
+						/>}
+					 </div> </section>
 
-			var categoryComponent = <Examples
-				allCategories = { this.state.allCategories }
-				allExamples = { this.state.allExamples }
-				allLanguages = { this.state.allLanguages }
-				allUsers = { this.state.allUsers }
-				allComments = { this.state.allComments }
-				allDataLoaded = { this.state.allDataLoaded }
-				params = { this.props.params }
-				topCategories = { this.state.topCategories }
-				selectedLanguages = { this.state.selectedLanguages }
-				currentUserId = { this.state.currentUser }
-				editCategory = { this.editCategory }
-				deleteCategory = { this.deleteCategory }
-			/>;
+					<section id = "content" className = "col-md-11 col-md-offset-1" > 
+						<Switch>
+							<Route exact={true} path="/" render={() => (
+								<Home/>
+							)} />
+							<Route path="/home" render={() => (
+								<Home/>
+							)} />
+							<Route path="/about" render={(Component) => (
+								<About />
+							)} />
+							<Route path="/login" render={() => (
+								<Login/>
+							)} />
+							<Route path="/create/category" render={() => (
+								<CreateCategory
+									allCategories = { this.state.allCategories }
+									allLanguages = { this.state.allLanguages }
+									topCategories = { this.state.topCategories }
+									newId = { this.state.allCategories.length }
+									user = { this.state.allUsers[this.state.currentUser] }
+									addCategory = { this.addCategory }
+								/>
+							)} />
+							<Route path="/create/snippet" render={() => (
+								<CreateSnippet
+									allCategories = { this.state.allCategories }
+									allLanguages = { this.state.allLanguages }
+									newId = { this.state.allExamples.length }
+									user = { this.state.allUsers[this.state.currentUser] }
+									addExample = { this.addExample }
+								/>
+							)} />
+							<Route path="/user/:userId" render={() => (
+								<UserSettings />
+							)} />
+							<Route path="/search/:searchTerm" render={() => (
+								<SearchResults />
+							)} />
+							<Route path="/category/:categoryId" render={() => (
+								{/* <Examples
+									allCategories = { this.state.allCategories }
+									allExamples = { this.state.allExamples }
+									allLanguages = { this.state.allLanguages }
+									allUsers = { this.state.allUsers }
+									allComments = { this.state.allComments }
+									allDataLoaded = { this.state.allDataLoaded }
+									params = { this.props.params }
+									topCategories = { this.state.topCategories }
+									selectedLanguages = { this.state.selectedLanguages }
+									currentUserId = { this.state.currentUser }
+									editCategory = { this.editCategory }
+									deleteCategory = { this.deleteCategory }
+								/>  */}
+							)} />
+							<Route path="/example/:exampleId" render={() => (
+								{/* <OpenExampleCard
+									allCategories = { this.state.allCategories }
+									allExamples = { this.state.allExamples }
+									allLanguages = { this.state.allLanguages }
+									allUsers = { this.state.allUsers }
+									allComments = { this.state.allComments }
+									allDataLoaded = { this.state.allDataLoaded }
+									params = { this.props.params }
+									selectedLanguages = { this.state.selectedLanguages }
+									currentUserId = { this.state.currentUser }
+									editExample = { this.editExample }
+									deleteExample = { this.deleteExample }
+									restoreExample = { this.restoreExample }
+								/>  */}
+							)} />
+							<Route render={() => (
+								<h1>Error 404: Page Not Found</h1>
+							)} />
 
-			var aboutComponent = <About /> ;
+							{/* { contentComponent }  */}
+						</Switch>
+					</section>
 
-			var createCategoryComponent = <CreateCategory
-				allCategories = { this.state.allCategories }
-				allLanguages = { this.state.allLanguages }
-				topCategories = { this.state.topCategories }
-				newId = { this.state.allCategories.length }
-				user = { this.state.allUsers[this.state.currentUser] }
-				addCategory = { this.addCategory }
-			/>;
-
-			var createSnippetComponent = <CreateSnippet
-				allCategories = { this.state.allCategories }
-				allLanguages = { this.state.allLanguages }
-				newId = { this.state.allExamples.length }
-				user = { this.state.allUsers[this.state.currentUser] }
-				addExample = { this.addExample }
-			/>;
-
-			var error404Component = <h1> Page Not Found </h1>;
-
-			var homeComponent = <Home/> ;
-
-			var loginComponent = <Login/> ;
-
-			var openExampleCardComponent = <OpenExampleCard
-				allCategories = { this.state.allCategories }
-				allExamples = { this.state.allExamples }
-				allLanguages = { this.state.allLanguages }
-				allUsers = { this.state.allUsers }
-				allComments = { this.state.allComments }
-				allDataLoaded = { this.state.allDataLoaded }
-				params = { this.props.params }
-				selectedLanguages = { this.state.selectedLanguages }
-				currentUserId = { this.state.currentUser }
-				editExample = { this.editExample }
-				deleteExample = { this.deleteExample }
-				restoreExample = { this.restoreExample }
-			/>;
-
-			var searchResultsComponent = <SearchResults /> ;
-
-			var userSettingsComponent = <UserSettings /> ;
-
-			var editMenuComponent = <EditMenu /> ;
-
-			var contentComponentStr = this.props.contentComponent;
-			var contentComponent;
-
-			if (contentComponentStr == 'about') {
-				contentComponent = aboutComponent;
-			} else if (contentComponentStr == 'category') {
-				contentComponent = categoryComponent;
-			} else if (contentComponentStr == 'createcategory') {
-				contentComponent = createCategoryComponent;
-			} else if (contentComponentStr == 'createsnippet') {
-				contentComponent = createSnippetComponent;
-			} else if (contentComponentStr == 'error404') {
-				contentComponent = error404Component;
-			} else if (contentComponentStr == 'home') {
-				contentComponent = homeComponent;
-			} else if (contentComponentStr == 'login') {
-				contentComponent = loginComponent;
-			} else if (contentComponentStr == 'openedexamplecard') {
-				contentComponent = openExampleCardComponent;
-			} else if (contentComponentStr == 'searchresults') {
-				contentComponent = searchResultsComponent;
-			} else if (contentComponentStr == 'usersettings') {
-				contentComponent = userSettingsComponent;
-			} else { <h1> Error!Unknown Content Component! </h1>
-			}
-
-			return ( <div className = "page-container" >
-				<Header />
-
-				<aside id = "categories"
-				className = "col-md-2" >
-				<div id = "react-categories" > { categoriesComponent } </div> </aside>
-
-				<div className = "container-fluid" >
-				<section id = "languages" >
-				<div id = "react-languages"
-				className = "col-md-12" > { languagesComponent } </div> </section>
-
-				<section id = "content"
-				className = "col-md-11 col-md-offset-1" > { contentComponent } </section>
-
-				<EditMenu />
-				</div>
-
-				<Footer />
-				</div>
-			);
-
-		} else {
-
-			return ( <div className = "page-container loading"
-				key = { this.state.allDataLoaded } >
-				Loading... 
-					<div className="loader">
-					  <svg>
-					  <path fill="#000" d="M43.935,25.145c0-10.318-8.364-18.683-18.683-18.683c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615c8.072,0,14.615,6.543,14.615,14.615H43.935z">
-					    <animateTransform attributeType="xml"
-					      attributeName="transform"
-					      type="rotate"
-					      from="0 25 25"
-					      to="360 25 25"
-					      dur="1s"
-					      repeatCount="indefinite"/>
-					    </path>
-					  </svg>
+					<EditMenu />
 					</div>
-				</div>
-			);
-		}
+
+					<Footer />
+					</div>
+				);
+
+			} else {
+				console.log("Not all data loaded!");
+				
+				return ( <div className = "page-container loading"
+					key = { this.state.allDataLoaded } >
+					Loading... 
+						<div className="loader">
+						<svg>
+						<path fill="#000" d="M43.935,25.145c0-10.318-8.364-18.683-18.683-18.683c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615c8.072,0,14.615,6.543,14.615,14.615H43.935z">
+							<animateTransform attributeType="xml"
+							attributeName="transform"
+							type="rotate"
+							from="0 25 25"
+							to="360 25 25"
+							dur="1s"
+							repeatCount="indefinite"/>
+							</path>
+						</svg>
+						</div>
+					</div>
+				);
+			}
+		// </Router>
 	}
 }
 
 Page.propTypes = {
-	contentComponent: PropTypes.string,
+	// contentComponent: PropTypes.string,
 	params: PropTypes.object
+	// urlData: PropTypes.object
 };
 
 // Page.defaultProps = {

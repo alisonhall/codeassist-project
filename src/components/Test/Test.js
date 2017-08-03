@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import $ from 'jquery';
 // import jqueryui from 'jquery-ui';
-import { Link } from 'react-router';
+// import { Link } from 'react-router';
+import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 
 // Styles
 import './test.scss';

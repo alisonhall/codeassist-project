@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { IndexLink, Link } from 'react-router';
+// import { IndexLink, Link } from 'react-router';
+import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 import classnames from 'classnames';
 import enhanceWithClickOutside from 'react-click-outside';
 import $ from 'jquery';
@@ -12,6 +13,7 @@ import Accordion from './../Accordion/Accordion.js';
 import './categoriesSidebar.scss';
 
 
+// const CategoriesSidebar = ({ match }) => {
 class CategoriesSidebar extends Component {
 	constructor(props) {
 		super(props);
@@ -32,10 +34,9 @@ class CategoriesSidebar extends Component {
 			return (
 				<li key={i}>
 					<Accordion
-						key={i}
 						item={this.props.allCategories[categoryId]}
 						subContent={null}
-						params={this.props.params}
+						params={match}
 					/>
 				</li>
 			);
@@ -44,7 +45,6 @@ class CategoriesSidebar extends Component {
 			return (
 				<li key={i}>
 					<Accordion
-						key={i}
 						item={this.props.allCategories[categoryId]}
 						subContent={this.props.allCategories[categoryId].subCategoryIDs.map(this.checkForSubCategory)}
 						params={this.props.params}
@@ -61,7 +61,6 @@ class CategoriesSidebar extends Component {
 		// console.log("singleCategory category", category, i);
 		return(
 			<Accordion
-				key={category.id}
 				item={category}
 				subContent={null}
 				params={this.props.params}
@@ -115,8 +114,7 @@ class CategoriesSidebar extends Component {
 CategoriesSidebar.propTypes = {
 	allDataLoaded: PropTypes.bool,
 	allCategories: PropTypes.array,
-	topCategories: PropTypes.array,
-	params: PropTypes.object
+	topCategories: PropTypes.array
 };
 
 // CategoriesSidebar.defaultProps = {

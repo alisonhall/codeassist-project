@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { IndexLink, Link, browserHistory } from 'react-router';
+// import { IndexLink, Link, browserHistory } from 'react-router';
+import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 import classnames from 'classnames';
 import moment from 'moment';
 import $ from 'jquery';
@@ -323,7 +324,7 @@ class OpenExampleCard extends Component {
 	onDelete() {
 		this.setState({ isActive: false });
 		this.props.deleteExample(this.state.exampleId);
-		browserHistory.push('/category/' + this.state.categoryId);
+		// browserHistory.push('/category/' + this.state.categoryId);
 	}
 
 	onRestore() {

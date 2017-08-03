@@ -10,6 +10,7 @@ var SRC_DIR = path.resolve(__dirname, SRC_NAME); //path.join(__dirname, 'src'),
 
 module.exports = validate({
 	devtool: 'source-map', // 'eval' for development, 'source-map' for production
+	debug: true,
 	entry: [
 		'webpack-dev-server/client?http://localhost:3000', // WebpackDevServer host and port
 		'webpack/hot/only-dev-server', // "only" prevents reload on syntax errors
@@ -18,6 +19,7 @@ module.exports = validate({
 	],
 	output: {
 		path: BUILD_DIR,
+		pathinfo: true,
 		filename: 'index.js',
 		publicPath: '/' + BUILD_NAME
 	},
@@ -47,6 +49,5 @@ module.exports = validate({
 		new webpack.HotModuleReplacementPlugin(),
 		// new ExtractTextPlugin("build/styles.css", {allChunks: false}),
 		
-	],
-	// debug: true
+	]
 });

@@ -7,8 +7,15 @@
     "parser": "babel-eslint",
     "env": {
       "browser": true,
+      "commonjs": true,
       "node": true,
       "es6": true
+    },
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "sourceType": "module"
     },
     "ecmaFeatures": {
         "jsx": true,
@@ -199,6 +206,15 @@
          "max-params": 0,                 // limits the number of parameters that can be used in the function declaration. (off by default)
          "max-statements": 0,             // specify the maximum number of statement allowed in a function (off by default)
          "no-bitwise": 1,                 // disallow use of bitwise operators (off by default)
-         "no-plusplus": 0                 // disallow use of unary operators, ++ and -- (off by default)
+         "no-plusplus": 0,                 // disallow use of unary operators, ++ and -- (off by default)
+
+
+        "no-const-assign": "warn",
+        "no-this-before-super": "warn",
+        "no-undef": "warn",
+        "no-unreachable": "warn",
+        "no-unused-vars": "warn",
+        "constructor-super": "warn",
+        "valid-typeof": "warn"
      }
 }

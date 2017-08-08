@@ -6,7 +6,7 @@
 	text-align: right;
 	margin-left: 0;
 	float: right;
-	width: 75%;
+	width: 100%;
 
 	div, p {
 		display: inline-block;
@@ -20,6 +20,9 @@
 	}
 
 	div:hover {
+		padding: 7px 4px 0 5px;
+		background-color: #EEE;
+
 		i {
 			display: inline-block;
 		}
@@ -50,4 +53,9 @@
 	float: right;
 	margin-top: 2px;
 	height: 40px;
+
+	&:disabled {
+		color: #888;
+		border-color: #EEE;
+	}
 }

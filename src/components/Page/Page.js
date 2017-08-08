@@ -27,6 +27,7 @@ import CategoryInfo from './../CategoryInfo/CategoryInfo.js';
 import CreateCategory from './../CreateCategory/CreateCategory.js';
 import CreateSnippet from './../CreateSnippet/CreateSnippet.js';
 import EditMenu from './../EditMenu/EditMenu.js';
+import EmptyCard from './../EmptyCard/EmptyCard.js';
 import ExampleCards from './../ExampleCards/ExampleCards.js';
 import Examples from './../Examples/Examples.js';
 import Footer from './../Footer/Footer.js';
@@ -229,7 +230,7 @@ class Page extends Component {
 			context: this,
 			asArray: true
 		}).then(data => {
-			console.log("data:", data, "this.state:", this.state);
+			// console.log("data:", data, "this.state:", this.state);
 			this.state.numFetches++;
 			var allDataLoaded = (this.state.numFetches == this.state.totalFetches && noErrors) ? true : false;
 			this.setState({
@@ -911,7 +912,7 @@ class Page extends Component {
 						<Route path="/login" render={() => (
 							<Login/>
 						)} />
-						<Route path="/create/category" render={() => (
+						<Route path="/create/category" render={({ history }) => (
 							<CreateCategory
 								allCategories = { this.state.allCategories }
 								allLanguages = { this.state.allLanguages }
@@ -919,15 +920,17 @@ class Page extends Component {
 								newId = { this.state.allCategories.length }
 								user = { this.state.allUsers[this.state.currentUser] }
 								addCategory = { this.addCategory }
+								thisHistory = {history}
 							/>
 						)} />
-						<Route path="/create/snippet" render={() => (
+						<Route path="/create/snippet" render={({ history }) => (
 							<CreateSnippet
 								allCategories = { this.state.allCategories }
 								allLanguages = { this.state.allLanguages }
 								newId = { this.state.allExamples.length }
 								user = { this.state.allUsers[this.state.currentUser] }
 								addExample = { this.addExample }
+								thisHistory = {history}
 							/>
 						)} />
 						<Route path="/user/:userId" render={() => (

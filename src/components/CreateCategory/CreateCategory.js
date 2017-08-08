@@ -31,7 +31,7 @@ class CreateCategory extends Component {
 
 	saveCategory(object, selectedParentCategory, isTopLevel, relatedCategoryIDs) {
 		this.props.addCategory(object, this.props.newId, selectedParentCategory, isTopLevel, relatedCategoryIDs);
-		browserHistory.push('/category/' + this.props.newId);
+		this.props.thisHistory.push('/category/' + this.props.newId);
 	}
 
 	onSubmit(event) {
@@ -143,7 +143,8 @@ CreateCategory.propTypes = {
 	topCategories: PropTypes.array,
 	newId: PropTypes.number,
 	user: PropTypes.object,
-	addCategory: PropTypes.func
+	addCategory: PropTypes.func,
+	thisHistory: PropTypes.object
 };
 
 // CreateCategory.defaultProps = {

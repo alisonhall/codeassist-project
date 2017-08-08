@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 // import { IndexLink, Link, browserHistory } from 'react-router';
-import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Link, Route, withRouter } from 'react-router-dom';
 import classnames from 'classnames';
 import moment from 'moment';
 import $ from 'jquery';
@@ -32,7 +32,7 @@ class CreateSnippet extends Component {
 
 	saveExample(object, selectedCategory, selectedLanguage, isSyntax) {
 		this.props.addExample(object, this.props.newId, selectedCategory, selectedLanguage, isSyntax);
-		browserHistory.push('/category/' + selectedCategory);
+		this.props.thisHistory.push('/category/' + selectedCategory);
 	}
 
 	onSubmit(event) {
@@ -163,7 +163,8 @@ CreateSnippet.propTypes = {
 	allLanguages: PropTypes.array,
 	newId: PropTypes.number,
 	user: PropTypes.object,
-	addExample: PropTypes.func
+	addExample: PropTypes.func,
+	thisHistory: PropTypes.object
 };
 
 // CreateSnippet.defaultProps = {

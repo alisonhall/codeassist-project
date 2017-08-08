@@ -7,6 +7,7 @@ import moment from 'moment';
 import $ from 'jquery';
 
 // Components
+import EmptyCard from './../EmptyCard/EmptyCard.js';
 import ExampleCards from './../ExampleCards/ExampleCards.js';
 import NoContent from './../NoContent/NoContent.js';
 import NoLanguage from './../NoLanguage/NoLanguage.js';
@@ -27,7 +28,7 @@ class Examples extends Component {
 	}
 
 	eachExample(exampleId, i) {
-		// console.log("eachExample", exampleId, i);
+		console.log("eachExample", exampleId, i);
 		var example = this.props.allExamples[exampleId];
 		var language = this.props.allLanguages[example.language];
 		var category = this.props.allCategories[example.categoryID];
@@ -60,7 +61,7 @@ class Examples extends Component {
 	}
 
 	renderExamples(type, language, i) {
-		// console.log("renderExamples", type, language, i);
+		console.log("renderExamples", type, language, i);
 		var thisCategory = this.props.allCategories[this.props.thisCategoryId];
 
 		if (thisCategory.count[language]) {
@@ -72,6 +73,16 @@ class Examples extends Component {
 					</section>
 				);
 			}
+		} else {
+			return (
+				<section className={classnames('example', `language${language}`)} key={i}>
+					<EmptyCard
+						key={i}
+						languageName={this.props.allLanguages[language].fullName}
+						type={type}
+					/>
+				</section>
+			);
 		}
 	}
 

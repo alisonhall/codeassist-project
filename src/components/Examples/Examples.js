@@ -23,6 +23,7 @@ class Examples extends Component {
 
 		this.eachExample = this.eachExample.bind(this);
 		this.renderExamples = this.renderExamples.bind(this);
+		this.renderEmptyCard = this.renderEmptyCard.bind(this);
 		this.displayCategoryInfo = this.displayCategoryInfo.bind(this);
 		this.checkIfActive = this.checkIfActive.bind(this);
 	}
@@ -60,33 +61,51 @@ class Examples extends Component {
 		}
 	}
 
+	renderEmptyCard(type, language, i) {
+		return (
+			<section className={classnames('example', `language${language}`)} key={i}>
+				<EmptyCard
+					key={i}
+					languageName={this.props.allLanguages[language].fullName}
+					type={type}
+				/>
+			</section>
+		);
+	}
+
 	renderExamples(type, language, i) {
 		console.log("renderExamples", type, language, i);
 		var thisCategory = this.props.allCategories[this.props.thisCategoryId];
+		console.log("thisCategory", thisCategory);
 
-		if (thisCategory.count[language]) {
-			if(thisCategory.count[language][type]) {
-				// console.log(thisCategory.count[language][type]);
+		if (thisCategory.count) {
+			if (thisCategory.count[language]) {
+				if(thisCategory.count[language][type]) {
+					// console.log(thisCategory.count[language][type]);
+					return (
+						<section className={classnames('example', `language${language}`)} key={i}>
+							{thisCategory.count[language][type].map(this.eachExample)}
+						</section>
+					);
+				} else {
+					return (
+						this.renderEmptyCard(type, language, i)
+					);
+				}
+			} else {
 				return (
-					<section className={classnames('example', `language${language}`)} key={i}>
-						{thisCategory.count[language][type].map(this.eachExample)}
-					</section>
+					this.renderEmptyCard(type, language, i)
 				);
 			}
 		} else {
 			return (
-				<section className={classnames('example', `language${language}`)} key={i}>
-					<EmptyCard
-						key={i}
-						languageName={this.props.allLanguages[language].fullName}
-						type={type}
-					/>
-				</section>
+				this.renderEmptyCard(type, language, i)
 			);
 		}
 	}
 
 	displayCategoryInfo() {
+		console.log("displayCategoryInfo", this);
 		return(
 			<CategoryInfo 
 				allCategories = { this.props.allCategories }
@@ -149,63 +168,21 @@ class Examples extends Component {
 					}
 				}
 
-				if (hasExamples && hasSyntaxes) {
-					return (
-						<div className='examples-container'>
-							{this.displayCategoryInfo()}
+				return (
+					<div className='examples-container'>
+						{this.displayCategoryInfo()}
 
-							<h4>Syntaxes</h4>
-							<div className={classnames('syntaxes', numLanguageClass)}>
-								{languages.map(this.renderExamples.bind(this, 'syntaxes'))}
-							</div>
-
-							<h4>Examples</h4>
-							<div className={classnames('examples', numLanguageClass)}>
-								{languages.map(this.renderExamples.bind(this, 'examples'))}
-							</div>
-						</div>
-					);
-				} else if (hasSyntaxes) {
-					return (
-						<div className='examples-container'>
-							{this.displayCategoryInfo()}
-
-							<h4>Syntaxes</h4>
-							<div className={classnames('syntaxes', numLanguageClass)}>
-								{languages.map(this.renderExamples.bind(this, 'syntaxes'))}
-							</div>
-
-							<h4>Examples</h4>
-							<div className={classnames('examples', numLanguageClass)}>
-								<p>No Examples for this category</p>
-							</div>
+						<h4>Syntaxes</h4>
+						<div className={classnames('syntaxes', numLanguageClass)}>
+							{languages.map(this.renderExamples.bind(this, 'syntaxes'))}
 						</div>
 
-					);
-				} else if (hasExamples) {
-					return (
-						<div className='examples-container'>
-							{this.displayCategoryInfo()}
-
-							<h4>Syntaxes</h4>
-							<div className={classnames('syntaxes', numLanguageClass)}>
-								<p>No Syntaxes for this category</p>
-							</div>
-
-							<h4>Examples</h4>
-							<div className={classnames('examples', numLanguageClass)}>
-								{languages.map(this.renderExamples.bind(this, 'examples'))}
-							</div>
+						<h4>Examples</h4>
+						<div className={classnames('examples', numLanguageClass)}>
+							{languages.map(this.renderExamples.bind(this, 'examples'))}
 						</div>
-					);
-				} else {
-					return (
-						<div className='examples-container'>
-							{this.displayCategoryInfo()}
-							<NoContent />
-						</div>
-					);
-				}
+					</div>
+				);
 
 			} else {
 				return (
@@ -223,24 +200,8 @@ class Examples extends Component {
 				</div>
 			);
 		}
-		
 	}
 }
-
-
-// {thisCategory.count[thisLanguageId].syntaxes.map(this.eachSyntax)}
-// {thisCategory.count[thisLanguageId].examples.map(this.eachExample)}
-
-
-// const items = this.props.items.map((item) => (
-// 	<ul key={item.id}>
-// 		<li>
-// 			<button onClick={() => this.displayAlert(item.email)}>
-// 				{item.lastName + ', ' + item.firstName}
-// 			</button>
-// 		</li>
-// 	</ul>
-// ));
 
 Examples.propTypes = {
 	allExamples: PropTypes.array,

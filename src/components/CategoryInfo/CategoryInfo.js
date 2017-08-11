@@ -51,6 +51,7 @@ class CategoryInfo extends Component {
 	}
 
 	componentWillReceiveProps(nextProps) {
+		console.log(nextProps);
 		var thisCategory = (nextProps.allCategories[this.props.thisCategoryId]) ? nextProps.allCategories[this.props.thisCategoryId] : null;
 
 		var categoryTitle = (thisCategory) ? thisCategory.name : 'Loading...';
@@ -364,7 +365,6 @@ class CategoryInfo extends Component {
 				</div>
 			);
 		}
-		
 	}
 }
 

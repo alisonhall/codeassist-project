@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 // import { IndexLink, Link } from 'react-router';
-import { BrowserRouter as Router, Switch, Link, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Link, Route, Redirect } from 'react-router-dom';
 import classnames from 'classnames';
 import $ from 'jquery';
 import firebase from 'firebase';
@@ -75,7 +75,7 @@ class Page extends Component {
 			currentUser: [[0, "0"]],
 
 			numFetches: 0,
-			totalFetches: 7
+			totalFetches: 7,
 		};
 
 		this.addToSelectedLanguages = this.addToSelectedLanguages.bind(this);
@@ -360,6 +360,13 @@ class Page extends Component {
 		base.removeBinding(this.refSelectedLanguages);
 		base.removeBinding(this.refUsers);
 		base.removeBinding(this.refCurrentUser);
+	}
+
+	componentDidUpdate(prevProps, prevState) {
+		console.log("componentDidUpdate", prevProps, prevState, this.props, this.state);
+		// if (location.pathname !== this.state.pathname) {
+		// 	this.setState({ pathname: location.pathname });
+		// }
 	}
 
 	addToSelectedLanguages(key) {
@@ -1012,11 +1019,10 @@ class Page extends Component {
 	}
 }
 
-// Page.propTypes = {
-	// contentComponent: PropTypes.string,
-	// params: PropTypes.object
-	// urlData: PropTypes.object
-// };
+Page.propTypes = {
+	routeMatch: PropTypes.object,
+	routeHistory: PropTypes.object
+};
 
 // Page.defaultProps = {
 // 	allDataLoaded: false

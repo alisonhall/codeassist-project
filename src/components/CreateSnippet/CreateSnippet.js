@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 // import { IndexLink, Link, browserHistory } from 'react-router';
+// import { Redirect } from 'react-router';
 import { BrowserRouter as Router, Link, Route, withRouter } from 'react-router-dom';
 import classnames from 'classnames';
 import moment from 'moment';
@@ -32,7 +33,12 @@ class CreateSnippet extends Component {
 
 	saveExample(object, selectedCategory, selectedLanguage, isSyntax) {
 		this.props.addExample(object, this.props.newId, selectedCategory, selectedLanguage, isSyntax);
-		this.props.thisHistory.push('/category/' + selectedCategory);
+		// this.props.thisHistory.push('/category/' + selectedCategory);
+		// this.props.thisHistory.goBack();
+		// var location = '/category/' + selectedCategory;
+		// <Route path="/create/snippet" render={() => (
+			// <Redirect push to={location} />
+		// )}/>
 	}
 
 	onSubmit(event) {

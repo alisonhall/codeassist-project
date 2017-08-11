@@ -7,11 +7,11 @@ import moment from 'moment';
 import $ from 'jquery';
 
 // Components
-import EmptyCard from './../EmptyCard/EmptyCard.js';
-import ExampleCards from './../ExampleCards/ExampleCards.js';
-import NoContent from './../NoContent/NoContent.js';
-import NoLanguage from './../NoLanguage/NoLanguage.js';
-import CategoryInfo from './../CategoryInfo/CategoryInfo.js';
+import EmptyCard from './../EmptyCard/EmptyCard';
+import ExampleCards from './../ExampleCards/ExampleCards';
+import NoContent from './../NoContent/NoContent';
+import NoLanguage from './../NoLanguage/NoLanguage';
+import CategoryInfo from './../CategoryInfo/CategoryInfo';
 
 // Styles
 import './examples.scss';

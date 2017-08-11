@@ -7,7 +7,7 @@ import enhanceWithClickOutside from 'react-click-outside';
 import $ from 'jquery';
 
 // Components
-import Accordion from './../Accordion/Accordion.js';
+import Accordion from './../Accordion/Accordion';
 
 // Styles
 import './categoriesSidebar.scss';

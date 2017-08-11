@@ -21,30 +21,30 @@ import base from './../../base.js';
 
 
 // Components
-import About from './../About/About.js';
-import Accordion from './../Accordion/Accordion.js';
-import CategoriesSidebar from './../CategoriesSidebar/CategoriesSidebar.js';
-import CategoryInfo from './../CategoryInfo/CategoryInfo.js';
-import CreateCategory from './../CreateCategory/CreateCategory.js';
-import CreateSnippet from './../CreateSnippet/CreateSnippet.js';
-import EditMenu from './../EditMenu/EditMenu.js';
-import EmptyCard from './../EmptyCard/EmptyCard.js';
-import ExampleCards from './../ExampleCards/ExampleCards.js';
-import Examples from './../Examples/Examples.js';
-import Footer from './../Footer/Footer.js';
-import Header from './../Header/Header.js';
-import Home from './../Home/Home.js';
-import Languages from './../Languages/Languages.js';
-import Login from './../Login/Login.js';
-import NoContent from './../NoContent/NoContent.js';
-import NoLanguage from './../NoLanguage/NoLanguage.js';
-import OpenExampleCard from './../OpenExampleCard/OpenExampleCard.js';
-// import Page from './../Page/Page.js';
-import SearchResults from './../SearchResults/SearchResults.js';
-import UserSettings from './../UserSettings/UserSettings.js';
+import About from './../About/About';
+import Accordion from './../Accordion/Accordion';
+import CategoriesSidebar from './../CategoriesSidebar/CategoriesSidebar';
+import CategoryInfo from './../CategoryInfo/CategoryInfo';
+import CreateCategory from './../CreateCategory/CreateCategory';
+import CreateSnippet from './../CreateSnippet/CreateSnippet';
+import EditMenu from './../EditMenu/EditMenu';
+import EmptyCard from './../EmptyCard/EmptyCard';
+import ExampleCards from './../ExampleCards/ExampleCards';
+import Examples from './../Examples/Examples';
+import Footer from './../Footer/Footer';
+import Header from './../Header/Header';
+import Home from './../Home/Home';
+import Languages from './../Languages/Languages';
+import Login from './../Login/Login';
+import NoContent from './../NoContent/NoContent';
+import NoLanguage from './../NoLanguage/NoLanguage';
+import OpenExampleCard from './../OpenExampleCard/OpenExampleCard';
+// import Page from './../Page/Page';
+import SearchResults from './../SearchResults/SearchResults';
+import UserSettings from './../UserSettings/UserSettings';
 
 // var LocationActions = require('./../../actions/LocationActions');
-import Locations from './../Locations.jsx';
+import Locations from './../Locations';
 
 // Styles
 import './page.scss';

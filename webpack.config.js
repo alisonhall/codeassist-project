@@ -30,7 +30,13 @@ module.exports = validate({
 				loaders: ['react-hot-loader/webpack', 'babel'],
 				include: SRC_DIR,
 				exclude: /node_modules/
-			}, 
+			},
+			{
+				test: /\.jsx$/,
+				loaders: ['react-hot-loader/webpack', 'babel'],
+				include: SRC_DIR,
+				exclude: /node_modules/
+			},
 			{
 				test: /\.scss$/,
 				loaders: ['style', 'css?sourceMap', 'sass?sourceMap']

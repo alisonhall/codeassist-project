@@ -5,7 +5,7 @@ import $ from 'jquery';
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 
 // Components
-import Page from './components/Page/Page.js';
+import Page from './components/Page/Page';
 
 // Styles
 import './styles/normalize.css';

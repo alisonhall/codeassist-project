@@ -19,6 +19,7 @@ import base from './../../base.js';
 
 
 
+
 // Components
 import About from './../About/About.js';
 import Accordion from './../Accordion/Accordion.js';
@@ -41,6 +42,9 @@ import OpenExampleCard from './../OpenExampleCard/OpenExampleCard.js';
 // import Page from './../Page/Page.js';
 import SearchResults from './../SearchResults/SearchResults.js';
 import UserSettings from './../UserSettings/UserSettings.js';
+
+// var LocationActions = require('./../../actions/LocationActions');
+import Locations from './../Locations.jsx';
 
 // Styles
 import './page.scss';
@@ -362,12 +366,12 @@ class Page extends Component {
 		base.removeBinding(this.refCurrentUser);
 	}
 
-	componentDidUpdate(prevProps, prevState) {
-		console.log("componentDidUpdate", prevProps, prevState, this.props, this.state);
-		// if (location.pathname !== this.state.pathname) {
-		// 	this.setState({ pathname: location.pathname });
-		// }
-	}
+	// componentDidUpdate(prevProps, prevState) {
+	// 	console.log("componentDidUpdate", prevProps, prevState, this.props, this.state);
+	// 	// if (location.pathname !== this.state.pathname) {
+	// 	// 	this.setState({ pathname: location.pathname });
+	// 	// }
+	// }
 
 	addToSelectedLanguages(key) {
 		// console.log(this.state);
@@ -907,6 +911,9 @@ class Page extends Component {
 
 				<section id = "content" className = "col-md-11 col-md-offset-1" > 
 					<Switch>
+						<Route path="/locations" render={() => (
+							<Locations/>
+						)} />
 						<Route exact={true} path="/" render={() => (
 							<Home/>
 						)} />

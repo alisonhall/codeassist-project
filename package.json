@@ -2,6 +2,7 @@
   "name": "capstone-website",
   "version": "1.0.0",
   "description": "Alison Hall and Liana Careri's capstone project for Humber College's WEBD 302 course.",
+  "homepage": "https://alisonhall.github.io/codeassist-project/",
   "main": "index.js",
   "sourceMaps": "inline",
   "babel": {

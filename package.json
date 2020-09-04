@@ -54,7 +54,7 @@
     "eslint": "^3.5.0",
     "eslint-plugin-react": "^6.2.2",
     "extract-text-webpack-plugin": "^1.0.1",
-    "node-sass": "^4.5.3",
+    "node-sass": "^4.13.1",
     "postcss-devtools": "^1.1.0",
     "postcss-discard-duplicates": "^2.0.1",
     "postcss-loader": "^1.0.0",
